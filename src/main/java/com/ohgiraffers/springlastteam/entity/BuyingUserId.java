@@ -1,4 +1,4 @@
-package com.ohgiraffers.entity;
+package com.ohgiraffers.springlastteam.entity;
 
 
 import jakarta.persistence.Column;
