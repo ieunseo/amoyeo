@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아모여:아파트머시기이-게시판이든뭐든 자유롭게 바꾸세요</title>
-    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+    <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
+
+    <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
 </head>
@@ -21,36 +24,129 @@
         <a th:href="@{/}"><img th:src="@{/img/logo.jpeg}" alt="로고"></a>
     </div>
     <div class="menu-item active" onclick="handleHomeClick(this)">
-        <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="홈"><div>홈</div></a>
+        <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"><div>공구</div></a>
     </div>
-    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-search.png}', '@{/img/before-search.png}')">
-        <a th:href="@{/}"><img th:src="@{/img/before-search.png}" alt="검색"><div>검색</div></a>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">
+        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"><div>검색</div></a>
     </div>
-    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-dollar.png}', '@{/img/before-dollar.png}')">
-        <a th:href="@{/}"><img th:src="@{/img/before-dollar.png}" alt="글쓰기"><div>물가</div></a>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
+        <a th:href="@{/price}"><img th:src="@{/img/before-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"><div>물가</div></a>
     </div>
     <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
-        <a th:href="@{/}"><img th:src="@{/img/before-profile.png}" alt="프로필"><div>마이페이지</div></a>
+        <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"><div>마이페이지</div></a>
     </div>
 </aside>
 
+<div class="content">
+    <div class="post-container">
+        <div class="post">
+            <div class="post-header">
+                <img class="profile-pic" th:src="@{/img/default-profile.png}" alt="profile picture">
+                <div class="post-info">
+                    <div class="username">김계란</div>
+                    <div class="post-date">24/05/27 12:00</div>
+                </div>
+            </div>
+            <div class="post-images">
+                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+            </div>
+            <div class="post-description">
+                고창 햇고구마 🍠 팔아요 키로당 오만원~~ <br>
+                부모님께서 18년째 농사 중입니다 믿고 드세요 <br>
+                올 겨울 아이들한테 군고구마 맛있게 먹여봅시다!
+            </div>
+
+            <div class="product-info mobile-view">
+                <table>
+                    <tr>
+                        <th>품목</th>
+                        <td>농산물 &gt; 고구마</td>
+                    </tr>
+                    <tr>
+                        <th>가격 / Kg</th>
+                        <td>50,000 / 1Kg</td>
+                    </tr>
+                    <tr>
+                        <th>품질</th>
+                        <td>A+</td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div class="post-actions">
+                <div>
+                    <img class="like-icon" src="/img/heart-icon.png" alt="like icon" onclick="updateLikes(this)" data-likes="4" data-kg="21">
+                    <span class="like-text">21 kg 구매했습니다.</span>
+                </div>
+                <div><span class="purchase-text">4 명이 구매했습니다.</span></div>
+            </div>
+        </div>
+        <div class="post">
+            <div class="post-header">
+                <img class="profile-pic" th:src="@{/img/default-profile.png}" alt="profile picture">
+                <div class="post-info">
+                    <div class="username">김계란</div>
+                    <div class="post-date">24/05/27 12:00</div>
+                </div>
+            </div>
+            <div class="post-images">
+                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+            </div>
+            <div class="post-description">
+                고창 햇고구마 🍠 팔아요 키로당 오만원~~ <br>
+                부모님께서 18년째 농사 중입니다 믿고 드세요 <br>
+                올 겨울 아이들한테 군고구마 맛있게 먹여봅시다!
+            </div>
+
+            <div class="product-info mobile-view">
+                <table>
+                    <tr>
+                        <th>품목</th>
+                        <td>농산물 &gt; 고구마</td>
+                    </tr>
+                    <tr>
+                        <th>가격 / Kg</th>
+                        <td>50,000 / 1Kg</td>
+                    </tr>
+                    <tr>
+                        <th>품질</th>
+                        <td>A+</td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div class="post-actions">
+                <div>
+                    <img class="like-icon" src="/img/heart-icon.png" alt="like icon" onclick="updateLikes(this)" data-likes="4" data-kg="21">
+                    <span class="like-text">21 kg 구매했습니다.</span>
+                </div>
+                <div><span class="purchase-text">4 명이 구매했습니다.</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <footer class="footer">
     <div class="menu-item active" onclick="handleHomeClick(this)">
-        <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="홈"><div>홈</div></a>
+        <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"></a>
     </div>
-    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-search.png}', '@{/img/before-search.png}')">
-        <a th:href="@{/}"><img src="@{/img/before-search.png}" alt="검색"><div>검색</div></a>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">
+        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"></a>
     </div>
-    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-dollar.png}', '@{/img/before-dollar.png}')">
-        <a th:href="@{/}"><img src="@{/img/before-dollar.png}" alt="물가"><div>물가</div></a>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
+        <a th:href="@{/price}"><img th:src="@{/img/before-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"></a>
     </div>
     <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
-        <a th:href="@{/}"><img src="@{/img/before-profile.png}" alt="마이페이지"><div>마이페이지</div></a>
+        <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"></a>
     </div>
 </footer>
-    <div class="content">
-        
-    </div>
+
 <footer class="fixed-footer">
     <div>© 2024 Muyaho. All rights reserved.</div>
 </footer>
