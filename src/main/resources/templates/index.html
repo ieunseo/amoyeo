@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아모여:아파트머시기이-게시판이든뭐든 자유롭게 바꾸세요</title>
+    <script type="text/javascript" th:src="@{/js/menu.js}"></script>
+    <link rel="icon" th:href="@{/img/logo.jpeg}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+<body>
+<header>
+    <div class="contentmenu" id="headerMenu">
+        <a th:href="@{/}" class="menu-link active">메뉴1</a>
+        <a th:href="@{/}" class="menu-link">메뉴2</a>
+    </div>
+</header>
+<aside class="sidebar">
+    <div class="logo">
+        <a th:href="@{/}"><img th:src="@{/img/logo.jpeg}" alt="로고"></a>
+    </div>
+    <div class="menu-item active" onclick="handleHomeClick(this)">
+        <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="홈"><div>홈</div></a>
+    </div>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-search.png}', '@{/img/before-search.png}')">
+        <a th:href="@{/}"><img th:src="@{/img/before-search.png}" alt="검색"><div>검색</div></a>
+    </div>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-plus.png}', '@{/img/before-plus.png}')">
+        <a th:href="@{/}"><img th:src="@{/img/before-plus.png}" alt="글쓰기"><div>글쓰기</div></a>
+    </div>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-notification.png}', '@{/img/before-notification.png}')">
+        <a th:href="@{/}"><img th:src="@{/img/before-notification.png}" alt="알림"><div>알림</div></a>
+    </div>
+    <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/}"><img th:src="@{/img/before-profile.png}" alt="프로필"><div>프로필</div></a>
+    </div>
+</aside>
+
+<footer class="footer">
+    <div class="menu-item active" onclick="handleHomeClick(this)">
+        <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="홈"></a>
+    </div>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-search.png}', '@{/img/before-search.png}')">
+        <a th:href="@{/}"><img th:src="@{/img/before-search.png}" alt="검색"></a>
+    </div>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-plus.png}', '@{/img/before-plus.png}')">
+        <a th:href="@{/}"><img th:src="@{/img/before-plus.png}" alt="글쓰기"></a>
+    </div>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-notification.png}', '@{/img/before-notification.png}')">
+        <a th:href="@{/}"><img th:src="@{/img/before-notification.png}" alt="알림"></a>
+    </div>
+    <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/}"><img th:src="@{/img/before-profile.png}" alt="프로필"></a>
+    </div>
+</footer>
+
+<footer class="fixed-footer">
+    <div>© 2024 Muyaho. All rights reserved.</div>
+</footer>
+</body>
+</html>
