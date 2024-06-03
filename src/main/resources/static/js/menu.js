@@ -28,40 +28,42 @@ function toggleProfileBorder(element) {
     resetIcons();
     element.classList.toggle('active');
 }
-
-
 // 홈버튼 눌렀을때만 메뉴 나오게
+
 document.addEventListener("DOMContentLoaded", function() {
     const menuLinks = document.querySelectorAll(".menu-link");
     const headerMenu = document.getElementById("headerMenu");
-    //활성화 시 동작
 
     function activateMenu(element) {
         menuLinks.forEach(link => link.classList.remove("active"));
-        element.classList.add("active");
+        element.classList.add("active");//활성화 시 동작
     }
 
     menuLinks.forEach(link => {
         link.addEventListener("click", function(event) {
             event.preventDefault();// 기본 활성화 돼있는거
+
             activateMenu(this);
         });
     });
 
     headerMenu.style.display = 'flex';
 });
-
+//홈
 function handleHomeClick(element) {
     var headerMenu = document.getElementById("headerMenu");
     var img = element.querySelector('img');
-    var isActive = img.src.includes('after-home.png');
+    var isActive = img.src.includes('/img/after-home.png');
     resetIcons();
-    img.src = isActive ? 'before-home.png' : 'after-home.png';
+    img.src = isActive ? '/img/before-home.png' : '/img/after-home.png';
     if (!isActive) {
         element.classList.add('active');
         headerMenu.style.display = 'flex';
+        showPosts(element);
     } else {
+        element.classList.remove('active');
         headerMenu.style.display = 'none';
+        hidePosts();
     }
 }
 // 사이드바 메뉴
@@ -72,6 +74,7 @@ function changeIconAndHideMenu(element, activeSrc) {
     img.src = activeSrc;
     element.classList.add('active');
     headerMenu.style.display = 'none';
+    hidePosts();
 }
 
 function toggleProfileBorderAndHideMenu(element) {
@@ -79,5 +82,5 @@ function toggleProfileBorderAndHideMenu(element) {
     resetIcons();
     element.classList.toggle('active');
     headerMenu.style.display = 'none';
+    hidePosts();
 }
-
