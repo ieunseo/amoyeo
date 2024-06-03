@@ -6,4 +6,3 @@ function showPosts(element) {
 function hidePosts() {
     document.querySelector('.post-container').style.display = 'none';
 }
-

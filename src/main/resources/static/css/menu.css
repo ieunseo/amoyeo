@@ -1,37 +1,3 @@
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Pretendard-Light';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Pretendard-Black';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
-    font-weight: 900;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Pretendard-ExtraBold';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
-    font-weight: 800;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Pretendard-Bold';
-    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
-    font-weight: 700;
-    font-style: normal;
-}
 body {
     display: flex;
     flex-direction: column;
@@ -338,19 +304,20 @@ aside.sidebar a {
         display: flex;
     }
 }
-
 @media (max-width: 767px) {
+
     .content {
         margin-left: 0;
         flex-direction: column;
         align-items: center;
         overflow-y: auto;
-        height: calc(100vh - 100px); /* 푸터 높이만큼 빼줌 */
-        padding-bottom: 100px; /* 푸터 높이만큼 여유 공간 추가 */
+        width: 100%;
+        padding: 0 10px 100px;
+        box-sizing: border-box;
     }
 
     .sidebar {
-        display: none;
+        display: none !important;
     }
 
     footer.fixed-footer {
@@ -372,6 +339,7 @@ aside.sidebar a {
     .product-info {
         max-width: 100%;
         margin-top: 20px;
+        overflow-x: hidden; /* 추가 */
     }
 
     .post-container {
