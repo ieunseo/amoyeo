@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
-@Table(name = "buying_user")
 @Getter
 @Setter
 @ToString
@@ -22,21 +22,24 @@ public class BuyingUser implements Serializable {
     @Column(name = "buying_quantity")
     private int buyingQuantity;
 
-    @MapsId("buyingNo")
-    @ManyToOne
-    @JoinColumn(name="buying_no")
-    private GroupBuying buyingNo;
+    @Column
+    @Temporal(TemporalType.DATE)
+    private Date buyingDate;
 
-    @MapsId("userNo")
-    @ManyToOne
-    @JoinColumn(name="user_no")
-    private Users userNo;
+//    @MapsId("buyingNo")
+//    @ManyToOne
+//    @JoinColumn(name="buying_no")
+//    private GroupBuying buyingNo;
+//
+//    @MapsId("userNo")
+//    @ManyToOne
+//    @JoinColumn(name="user_no")
+//    private Users userNo;
 
-    public BuyingUser(BuyingUserId id, int buyingPerson, int buyingQuantity, GroupBuying buyingNo, Users userNo) {
+    public BuyingUser(BuyingUserId id, int buyingPerson, int buyingQuantity, Date buyingDate) {
         this.id = id;
         this.buyingPerson = buyingPerson;
         this.buyingQuantity = buyingQuantity;
-        this.buyingNo = buyingNo;
-        this.userNo = userNo;
+        this.buyingDate = buyingDate;
     }
 }
