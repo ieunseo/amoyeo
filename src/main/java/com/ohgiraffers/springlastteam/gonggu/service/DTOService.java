@@ -46,9 +46,21 @@ public class DTOService {
 
     public List<BuyingUserDTO> findBuyingUserList() {
         List<BuyingUser> buyingList = dtoRepository.findAll();
-
-        return buyingList.stream()
+        for (BuyingUser buyingUser : buyingList) {
+            System.out.println(buyingUser);
+        }
+        /*return buyingList.stream()
                 .map(buyingUser -> modelMapper.map(buyingUser, BuyingUserDTO.class))
+                .collect(Collectors.toList());*/
+
+        /* embeddedId 클래스 복합키 값 가져오는 방법 */
+        return buyingList.stream()
+                .map(buyingUser -> {
+                    BuyingUserDTO dto = modelMapper.map(buyingUser, BuyingUserDTO.class);
+                    dto.setBuyingNo(buyingUser.getId().getBuyingNo().getBuyingNo());
+                    dto.setUserNo(buyingUser.getId().getUserNo().getUserNo());
+                    return dto;
+                })
                 .collect(Collectors.toList());
     }
 }
