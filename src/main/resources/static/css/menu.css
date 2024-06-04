@@ -1,3 +1,31 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Light';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Black';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -23,14 +51,14 @@ header .contentmenu {
 
 header .contentmenu a {
     text-decoration: none;
-    color: gray;
+    color: #cccccc;
     margin-right: 50px;
     margin-left: 50px;
     font-weight: bold;
 }
 
 .menu-link {
-    color: gray;
+    color: #cccccc;
     transition: color 0.3s ease;
 }
 
@@ -44,8 +72,8 @@ header .contentmenu a {
     margin-left: 200px;
     padding: 20px;
     display: flex;
-    justify-content: center; /* 중앙 정렬 */
-    align-items: center; /* 중앙 정렬 */
+    justify-content: center;
+    align-items: center;
 }
 
 footer.footer, aside.sidebar {
@@ -98,7 +126,7 @@ aside.sidebar a {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    color: gray;
+    color: #cCCCCC;
 }
 
 .logo {
@@ -166,7 +194,7 @@ aside.sidebar a {
     display: flex;
     gap: 20px;
     align-items: flex-start;
-    flex-direction: column; /* 모바일 뷰에서 flex 방향을 컬럼으로 설정 */
+    flex-direction: column;
 }
 
 .post {
@@ -180,7 +208,7 @@ aside.sidebar a {
     flex: 1;
     max-width: 500px;
     width: 100%;
-    margin-bottom: 0; /* 하단 여백 제거 */
+    margin-bottom: 0;
     box-sizing: border-box;
 }
 
@@ -198,8 +226,22 @@ aside.sidebar a {
 }
 
 .post-info {
-    display: flex;
     flex-direction: column;
+}
+
+.product-info table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+.product-info th, .product-info td {
+    padding: 6px;
+    border: 1px solid #ddd;
+}
+
+.product-info th {
+    background-color: #f2f2f2;
 }
 
 .username {
@@ -208,7 +250,7 @@ aside.sidebar a {
 
 .post-date {
     font-size: 0.85em;
-    color: gray;
+    color: #cccccc;
 }
 
 .post-images {
@@ -216,13 +258,13 @@ aside.sidebar a {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 5px;
-    width: 100%; /* 박스 너비에 맞추기 */
+    width: 100%;
     margin: 10px 0;
 }
 
 .post-image {
     width: 100%;
-    height: 100%; /* 박스 높이에 맞추기 */
+    height: 100%;
     object-fit: cover;
     border-radius: 5px;
 }
@@ -235,7 +277,7 @@ aside.sidebar a {
     display: flex;
     justify-content: space-between;
     font-size: 0.9em;
-    color: gray;
+    color: #cccccc;
     width: 100%;
 }
 
@@ -254,29 +296,99 @@ aside.sidebar a {
     margin-right: 5px;
     cursor: pointer;
 }
-
-.product-info {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    max-width: 300px;
-    align-self: flex-start;
-    overflow-x: auto;
-    width: 120%;
-    box-sizing: border-box;
+/*구매 버튼*/
+.purchase-button {
+    padding: 8px 13px;
+    border: none;
+    background-color: #343a40;
+    color: white;
+    font-weight: 400;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
 }
-.product-info table {
+
+.purchase-button:hover {
+    background-color: #212529;
+}
+
+.purchase-section {
     width: 100%;
-    border-collapse: collapse;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
 }
 
-.product-info th, .product-info td {
-    padding: 5px;
-    text-align: left;
+.purchase-section p {
+    font-size: 20px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.purchase-section button {
+    padding: 8px 13px;
+    border: none;
+    background-color: #37474F;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+
 }
 
-.product-info th {
-    background-color: #f2f2f2;
+.purchase-section button:hover {
+    background-color: #263238;
+}
+/*값 입력*/
+.quantity-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+/* - + 버튼 스타일*/
+.quantity-input button {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-input button:hover {
+    background-color: #ccc;
+}
+
+.quantity-input input {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+    font-size: 16px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+/* input칸 안에 위아래 화살표 지움 */
+.quantity-input input::-webkit-outer-spin-button,
+.quantity-input input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-input input[type=number] {
+    -moz-appearance: textfield;
 }
 
 @media (min-width: 768px) {
@@ -289,7 +401,6 @@ aside.sidebar a {
         justify-content: center;
         align-items: center;
         padding: 20px;
-        font-family: 'Pretendard-Light';
         font-size: 10px;
         color: #ccc;
         background-color: #fff;
@@ -304,6 +415,7 @@ aside.sidebar a {
         display: flex;
     }
 }
+
 @media (max-width: 767px) {
 
     .content {
@@ -339,7 +451,7 @@ aside.sidebar a {
     .product-info {
         max-width: 100%;
         margin-top: 20px;
-        overflow-x: hidden; /* 추가 */
+        overflow-x: hidden;
     }
 
     .post-container {
@@ -350,6 +462,7 @@ aside.sidebar a {
     .product-info.mobile-view {
         display: block;
         max-width: 100%;
-        width: 100%;
+        width: 70%;
+
     }
 }

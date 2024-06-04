@@ -6,7 +6,6 @@
     <title>아모여:아파트머시기이-게시판이든뭐든 자유롭게 바꾸세요</title>
     <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
-
     <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
@@ -43,7 +42,7 @@
             <div class="post-header">
                 <img class="profile-pic" th:src="@{/img/after-profile.png}" alt="profile picture">
                 <div class="post-info">
-                    <div class="username">김계란</div>
+                    <!--                    <div class="username"th:text="${userDTO.userName}"></div>-->
                     <div class="post-date">24/05/27 12:00</div>
                 </div>
             </div>
@@ -81,11 +80,18 @@
                     <img class="like-icon" src="/img/heart-icon.png" alt="like icon" onclick="updateLikes(this)" data-likes="4" data-kg="21">
                     <span class="like-text">21 kg 구매했습니다.</span>
                 </div>
-                <div><span class="purchase-text">4 명이 구매했습니다.</span></div>
+                <button class="purchase-button" onclick="togglePurchaseSection(this)">신청</button>
+            </div>
+            <div class="purchase-section" style="display:none;">
+                <p>물품 :</p>
+                <div class="quantity-input">
+                    <button onclick="decreaseQuantity(this)">-</button>
+                    <input type="number" class="quantity" value="1" min="1">
+                    <button onclick="increaseQuantity(this)">+</button>
+                </div>
+                <button onclick="submitPurchase(this)">확인</button>
             </div>
         </div>
-
-
     </div>
 </div>
 

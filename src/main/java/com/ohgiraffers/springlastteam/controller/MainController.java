@@ -9,6 +9,7 @@ public class MainController {
     public String main() {
         return "index";
     }
+
     @GetMapping(value = {"/mypage"})
     public String mypage() {
         return "mypage/mypage";
