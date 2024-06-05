@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class GongguController {
 
-    private DTOService dtoService;
+    private final DTOService dtoService;
 
     public GongguController(DTOService dtoService) {
         this.dtoService = dtoService;
     }
 
-    @GetMapping("/list")
+    @GetMapping("/")
     public String showDataList(Model model) {
         /* user 출력 */
 /*        List<UserDTO> usersList = dtoService.finduserList();
@@ -39,12 +40,24 @@ public class GongguController {
 
         /* BuyingUser 출력*/
         List<BuyingUserDTO> buyingList = dtoService.findBuyingUserList();
-        for(BuyingUserDTO buyingUserDTO : buyingList) {
-            System.out.println(buyingUserDTO);
-        }
-        return "data/list";
-    }
+//        for(BuyingUserDTO buyingUserDTO : buyingList) {
+//            System.out.println(buyingUserDTO);
+//        }
+        model.addAttribute("buyingList", buyingList);
 
+        List<GroupBuyingDTO> groupBuyingList = buyingList.stream()
+                .map(buyingUser -> dtoService.findGroupBuyingById(buyingUser.getBuyingNo()))
+                .collect(Collectors.toList());
+        model.addAttribute("groupBuyingList", groupBuyingList);
+
+        List<UserDTO> userList = buyingList.stream()
+                .map(buyingUser -> dtoService.findUserById(buyingUser.getUserNo()))
+                .collect(Collectors.toList());
+
+        model.addAttribute("userList", userList);
+
+        return "index";
+    }
     @GetMapping("save")
     public String addBuyingUser(BuyingUserDTO newBuyingUser) {
 

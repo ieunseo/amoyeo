@@ -14,11 +14,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.*;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
 //현재 DTO라 적혀있는 서비스와 레포지토리는  BuyingUser의 entity에 해당합니다.
 @Service
 public class DTOService {
@@ -34,7 +31,6 @@ public class DTOService {
         this.groupBuyingRepository = groupBuyingRepository;
         this.userRepository = userRepository;
     }
-
     // user리스트 확인 가능 단 repository의 확장자의 제너릭을 Users로 바꿔줘야함
 //    public List<UserDTO> finduserList() {
 //        List<Users> userList = dtoRepository.findAll();
@@ -52,7 +48,6 @@ public class DTOService {
 //                .map(groupBuying -> modelMapper.map(groupBuying, GroupBuyingDTO.class))
 //                .collect(Collectors.toList());
 //    }
-
     //복합키 리스트 출력
     public List<BuyingUserDTO> findBuyingUserList() {
         List<BuyingUser> buyingList = dtoRepository.findAll();
@@ -74,20 +69,27 @@ public class DTOService {
                 .collect(Collectors.toList());
     }
 
+    public GroupBuyingDTO findGroupBuyingById(int buyingNo) {
+        GroupBuying groupBuying = groupBuyingRepository.findById(buyingNo)
+                .orElseThrow(() -> new IllegalArgumentException("공동구매번호가 존재하지 않습니다."));
+        return modelMapper.map(groupBuying, GroupBuyingDTO.class);
+    }
+
+    public UserDTO findUserById(int userNo) {
+        Users user = userRepository.findById(userNo)
+                .orElseThrow(() -> new IllegalArgumentException("유저번호가 존재하지 않습니다."));
+        return modelMapper.map(user, UserDTO.class);
+    }
     //save
     @Transactional
     public void requestGroupBuying(BuyingUserDTO newBuyingUser) {
-        System.out.println("save 메소드 실행 전"); //여기 아래 에러 걸림 ID에러
-
         //복합키를 담기위한 객체선언
         GroupBuying groupBuying = groupBuyingRepository.findById(newBuyingUser.getBuyingNo())
-                        .orElseThrow(() -> new IllegalArgumentException("공동구매번호 삽입 안됨"));
+                .orElseThrow(() -> new IllegalArgumentException("공동구매번호 삽입 안됨"));
         Users user = userRepository.findById(newBuyingUser.getUserNo())
                 .orElseThrow(() -> new IllegalArgumentException("유저번호 삽입 안됨"));
-
         //복합키를 Id에 담기
-        BuyingUserId buyingUserId = new BuyingUserId(groupBuying,user);
-
+        BuyingUserId buyingUserId = new BuyingUserId(groupBuying, user);
         //BuyingUser 엔티티에 값 담기
         BuyingUser buyingUser = new BuyingUser();
         buyingUser.setId(buyingUserId);
@@ -101,17 +103,14 @@ public class DTOService {
         System.out.println("save 메소드 실행 후");
     }
 
-
     //delete
     @Transactional
     public void deleteRequstBuying(Integer buyingNo, Integer userNo) {
-
         //복합키를 담기위한 객체선언
         GroupBuying groupBuying = groupBuyingRepository.findById(buyingNo)
                 .orElseThrow(() -> new IllegalArgumentException("공동구매번호 삽입 안됨"));
         Users user = userRepository.findById(userNo)
                 .orElseThrow(() -> new IllegalArgumentException("유저번호 삽입 안됨"));
-
         //복합키 Id에 담기
         BuyingUserId buyingUserId = new BuyingUserId(groupBuying, user);
 
