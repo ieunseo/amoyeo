@@ -22,7 +22,7 @@ public class BuyingUser implements Serializable {
     @Column(name = "buying_quantity")
     private int buyingQuantity;
 
-    @Column
+    @Column(name = "buying_date")
     @Temporal(TemporalType.DATE)
     private Date buyingDate;
 
