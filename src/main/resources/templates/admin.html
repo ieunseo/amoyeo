@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <link rel="icon" th:href="@{/img/logo.jpeg}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <script type="text/javascript" th:src="@{/js/admin.js}" th:defer></script>
+</head>
+<body>
+    <header th:replace="fragments/admin-common :: header"></header>
+    <aside th:replace="fragments/admin-common :: sidebar"></aside>
+
+    <div class="content">
+        <div class="user-management">
+            <h2>User 관리</h2>
+            <input type="text" placeholder="Search users...">
+            <table>
+                <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>ID</th>
+                    <th>PW</th>
+                    <th>전화번호</th>
+                    <th>관리</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>김애란</td>
+                    <td>love10</td>
+                    <td>1111</td>
+                    <td>010-1234-5678</td>
+                    <td><button class="delete-button">삭제</button></td>
+                </tr>
+                <tr>
+                    <td>이기철</td>
+                    <td>fe22</td>
+                    <td>2222</td>
+                    <td>010-2222-2222</td>
+                    <td><button class="delete-button">삭제</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer th:replace="fragments/admin-common :: footer"></footer>
+</body>
+</html>

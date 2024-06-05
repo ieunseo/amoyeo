@@ -1,0 +1,61 @@
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+}
+
+header, footer {
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.user-management {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.user-management h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-management input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.user-management table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-management table th, .user-management table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.user-management table th {
+    background-color: #f4f4f4;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
