@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.io.Serializable;
 
+/* 이미지 파일을 받고 출력 가능하도록 해주는 테이블입니다.*/
 @Entity
 @Table(name = "image")
 @Getter

@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.io.Serializable;
 
+/* 임베더블 클래스입니다 복합키를 표현해줍니다.*/
 @Embeddable
 @Getter
 @Setter

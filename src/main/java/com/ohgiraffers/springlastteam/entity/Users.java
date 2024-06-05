@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.io.Serializable;
 
+/* 관리자와 일반 사용자 모두가 들어있는 테이블입니다 권한을 나눠서 하기에 유저와 관리자의 할수 있는 영역이 다릅니다.*/
 @Entity
 @Table(name = "users")
 @Getter
