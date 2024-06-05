@@ -1,9 +1,12 @@
 package com.ohgiraffers.springlastteam.gonggu.controller;
 
+import com.ohgiraffers.springlastteam.entity.GroupBuying;
 import com.ohgiraffers.springlastteam.gonggu.dto.BuyingUserDTO;
 import com.ohgiraffers.springlastteam.gonggu.dto.GroupBuyingDTO;
 import com.ohgiraffers.springlastteam.gonggu.dto.UserDTO;
+import com.ohgiraffers.springlastteam.gonggu.repository.GroupBuyingRepository;
 import com.ohgiraffers.springlastteam.gonggu.service.DTOService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +17,8 @@ import java.util.stream.Collectors;
 
 @Controller
 public class GongguController {
-
+    @Autowired
+    private GroupBuyingRepository groupBuyingRepository;
     private final DTOService dtoService;
 
     public GongguController(DTOService dtoService) {
@@ -58,6 +62,7 @@ public class GongguController {
 
         return "index";
     }
+
     @GetMapping("save")
     public String addBuyingUser(BuyingUserDTO newBuyingUser) {
 

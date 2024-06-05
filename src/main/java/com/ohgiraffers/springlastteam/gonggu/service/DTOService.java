@@ -113,7 +113,6 @@ public class DTOService {
                 .orElseThrow(() -> new IllegalArgumentException("유저번호 삽입 안됨"));
         //복합키 Id에 담기
         BuyingUserId buyingUserId = new BuyingUserId(groupBuying, user);
-
         //삭제
         System.out.println(buyingUserId);
         System.out.println("삭제 전 서비스");

@@ -26,16 +26,21 @@ public class GroupBuying implements Serializable {
 
     @Column(name = "buying_item")
     private String buyingItem;
+    @Column(name = "buying_quality")
+    private String buyingQuality;
 
+    @Column(name = "buying_price")
+    private int buyingPrice;
     @ManyToOne
     @JoinColumn(name = "user_no", nullable = false)
     private Users user;
 
-    public GroupBuying(int buyingNo, String buyingTitle, String buyingText, String buyingItem, Users user) {
-        this.buyingNo = buyingNo;
+    public GroupBuying(int buyingNo, String buyingTitle, String buyingText, String buyingItem, String buyingQuality, int buyingPrice, Users user) {        this.buyingNo = buyingNo;
         this.buyingTitle = buyingTitle;
         this.buyingText = buyingText;
         this.buyingItem = buyingItem;
+        this.buyingQuality = buyingQuality;
+        this.buyingPrice = buyingPrice;
         this.user = user;
     }
 }

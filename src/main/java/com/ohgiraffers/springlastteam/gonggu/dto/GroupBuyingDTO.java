@@ -20,11 +20,17 @@ public class GroupBuyingDTO {
 
     private int userNo;
 
-    public GroupBuyingDTO(int buyingNo, String buyingTitle, String buyingText, String buyingItem, int userNo) {
+    private String buyingQuality;
+
+    private int buyingPrice;
+
+    public GroupBuyingDTO(int buyingNo, String buyingTitle, String buyingText, String buyingItem, int userNo, String buyingQuality, int buyingPrice) {
         this.buyingNo = buyingNo;
         this.buyingTitle = buyingTitle;
         this.buyingText = buyingText;
         this.buyingItem = buyingItem;
         this.userNo = userNo;
+        this.buyingQuality = buyingQuality;
+        this.buyingPrice = buyingPrice;
     }
 }
