@@ -72,6 +72,8 @@ header .contentmenu a {
     margin-left: 200px;
     padding: 20px;
     display: flex;
+    flex-direction: column;
+    gap: 20px;
     justify-content: center;
     align-items: center;
 }

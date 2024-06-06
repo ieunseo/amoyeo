@@ -29,7 +29,6 @@ function toggleProfileBorder(element) {
     element.classList.toggle('active');
 }
 // 홈버튼 눌렀을때만 메뉴 나오게
-
 document.addEventListener("DOMContentLoaded", function() {
     const menuLinks = document.querySelectorAll(".menu-link");
     const headerMenu = document.getElementById("headerMenu");
