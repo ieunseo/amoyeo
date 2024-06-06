@@ -37,7 +37,8 @@ public class GroupBuying implements Serializable {
     @JoinColumn(name = "user_no", nullable = false)
     private Users user;
 
-    public GroupBuying(int buyingNo, String buyingTitle, String buyingText, String buyingItem, String buyingQuality, int buyingPrice, Users user) {        this.buyingNo = buyingNo;
+    public GroupBuying(int buyingNo, String buyingTitle, String buyingText, String buyingItem, String buyingQuality, int buyingPrice, Users user) {
+        this.buyingNo = buyingNo;
         this.buyingTitle = buyingTitle;
         this.buyingText = buyingText;
         this.buyingItem = buyingItem;

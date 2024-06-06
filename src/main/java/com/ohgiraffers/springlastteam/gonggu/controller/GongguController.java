@@ -23,23 +23,26 @@ public class GongguController {
     @GetMapping("/")
     public String showDataList(Model model) {
         // BuyingUser 출력
-        List<BuyingUserDTO> buyingList = dtoService.findBuyingUserList();
+        /*List<BuyingUserDTO> buyingList = dtoService.findBuyingUserList();
         model.addAttribute("buyingList", buyingList);
-
+*/
         // GroupBuying 리스트
-        List<GroupBuyingDTO> groupBuyingList = buyingList.stream()
-                .map(buyingUser -> dtoService.findGroupBuyingById(buyingUser.getBuyingNo()))
-                .collect(Collectors.toList());
+        List<GroupBuyingDTO> groupBuyingList = dtoService.findGroupBuyingList();
+        for(GroupBuyingDTO groupBuyingDTO : groupBuyingList) {
+            System.out.println(groupBuyingDTO);
+        }
         model.addAttribute("groupBuyingList", groupBuyingList);
 
         // User 리스트
-        List<UserDTO> userList = buyingList.stream()
+    /*    List<UserDTO> userList = buyingList.stream()
                 .map(buyingUser -> dtoService.findUserById(buyingUser.getUserNo()))
                 .collect(Collectors.toList());
         model.addAttribute("userList", userList);
-
+*/
         return "index";
     }
+
+
     @GetMapping("save")
     public String addBuyingUser(BuyingUserDTO newBuyingUser) {
         newBuyingUser.setUserNo(1);

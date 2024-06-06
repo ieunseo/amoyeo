@@ -16,9 +16,6 @@ public class BuyingUser implements Serializable {
     @EmbeddedId
     private BuyingUserId id;
 
-    @Column(name = "buying_person")
-    private int buyingPerson;
-
     @Column(name = "buying_quantity")
     private int buyingQuantity;
 
@@ -26,9 +23,8 @@ public class BuyingUser implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date buyingDate;
 
-    public BuyingUser(BuyingUserId id, int buyingPerson, int buyingQuantity, Date buyingDate) {
+    public BuyingUser(BuyingUserId id, int buyingQuantity, Date buyingDate) {
         this.id = id;
-        this.buyingPerson = buyingPerson;
         this.buyingQuantity = buyingQuantity;
         this.buyingDate = buyingDate;
     }

@@ -40,6 +40,14 @@ public class DTOService {
 //                .collect(Collectors.toList());
 //    }
 
+    public List<GroupBuyingDTO> findGroupBuyingList() {
+        List<GroupBuying> groupList = groupBuyingRepository.findAll();
+
+
+        return groupList.stream()
+                .map(groups -> modelMapper.map(groups, GroupBuyingDTO.class))
+                .collect(Collectors.toList());
+    }
     // GroupBuying리스트 확인 가능 단 repository의 확장자의 제너릭을 GroupBuying로 바꿔줘야함
 //    public List<GroupBuyingDTO> findGroupBuyingList() {
 //        List<GroupBuying> groupList = dtoRepository.findAll();
@@ -93,7 +101,7 @@ public class DTOService {
         //BuyingUser 엔티티에 값 담기
         BuyingUser buyingUser = new BuyingUser();
         buyingUser.setId(buyingUserId);
-        buyingUser.setBuyingPerson(newBuyingUser.getBuyingPerson());
+
         buyingUser.setBuyingQuantity(newBuyingUser.getBuyingQuantity());
         buyingUser.setBuyingDate(newBuyingUser.getBuyingDate());
 
@@ -119,4 +127,6 @@ public class DTOService {
         dtoRepository.deleteById(buyingUserId);
         System.out.println("삭제 후 서비스");
     }
+
+
 }
