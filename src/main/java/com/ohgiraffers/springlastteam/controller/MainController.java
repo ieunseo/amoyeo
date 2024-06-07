@@ -11,8 +11,4 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping(value = {"/mypage"})
-    public String mypage() {
-        return "mypage";
-    }
 }

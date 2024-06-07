@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User 관리 페이지</title>
+    <link rel="icon" th:href="@{/img/logo.jpeg}">
+    <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/admin.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
+</head>
+<body>
+    <!-- 헤더 포함 -->
+    <div th:replace="~{admin/header :: header}"></div>
+
+    <!-- 사이드바 포함 -->
+    <div th:replace="~{admin/sidebar :: sidebar}"></div>
+
+    <div class="content">
+        <div class="section" id="user-management">
+            <div class="search-filter">
+                <input type="text" placeholder="Search...">
+                <button>Search</button>
+                <button>Filter</button>
+            </div>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>이름</th>
+                    <th>ID</th>
+                    <th>PW</th>
+                    <th>전화번호</th>
+                    <th>관리</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>김애란</td>
+                    <td>love10</td>
+                    <td>1111</td>
+                    <td>010-1234-5678</td>
+                    <td><button class="delete-btn">삭제</button></td>
+                </tr>
+                <tr>
+                    <td>이기철</td>
+                    <td>fe22</td>
+                    <td>2222</td>
+                    <td>010-2222-2222</td>
+                    <td><button class="delete-btn">삭제</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 푸터 포함 -->
+    <div class="footer-wrapper">
+        <div th:replace="~{admin/footer :: footer}" class="desktop-footer"></div>
+    </div>
+</body>
+</html>
