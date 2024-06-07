@@ -34,6 +34,15 @@
     <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
         <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"><div>마이페이지</div></a>
     </div>
+    <div class="auth-buttons">
+        <div th:if="${session.user == null}">
+            <a th:href="@{/login}" class="auth-button">로그인</a>
+            <a th:href="@{/register}" class="auth-button">회원가입</a>
+        </div>
+        <div th:if="${session.user != null}">
+            <a th:href="@{/logout}" class="auth-button">로그아웃</a>
+        </div>
+    </div>
 </aside>
 <div class="content">
     <div th:each="groupBuying : ${groupBuyingList}" >
@@ -42,7 +51,7 @@
                 <img class="profile-pic" th:src="@{/img/after-profile.png}" alt="profile picture">
                 <div class="post-info">
                     <div class="username" th:text="${groupBuying.userNo}"></div>
-                    <!--<div class="post-date" th:text="${#dates.format(groupBuying.bu, 'yyyy-MM-dd')}"></div>-->
+                    <!--                    <div class="post-date" th:text="${#dates.format(groupBuying.bu, 'yyyy-MM-dd')}"></div>-->
                 </div>
             </div>
             <div class="post-images">

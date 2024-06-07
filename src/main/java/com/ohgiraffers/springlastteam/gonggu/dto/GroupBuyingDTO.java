@@ -12,8 +12,6 @@ import lombok.ToString;
 public class GroupBuyingDTO {
     private int buyingNo;
 
-    private String buyingTitle;
-
     private String buyingText;
 
     private String buyingItem;
@@ -24,9 +22,8 @@ public class GroupBuyingDTO {
 
     private int buyingPrice;
 
-    public GroupBuyingDTO(int buyingNo, String buyingTitle, String buyingText, String buyingItem, int userNo, String buyingQuality, int buyingPrice) {
+    public GroupBuyingDTO(int buyingNo, String buyingText, String buyingItem, int userNo, String buyingQuality, int buyingPrice) {
         this.buyingNo = buyingNo;
-        this.buyingTitle = buyingTitle;
         this.buyingText = buyingText;
         this.buyingItem = buyingItem;
         this.userNo = userNo;

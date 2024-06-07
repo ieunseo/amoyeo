@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 //현재 DTO라 적혀있는 서비스와 레포지토리는  BuyingUser의 entity에 해당합니다.
 @Service
 public class DTOService {
@@ -127,6 +128,5 @@ public class DTOService {
         dtoRepository.deleteById(buyingUserId);
         System.out.println("삭제 후 서비스");
     }
-
 
 }
