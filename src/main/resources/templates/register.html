@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App name</title>
+    <link rel="icon" th:href="@{/img/logo.jpeg}">
+    <link rel="stylesheet" th:href="@{/css/signup.css}">
+</head>
+<body>
+<form id="signupForm" th:action="@{/register}" method="post">
+    <div class="container">
+        <a th:href = "@{/}"><h2>아모여</h2></a>
+        <br><br><br>
+        <h3>회원가입</h3>
+        <p>부녀회, 판매자는 관리자에게 문의해주세요</p>
+        <input type="text" name="userId" placeholder="아이디를 입력해주세요." required />
+        <input id="password" type="password" name="userPwd" placeholder="비밀번호를 입력해주세요." required />
+        <input id="confirmPassword" type="password" placeholder="비밀번호를 확인해주세요." required />
+        <input type="text" name="userName" placeholder="이름을 입력해주세요." required />
+        <input type="text" name="userPhone" placeholder="010-1234-5678" required pattern="010-\d{4}-\d{4}" title="전화번호 형식이 맞지 않습니다."/>
+        <input type="text" name="userApartment" placeholder="아파트 이름을 입력해주세요." required />
+        <input type="text" name="userApartNum" placeholder="000동 0000호" required />
+        <div id="errorMessage" style="color: red; display: none; font-size: 13px; padding: 0 0 15px 0">비밀번호가 일치하지 않습니다.</div>
+        <button class="btn-login" type="submit">회원가입</button>
+        <p><a href="#">이용약관</a><br><br> <a href="#">개인정보 처리방침</a></p>
+    </div>
+</form>
+
+<script>
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+        if (password !== confirmPassword) {
+            event.preventDefault();
+            document.getElementById('errorMessage').style.display = 'block';
+        } else {
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
