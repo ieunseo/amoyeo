@@ -7,8 +7,8 @@ import com.ohgiraffers.springlastteam.entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AdminRepository {
-    interface UserRepository extends JpaRepository<Users, Integer> {}
-    interface GroupBuyingRepository extends JpaRepository<GroupBuying, Integer> {}
-    interface ImageRepository extends JpaRepository<Image, Integer> {}
-    interface BuyingUserRepository extends JpaRepository<BuyingUser, Integer> {}
+//    interface UserRepository extends JpaRepository<Users, Integer> {}
+//    interface GroupBuyingRepository extends JpaRepository<GroupBuying, Integer> {}
+//    interface ImageRepository extends JpaRepository<Image, Integer> {}
+//    interface BuyingUserRepository extends JpaRepository<BuyingUser, Integer> {}
 }

@@ -1,6 +1,10 @@
 package com.ohgiraffers.springlastteam.admin.service;
 
-import com.ohgiraffers.springlastteam.admin.repository.AdminRepository;
+//import com.ohgiraffers.springlastteam.admin.repository.AdminRepository;
+import com.ohgiraffers.springlastteam.admin.repository.BuyingUserRepository;
+import com.ohgiraffers.springlastteam.admin.repository.GroupBuyingRepository;
+import com.ohgiraffers.springlastteam.admin.repository.ImageRepository;
+import com.ohgiraffers.springlastteam.admin.repository.UserRepository;
 import com.ohgiraffers.springlastteam.entity.GroupBuying;
 import com.ohgiraffers.springlastteam.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +16,16 @@ import java.util.List;
 public class AdminService {
 
     @Autowired
-    private AdminRepository.UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private AdminRepository.GroupBuyingRepository groupBuyingRepository;
+    private GroupBuyingRepository groupBuyingRepository;
 
     @Autowired
-    private AdminRepository.ImageRepository imageRepository;
+    private ImageRepository imageRepository;
 
     @Autowired
-    private AdminRepository.BuyingUserRepository buyingUserRepository;
+    private BuyingUserRepository buyingUserRepository;
 
     public List<Users> findAllUsers() {
         return userRepository.findAll();
