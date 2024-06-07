@@ -231,6 +231,7 @@ aside.sidebar a {
 }
 
 .post {
+    margin-top:20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 15px;
@@ -320,6 +321,13 @@ aside.sidebar a {
     margin-left: 5px;
     position: relative;
     top: -2px;
+}
+
+.like-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 }
 
 .like-icon {
