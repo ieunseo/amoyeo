@@ -13,6 +13,12 @@
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
 </head>
 <body>
+    <!-- 헤더 포함 -->
+    <div th:replace="~{admin/header :: header}"></div>
+
+    <!-- 사이드바 포함 -->
+    <div th:replace="~{admin/sidebar :: sidebar}"></div>
+
     <div class="section" id="post-management">
         <div class="search-filter">
             <input type="text" placeholder="Search...">
