@@ -1,18 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지</title>
     <link rel="icon" th:href="@{/img/logo.jpeg}">
-    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/admin.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
+<header>
+    <div class="header-menu">
+        <a href="#" class="menu-link active">관리</a>
+    </div>
+</header>
+<aside class="sidebar">
+    <div class="logo">
+        <a href="#"><img src="img/logo.jpeg" alt="로고"></a>
+    </div>
+    <div class="menu-item">
+        <a href="#"><img src="img/before-home.png" alt="공구"><div>공구</div></a>
+    </div>
+    <div class="menu-item">
+        <a href="#"><img src="img/before-search.png" alt="검색"><div>검색</div></a>
+    </div>
+    <div class="menu-item">
+        <a href="#"><img src="img/before-dollar.png" alt="물가"><div>물가</div></a>
+    </div>
+    <div class="menu-item active">
+        <a href="#"><img src="img/before-profile.png" alt="관리"><div>관리</div></a>
+    </div>
+</aside>
+<main>
     <div class="content">
-        <div class="user-management">
+        <div class="section" id="user-management">
             <h2>User 관리</h2>
-            <input type="text" placeholder="Search users...">
+            <div class="search-filter">
+                <input type="text" placeholder="Search tickets...">
+                <button>Filter</button>
+            </div>
             <table>
                 <thead>
                 <tr>
@@ -29,19 +59,56 @@
                     <td>love10</td>
                     <td>1111</td>
                     <td>010-1234-5678</td>
-                    <td><button class="delete-button">삭제</button></td>
+                    <td><button class="delete-btn">삭제</button></td>
                 </tr>
                 <tr>
                     <td>이기철</td>
                     <td>fe22</td>
                     <td>2222</td>
                     <td>010-2222-2222</td>
-                    <td><button class="delete-button">삭제</button></td>
+                    <td><button class="delete-btn">삭제</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="section" id="post-management">
+            <h2>글 관리</h2>
+            <div class="search-filter">
+                <input type="text" placeholder="Search tickets...">
+                <button>Filter</button>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>날짜</th>
+                    <th>글쓴이</th>
+                    <th>품목</th>
+                    <th>가격</th>
+                    <th>품질</th>
+                    <th>관리</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>24/05/27</td>
+                    <td>김애란 (love10)</td>
+                    <td>농산물 > 고구마</td>
+                    <td>50,000 / 1kg</td>
+                    <td>A+</td>
+                    <td><button class="delete-btn">삭제</button></td>
+                </tr>
+                <tr>
+                    <td>FIG-122</td>
+                    <td>이기철 (fe22)</td>
+                    <td>경기</td>
+                    <td>0</td>
+                    <td>F</td>
+                    <td><button class="delete-btn">삭제</button></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <footer th:replace="fragments/admin-common :: footer"></footer>
+</main>
 </body>
 </html>

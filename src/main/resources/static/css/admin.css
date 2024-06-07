@@ -1,61 +1,116 @@
 body {
     display: flex;
     font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
 }
 
-header, footer {
-    width: 100%;
-    background-color: #f1f1f1;
-    padding: 10px 0;
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
     text-align: center;
+}
+
+.header-menu .menu-link {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+.header-menu .menu-link.active {
+    font-weight: bold;
 }
 
 .sidebar {
     width: 200px;
-    background-color: #f9f9f9;
-    padding: 10px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar .logo img {
+    width: 100px;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.menu-item {
+    margin-bottom: 20px;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.menu-item img {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.menu-item.active {
+    font-weight: bold;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
 }
 
 .content {
-    flex: 1;
-    padding: 20px;
-}
-
-.user-management {
+    max-width: 1200px;
     margin: 0 auto;
-    max-width: 800px;
 }
 
-.user-management h2 {
-    text-align: center;
+.section {
+    margin-bottom: 40px;
+}
+
+.section h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
     margin-bottom: 20px;
 }
 
-.user-management input[type="text"] {
-    width: 100%;
+.search-filter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-filter input {
+    flex: 1;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-right: 10px;
 }
 
-.user-management table {
+.search-filter button {
+    padding: 10px;
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.user-management table th, .user-management table td {
+table th, table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: left;
 }
 
-.user-management table th {
-    background-color: #f4f4f4;
-}
-
-.delete-button {
-    background-color: red;
-    color: white;
+.delete-btn {
+    background-color: #f44336;
+    color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
 }
