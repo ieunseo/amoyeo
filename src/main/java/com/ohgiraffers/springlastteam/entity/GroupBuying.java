@@ -20,9 +20,6 @@ public class GroupBuying implements Serializable {
     @Column(name = "buying_no")
     private int buyingNo;
 
-    @Column(name = "buying_title")
-    private String buyingTitle;
-
     @Column(name = "buying_text")
     private String buyingText;
 
@@ -37,8 +34,7 @@ public class GroupBuying implements Serializable {
     @JoinColumn(name = "user_no", nullable = false)
     private Users user;
 
-    public GroupBuying(int buyingNo, String buyingTitle, String buyingText, String buyingItem, String buyingQuality, int buyingPrice, Users user) {        this.buyingNo = buyingNo;
-        this.buyingTitle = buyingTitle;
+    public GroupBuying(int buyingNo, String buyingText, String buyingItem, String buyingQuality, int buyingPrice, Users user) {        this.buyingNo = buyingNo;
         this.buyingText = buyingText;
         this.buyingItem = buyingItem;
         this.buyingQuality = buyingQuality;

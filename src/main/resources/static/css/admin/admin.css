@@ -39,7 +39,6 @@ body {
 main {
     flex: 1;
     padding: 20px;
-    overflow-y: auto;
 }
 
 .content {
@@ -82,6 +81,11 @@ table th, table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
+}
+.post-table {
+    margin: 0 auto; /* 가운데 정렬 */
+    width: 50%; /* 내용물에 맞게 너비 조정 */
+    border-collapse: collapse;
 }
 
 .delete-btn {

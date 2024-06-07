@@ -38,19 +38,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>김애란</td>
-                    <td>love10</td>
-                    <td>1111</td>
-                    <td>010-1234-5678</td>
-                    <td><button class="delete-btn">삭제</button></td>
-                </tr>
-                <tr>
-                    <td>이기철</td>
-                    <td>fe22</td>
-                    <td>2222</td>
-                    <td>010-2222-2222</td>
-                    <td><button class="delete-btn">삭제</button></td>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.userNo}"></td>
+                    <td th:text="${user.userId}"></td>
+                    <td th:text="${user.userName}"></td>
+                    <td th:text="${user.userPhone}"></td>
+                    <td>
+                        <a th:href="@{'/admin/admin-user/delete?id=' + ${user.userNo}}">
+                            <button class="delete-btn">삭제</button>
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

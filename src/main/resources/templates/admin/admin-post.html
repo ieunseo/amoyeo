@@ -26,10 +26,10 @@
             <button>Filter</button>
         </div>
 
-        <table>
+        <table class="post-table">
             <thead>
             <tr>
-                <th>날짜</th>
+                <!--<th>날짜</th>-->
                 <th>글쓴이</th>
                 <th>품목</th>
                 <th>가격</th>
@@ -38,21 +38,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>24/05/27</td>
-                <td>김애란 (love10)</td>
-                <td>농산물 > 고구마</td>
-                <td>50,000 / 1kg</td>
-                <td>A+</td>
-                <td><button class="delete-btn">삭제</button></td>
-            </tr>
-            <tr>
-                <td>FIG-122</td>
-                <td>이기철 (fe22)</td>
-                <td>경기</td>
-                <td>0</td>
-                <td>F</td>
-                <td><button class="delete-btn">삭제</button></td>
+            <tr th:each="post : ${groupBuyings}">
+                <!--<td th:text="${post.Date}">24/05/27</td>  날짜가 없어용 필드에!!!!-->
+                <td th:text="${post.user.userName + ' (' + post.user.userId + ')'}">김애란 (love10)</td>
+                <td th:text="${post.buyingItem}">농산물 > 고구마</td>
+                <td th:text="${#numbers.formatInteger(post.buyingPrice, 0)}">50,000 / 1kg</td>
+                <td th:text="${post.buyingQuality}">A+</td>
+                <td>
+                    <a th:href="@{'/admin/admin-post/delete?id=' + ${post.buyingNo}}">
+                        <button class="delete-btn">삭제</button>
+                    </a>
+                </td>
             </tr>
             </tbody>
         </table>
