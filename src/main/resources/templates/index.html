@@ -6,7 +6,6 @@
     <title>아모여:아파트머시기이-게시판이든뭐든 자유롭게 바꾸세요</title>
     <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
-
     <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
@@ -34,6 +33,10 @@
     </div>
     <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
         <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"><div>마이페이지</div></a>
+    </div>
+    <!-- 관리자 페이지 확인용입니당 -->
+    <div class="menu-item admin" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/admin}"><img th:src="@{/img/before-profile.png}" alt="관리자" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"><div>관리자</div></a>
     </div>
 </aside>
 
@@ -101,6 +104,10 @@
     </div>
     <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
         <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"></a>
+    </div>
+    <!-- 관리자 페이지 확인용 -->
+    <div class="menu-item admin" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/admin}"><img th:src="@{/img/before-profile.png}" alt="관리자" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"></a>
     </div>
 </footer>
 
