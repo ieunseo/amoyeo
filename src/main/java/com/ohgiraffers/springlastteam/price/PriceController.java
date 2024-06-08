@@ -34,58 +34,61 @@ public class PriceController {
         String startDate = yesterday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         String endDate = yesterday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-        try {
+        List<PriceDTO> prices = new ArrayList<>();
 
-            String url = apiurl +
-                    "&p_cert_key=" + URLEncoder.encode(p_cert_key, StandardCharsets.UTF_8) +
-                    "&p_cert_id=" + URLEncoder.encode(p_cert_id, StandardCharsets.UTF_8) +
-                    "&p_returntype=json" +
-                    "&p_startday=" + URLEncoder.encode(startDate, StandardCharsets.UTF_8) +
-                    "&p_endday=" + URLEncoder.encode(endDate, StandardCharsets.UTF_8)+
-                    "&p_convert_kg_yn=Y"+
-                    "&p_productclscode=02"+
-                    "&p_itemcategorycode=100";
+        int[] itemCategoryCodes = {100, 200, 300, 400};
 
-            URL requestUrl = new URL(url);
-            HttpURLConnection conn = (HttpURLConnection) requestUrl.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Content-type", "application/json");
+        for (int itemCategoryCode : itemCategoryCodes) {
+            try {
+                String url = apiurl +
+                        "&p_cert_key=" + URLEncoder.encode(p_cert_key, StandardCharsets.UTF_8) +
+                        "&p_cert_id=" + URLEncoder.encode(p_cert_id, StandardCharsets.UTF_8) +
+                        "&p_returntype=json" +
+                        "&p_startday=" + URLEncoder.encode(startDate, StandardCharsets.UTF_8) +
+                        "&p_endday=" + URLEncoder.encode(endDate, StandardCharsets.UTF_8) +
+                        "&p_convert_kg_yn=Y" +
+                        "&p_productclscode=02" +
+                        "&p_itemcategorycode=" + itemCategoryCode;
 
-            BufferedReader bf = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-            StringBuilder result = new StringBuilder();
-            String line;
-            while ((line = bf.readLine()) != null) {
-                result.append(line);
-            }
-            bf.close();
-            conn.disconnect();
+                URL requestUrl = new URL(url);
+                HttpURLConnection conn = (HttpURLConnection) requestUrl.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Content-type", "application/json");
 
-            JSONObject jsonObject = new JSONObject(result.toString());
-            JSONObject dataObject = jsonObject.getJSONObject("data");
-            JSONArray itemArray = dataObject.getJSONArray("item");
+                BufferedReader bf = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = bf.readLine()) != null) {
+                    result.append(line);
+                }
+                bf.close();
+                conn.disconnect();
 
+                JSONObject jsonObject = new JSONObject(result.toString());
+                JSONObject dataObject = jsonObject.getJSONObject("data");
+                JSONArray itemArray = dataObject.getJSONArray("item");
 
-            List<PriceDTO> prices = new ArrayList<>();
-            for (int i = 0; i < itemArray.length(); i++) {
-                JSONObject item = itemArray.getJSONObject(i);
-                String currentItemName = item.optString("itemname", "");
-                String marketName = item.optString("marketname", "");
-                String price = item.optString("price", "");
+                for (int i = 0; i < itemArray.length(); i++) {
+                    JSONObject item = itemArray.getJSONObject(i);
+                    String currentItemName = item.optString("itemname", "");
+                    String marketName = item.optString("marketname", "");
+                    String price = item.optString("price", "");
 
-                if (!currentItemName.isEmpty() && !marketName.isEmpty() && !price.isEmpty()) {
-                    if (!currentItemName.equals("[]") && !marketName.equals("[]") && !price.equals("[]")) {
-                        if (itemName == null || itemName.isEmpty() || currentItemName.contains(itemName)) {
-                            PriceDTO priceDto = new PriceDTO(currentItemName, marketName, price);
-                            prices.add(priceDto);
+                    if (!currentItemName.isEmpty() && !marketName.isEmpty() && !price.isEmpty()) {
+                        if (!currentItemName.equals("[]") && !marketName.equals("[]") && !price.equals("[]")) {
+                            if (itemName == null || itemName.isEmpty() || currentItemName.contains(itemName)) {
+                                PriceDTO priceDto = new PriceDTO(currentItemName, marketName, price);
+                                prices.add(priceDto);
+                            }
                         }
                     }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            model.addAttribute("prices", prices);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
+        model.addAttribute("prices", prices);
 
         return "price";
     }
