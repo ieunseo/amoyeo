@@ -35,6 +35,7 @@
                 <th>가격</th>
                 <th>품질</th>
                 <th>관리</th>
+                <th>상세보기</th>
             </tr>
             </thead>
             <tbody>
@@ -47,6 +48,11 @@
                 <td>
                     <a th:href="@{'/admin/admin-post/delete?id=' + ${post.buyingNo}}">
                         <button class="delete-btn">삭제</button>
+                    </a>
+                </td>
+                <td>
+                    <a th:href="@{'/admin/admin-list?buying_no=' + ${post.buyingNo}}">
+                        <button>상세보기</button>
                     </a>
                 </td>
             </tr>

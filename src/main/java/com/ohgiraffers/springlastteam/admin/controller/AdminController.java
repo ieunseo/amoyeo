@@ -1,6 +1,7 @@
 package com.ohgiraffers.springlastteam.admin.controller;
 
 import com.ohgiraffers.springlastteam.admin.service.AdminService;
+import com.ohgiraffers.springlastteam.entity.BuyingUser;
 import com.ohgiraffers.springlastteam.entity.GroupBuying;
 import com.ohgiraffers.springlastteam.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,13 @@ public class AdminController {
     public String deleteGroupBuying(@RequestParam("id") int buyingId) {
         adminService.deleteGroupBuyingById(buyingId);
         return "redirect:/admin/admin-post";
+    }
+
+    @GetMapping("/admin/admin-list")
+    public String adminListPage(@RequestParam("buying_no") int buyingNo, Model model) {
+        GroupBuying groupBuying = adminService.findGroupBuyingById(buyingNo);
+        List<BuyingUser> buyingUsers = adminService.findBuyingUsersByBuyingNo(groupBuying);
+        model.addAttribute("buyingUsers", buyingUsers);
+        return "admin/admin-list";
     }
 }

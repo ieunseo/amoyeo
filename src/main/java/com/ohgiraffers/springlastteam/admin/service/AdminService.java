@@ -5,6 +5,7 @@ import com.ohgiraffers.springlastteam.admin.repository.BuyingUserRepository;
 import com.ohgiraffers.springlastteam.admin.repository.GroupBuyingRepository;
 import com.ohgiraffers.springlastteam.admin.repository.ImageRepository;
 import com.ohgiraffers.springlastteam.admin.repository.UserRepository;
+import com.ohgiraffers.springlastteam.entity.BuyingUser;
 import com.ohgiraffers.springlastteam.entity.GroupBuying;
 import com.ohgiraffers.springlastteam.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +43,13 @@ public class AdminService {
     public void deleteGroupBuyingById(int buyingId) {
         groupBuyingRepository.deleteById(buyingId);
     }
+
+    public List<BuyingUser> findBuyingUsersByBuyingNo(GroupBuying buyingNo) {
+        return buyingUserRepository.findByIdBuyingNo(buyingNo);
+    }
+    public GroupBuying findGroupBuyingById(int buyingNo) {
+        return groupBuyingRepository.findById(buyingNo).orElseThrow(() -> new RuntimeException("GroupBuying not found"));
+    }
+
 }
+
