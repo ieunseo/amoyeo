@@ -26,15 +26,20 @@
         <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" th:data-active-src="@{/img/after-profile.png}" th:data-inactive-src="@{/img/before-profile.png}"><div>마이페이지</div></a>
     </div>
 </aside>
-<h2>농산물 가격 정보</h2>
-<p>원하는대로 검색하고 볼 수있는 농산물 가격정보</p>
-<div id="menuprice"><span>도메가격</span></div>
-<h3></h3>
-<form th:action="@{/price}" method="get">
-    <input type="text" name="itemName" placeholder="품목명 검색">
+<div class="container">
+    <h2>농산물 가격 정보</h2>
+    <p>원하는대로 검색하고 볼 수있는 농산물 가격정보</p>
+</div>
+<div id="menuprice"><span>도매가격</span></div>
+<div class="search-form">
+<form method="get" action="/price">
+    <label for="itemName"></label>
+    <input type="text" id="itemName" name="itemName" placeholder="품목명을 입력하시오" th:value="${param.itemName}">
     <button type="submit">검색</button>
+    <a href="/price" class="view-all-btn">전체 보기</a>
 </form>
-<h3>농산물/전체</h3>
+</div>
+<h3>일일 도매 가격</h3>
 <table>
     <tr>
         <th>품목명</th>
