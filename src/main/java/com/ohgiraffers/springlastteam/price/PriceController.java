@@ -32,22 +32,18 @@ public class PriceController {
     public String getPrice(Model model,@RequestParam(value = "itemName", required = false) String itemName) {
 
         LocalDate today = LocalDate.now();
-        LocalDate yesterday = today.minusDays(1);
-        String startDate = yesterday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String endDate = yesterday.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate twoDaysAgo = today.minusDays(2);
+        String startDate = twoDaysAgo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String endDate = twoDaysAgo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         List<PriceDTO> prices = new ArrayList<>();
         Set<String> itemNames = new HashSet<>();
 
         String[][] itemCodes = {
-                {"111", "112", "141", "142", "143", "144", "151", "152", "161", "113", "162", "163", "164", "114"},
-                {"211", "212", "279", "280", "213", "214", "215", "216", "221", "222", "223", "224", "225", "226",
-                        "231", "232", "233", "241", "242", "243", "244", "258", "259", "245", "246", "247", "248",
-                        "251", "252", "253", "254", "255", "256", "257", "261", "262", "263", "264", "265", "422",
-                        "217", "218", "266"},
-                {"312", "313", "314", "315", "316", "317", "318", "319", "321", "322"},
-                {"411", "412", "413", "414", "415", "416", "418", "419", "420", "421", "423", "424", "425", "426",
-                        "427", "428", "430", "429"}
+                {"111","112","141","142","143","144","151","152"},
+                {"211","212", "279", "280", "213" ,"214", "215" ,"221" ,"222", "223" ,"224" ,"225" ,"231" ,"232" ,"233" ,"241" ,"242" ,"243" ,"258" ,"245" ,"246" ,"247" ,"252" ,"253", "255" ,"256", "257"},
+                {"312", "313" ,"314" ,"315" ,"316", "317"},
+                {"411", "412", "418", "420", "421", "424", "425" ,"428"}
         };
 
         String[] itemCategoryCodes = {"100", "200", "300", "400"};

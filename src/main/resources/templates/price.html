@@ -5,7 +5,6 @@
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/price.css}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
-
     <title>농산물 가격 정보</title>
 </head>
 <body>
@@ -29,29 +28,32 @@
 <div class="container">
     <h2>농산물 가격 정보</h2>
     <p>원하는대로 검색하고 볼 수있는 농산물 가격정보</p>
-</div>
-<div id="menuprice"><span>도매가격</span></div>
+
+<div id="menuprice"><span>&nbsp;&nbsp;&nbsp;&nbsp;도매가격</span></div>
 <div class="search-form">
-<form method="get" action="/price">
-    <label for="itemName"></label>
-    <input type="text" id="itemName" name="itemName" placeholder="품목명을 입력하시오" th:value="${param.itemName}">
-    <button type="submit">검색</button>
-    <a href="/price" class="view-all-btn">전체 보기</a>
-</form>
+    <form method="get" action="/price">
+        <label for="itemName"></label>
+        <input type="text" id="itemName" name="itemName" placeholder="품목명을 입력하시오" th:value="${param.itemName}">
+        <button type="submit">검색</button>
+        <a href="/price" class="view-all-btn">전체 보기</a>
+    </form>
 </div>
-<h3>일일 도매 가격</h3>
-<table>
-    <tr>
-        <th>품목명</th>
-        <th>마켓</th>
-        <th>가격</th>
-    </tr>
-    <tr th:each="price : ${prices}">
-        <td th:text="${price.itemName}"></td>
-        <td th:text="${price.marketName}"></td>
-        <td th:text="${price.price}"></td>
-    </tr>
-</table>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;📊일일 도매 가격</h3>
+    <div class="table-wrapper">
+        <table>
+            <tr>
+                <th>품목명</th>
+                <th>마켓</th>
+                <th>가격</th>
+            </tr>
+            <tr th:each="price : ${prices}">
+                <td th:text="${price.itemName}"></td>
+                <td th:text="${price.marketName}"></td>
+                <td th:text="${price.price}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
 <footer class="footer">
     <div class="menu-item active" onclick="handleHomeClick(this)">
         <a th:href="@{/}"><img th:src="@{/img/before-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"></a>
@@ -66,9 +68,8 @@
         <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"></a>
     </div>
 </footer>
-
 <footer class="fixed-footer">
-    <div>© 2024 Muyaho. All rights reserved.</div>
+    <div>© 2024 Muyaho</div>
 </footer>
 </body>
 </html>
