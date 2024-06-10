@@ -86,6 +86,9 @@
       <div class="save_button">
         <button type="submit" class="save_button">Save changes</button>
       </div>
+      <div th:if="${errorMessage}" class="error-message" style="color:red;">
+        <p th:text="${errorMessage}"></p>
+      </div>
     </form>
   </div>
 </div>

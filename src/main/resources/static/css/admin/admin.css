@@ -48,6 +48,7 @@ table th, table td {
     padding: 10px;
     text-align: left;
 }
+
 .post-table {
     margin: 0 auto; /* 가운데 정렬 */
     width: 50%; /* 내용물에 맞게 너비 조정 */
