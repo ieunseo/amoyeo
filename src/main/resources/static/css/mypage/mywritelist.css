@@ -105,6 +105,9 @@ table {
 .header-actions {
     text-align: center;
 }
+.like-table{
+    padding-bottom: 20px;
+}
 
 @media (max-width: 767px) {
     .profile-card {

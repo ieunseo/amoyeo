@@ -17,7 +17,7 @@
 <header th:fragment="header">
     <div class="contentmenu" id="headerMenu">
         <a th:href="@{/mypage}" class="menu-link">마이페이지</a>
-        <a th:href="@{/purchashistory}" class="menu-link">구매이력</a>
+<!--        <a th:href="@{/purchashistory}" class="menu-link">구매이력</a>-->
         <a th:href="@{/mypage/mylikes}" class="menu-link active">좋아요</a>
     </div>
 </header>
@@ -33,7 +33,7 @@
             <div class="profile-name"><span class="profile-name-text" th:text="${profileName}"></span></div>
         </div>
         <div class="transaction-table">
-            <table>
+            <table class="like-table">
                 <thead>
                 <tr class="transaction-header">
                     <th class="header-item">물품</th>
