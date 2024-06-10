@@ -6,6 +6,7 @@
     <title>글쓰기</title>
 </head>
 <body>
+
     <h1>새 글 추가</h1>
     <form action="#" th:action="@{/addPost}" th:object="${post}" method="post" enctype="multipart/form-data">
         <label for="user_name">이름: </label>
@@ -22,5 +23,10 @@
         <input type="file" id="image" name="image"><br><br>
         <button type="submit">제출</button>
     </form>
+
+    <!-- 푸터 포함 -->
+    <div class="footer-wrapper">
+        <div th:replace="~{admin/footer :: footer}" class="desktop-footer"></div>
+    </div>
 </body>
 </html>

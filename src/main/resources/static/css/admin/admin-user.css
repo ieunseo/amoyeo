@@ -4,7 +4,6 @@ body {
     flex-direction: column;
 }
 
-
 .sidebar {
     width: 200px;
     height: 100vh;
@@ -39,12 +38,10 @@ body {
 
 main {
     flex: 1;
-    padding: 20px;
 }
 
 .content {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
 }
 
 .section {
@@ -62,7 +59,6 @@ main {
     justify-content: space-between;
     margin-bottom: 20px;
 }
-
 
 .search-filter input {
     flex: 1;
@@ -83,11 +79,6 @@ table th, table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: left;
-}
-.post-table {
-    margin: 0 auto; /* 가운데 정렬 */
-    width: 50%; /* 내용물에 맞게 너비 조정 */
-    border-collapse: collapse;
 }
 
 .delete-btn {
