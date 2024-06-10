@@ -1,55 +1,82 @@
-body {
-    font-family: 'Pretendard-Regular', Arial, sans-serif;
-    display: flex;
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-.content {
-    width: 100%;
-    display: flex;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
 }
+
+
+.section {
+    padding: 20px;
+}
+
 
 .search-filter {
-    display: flex;
-    justify-content: space-between;
+    margin-left: 550px;
     margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 10px; /* 요소 간격 */
 }
 
-.search-filter input {
-    flex-grow: 1;
+.search-filter input[type="text"] {
     padding: 10px;
-    min-width: 150px; /* 최소 너비 설정 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 400px;
 }
 
 .search-filter button {
-    padding: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
 }
 
+.search-filter button:hover {
+    background-color: #0056b3;
+}
+
+
 .post-table {
-    width: 100%;
+    margin-left: 250px;
+    width: 80%;
     border-collapse: collapse;
-    flex-grow: 1;
 }
 
 .post-table th, .post-table td {
     border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+    padding: 8px;
+    text-align: center;
 }
 
+.post-table th {
+    background-color: #f2f2f2;
+}
+
+
 .delete-btn {
-    background-color: #f44336;
-    color: #fff;
+    padding: 8px 16px;
     border: none;
-    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #dc3545;
+    color: #fff;
     cursor: pointer;
 }
 
 .delete-btn:hover {
-    background-color: #d32f2f;
+    background-color: #c82333;
 }
 
-.footer-wrapper {
-    margin-top: auto; /* 푸터를 화면 하단에 고정 */
+.detail-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    background-color: #808080;
+    color: #000;
+    cursor: pointer;
 }
