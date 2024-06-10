@@ -5,8 +5,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-//    @GetMapping(value = {"/want"})
-//    public String want() {
-//        return "want";
-//    }
+    @GetMapping(value = {"/"})
+    public String main() {
+        return "index";
+    }
+    @GetMapping(value = {"/mypage"})
+    public String mypage() {
+        return "mypage";
+    }
+    @GetMapping(value={"/prices"})
+    public String price() {return "price";}
+
 }
