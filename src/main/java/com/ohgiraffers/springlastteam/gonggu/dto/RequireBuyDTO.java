@@ -18,8 +18,9 @@ public class RequireBuyDTO {
     private String requireQuality;
     private int userNo;
     private boolean liked;
+    public String userName;
 
-    public RequireBuyDTO(int requireNo, String requireText, String requireItem, int requirePrice, String requireQuality, int userNo, boolean liked) {
+    public RequireBuyDTO(int requireNo, String requireText, String requireItem, int requirePrice, String requireQuality, int userNo, boolean liked, String userName) {
         this.requireNo = requireNo;
         this.requireText = requireText;
         this.requireItem = requireItem;
@@ -27,5 +28,6 @@ public class RequireBuyDTO {
         this.requireQuality = requireQuality;
         this.userNo = userNo;
         this.liked = liked;
+        this.userName = userName;
     }
 }
