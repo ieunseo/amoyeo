@@ -2,6 +2,9 @@ body {
     font-family: 'Pretendard-Regular', Arial, sans-serif;
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
 }
 
 .sidebar {
@@ -36,22 +39,20 @@ body {
     font-weight: bold;
 }
 
-main {
-    flex: 1;
-}
-
 .content {
-    width: 100%;
+    flex: 1;
+    margin-left: 200px; /* 사이드바 너비와 맞춤 */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: auto;
 }
 
 .section {
-    margin-bottom: 40px;
-}
-
-.section h2 {
-    border-bottom: 2px solid #333;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .search-filter {
@@ -73,6 +74,7 @@ main {
 table {
     width: 100%;
     border-collapse: collapse;
+    flex: 1;
 }
 
 table th, table td {
