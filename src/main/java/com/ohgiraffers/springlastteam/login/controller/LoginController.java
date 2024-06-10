@@ -41,7 +41,7 @@ public class LoginController {
         session.setAttribute("user", user);
 
         if ("Y".equals(user.getUserRights())) {
-            return "redirect:/adminpage";
+            return "redirect:/admin/admin-user";
         }
 
         return "redirect:/";
