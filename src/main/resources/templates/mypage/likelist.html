@@ -48,7 +48,7 @@
                     <td class="transaction-price" th:text="${post.requirePrice}">가격</td>
                     <td class="transaction-quality" th:text="${post.requireQuality}">품질</td>
                     <td class="transaction-delete">
-                        <form method="post" th:action="@{/mypage/myposts/delete}" style="display:inline;">
+                        <form method="post" th:action="@{/mypage/mylikes/delete}" style="display:inline;">
                             <input type="hidden" name="postId" th:value="${post.requireNo}"/>
                             <button type="submit" class="delete-button">삭제</button>
                         </form>

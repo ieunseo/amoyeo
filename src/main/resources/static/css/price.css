@@ -71,7 +71,9 @@ input[type="text"] {
     border-radius: 5px;
     padding: 10px 20px;
 }
-
+.search-form .view-all-btn:hover{
+    background-color: #595c6a;
+}
 button[type="submit"] {
     padding: 10px 20px;
     border: none;
@@ -79,6 +81,9 @@ button[type="submit"] {
     background-color: #006400;
     color: #fff;
     cursor: pointer;
+}
+button[type="submit"]:hover{
+    background-color: #005100;
 }
 .table-wrapper {
     width: calc(100% - 220px);

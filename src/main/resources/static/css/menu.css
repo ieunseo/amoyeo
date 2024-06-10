@@ -32,7 +32,7 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: 'Pretendard-Regular', Arial, sans-serif;
-    background-color: #fff;
+    background-color: #f8f8f8;
 }
 
 header {
@@ -232,9 +232,9 @@ aside.sidebar a {
 
 .post {
     margin-top:20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 15px;
+    background-color: #fff;
+    /*border: 1px solid #ddd;*/
+    padding: 25px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -446,7 +446,7 @@ aside.sidebar a {
         padding: 20px;
         font-size: 10px;
         color: #ccc;
-        background-color: #fff;
+        background-color: #f8f8f8;
         width: calc(100% - 200px);
         margin-left: 200px;
         position: relative;
@@ -460,6 +460,7 @@ aside.sidebar a {
 }
 
 @media (max-width: 767px) {
+
     .content {
         margin-left: 0;
         flex-direction: column;

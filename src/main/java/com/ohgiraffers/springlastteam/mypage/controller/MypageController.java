@@ -170,4 +170,24 @@ public String getPurchaseHistory(HttpSession session, Model model) {
         model.addAttribute("profileName", user.getUserName());
         return "mypage/likelist";
     }
+
+    @PostMapping("/mypage/mylikes/delete")
+    public String deleteMyLike(HttpSession session, @RequestParam int postId, Model model) {
+        Users user = (Users) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        // 해당 사용자의 좋아요 항목을 찾기
+        Likes like = likesRepository.findByUser_UserNoAndRequireBuy_RequireNo(user.getUserNo(), postId);
+        if (like == null) {
+            model.addAttribute("errorMessage", "해당 항목을 찾을 수 없거나 권한이 없습니다.");
+            return "mypage/likelist";  // 에러 메시지를 표시하기 위해 좋아요 목록 페이지로 리디렉션
+        }
+
+        // 좋아요 항목 삭제
+        likesRepository.delete(like);
+        return "redirect:/mypage/mylikes";
+    }
+
 }
