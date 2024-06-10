@@ -147,7 +147,7 @@ aside.sidebar a {
     color: gray;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .container {
         margin-left: 0;
     }
@@ -164,4 +164,23 @@ aside.sidebar a {
     input[type="text"] {
         width: 100%;
     }
+}
+@media (max-width: 668px) {
+    .container {
+        margin-left: 0;
+    }
+    .table-wrapper {
+        width: 100%;
+        margin-left: 0;
+    }
+    .search-form .view-all-btn{
+        width: 30%;
+    }
+    button[type="submit"] {
+        width: 30%;
+    }
+    input[type="text"] {
+        width: 100%;
+    }
+
 }
