@@ -13,8 +13,8 @@
 <body>
 <header>
     <div class="contentmenu" id="headerMenu">
-        <a th:href="@{/}" class="menu-link active">공구</a>
-        <a th:href="@{/want}" class="menu-link">ㅇㅇ?</a>
+        <a th:href="@{/}" class="menu-link">공구</a>
+        <a th:href="@{/want}" class="menu-link active">ㅇㅇ?</a>
     </div>
 </header>
 <aside class="sidebar">
@@ -44,54 +44,52 @@
     </div>
 </aside>
 <div class="content">
-    <div th:each="groupBuying : ${groupBuyingList}" >
-        <div class="post">
-            <div class="post-header">
-                <img class="profile-pic" th:src="@{/img/after-profile.png}" alt="profile picture">
-                <div class="post-info">
-                    <div class="username" th:text="${groupBuying.userName}"></div>
-                    <!--                    <div class="post-date" th:text="${#dates.format(groupBuying.bu, 'yyyy-MM-dd')}"></div>-->
+    <div th:if="${session.user == null}">
+        <p>로그인이 필요합니다. <a th:href="@{/login}">로그인</a></p>
+    </div>
+    <div th:if="${session.user != null}">
+        <div th:each="requireBuy : ${requireBuyList}">
+            <div class="post">
+                <div class="post-header">
+                    <img class="profile-pic" th:src="@{/img/after-profile.png}" alt="profile picture">
+                    <div class="post-info">
+                        <div class="username" th:text="${requireBuy.userNo}"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="post-images">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
-            </div>
-            <div class="post-description" th:text="${groupBuying.buyingText}"></div>
+                <div class="post-images">
+                    <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                    <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                    <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                    <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                </div>
+                <div class="post-description" th:text="${requireBuy.requireText}"></div>
 
-            <div class="product-info mobile-view">
-                <table>
-                    <tr>
-                        <th>품목</th>
-                        <td th:text="${groupBuying.buyingItem}"></td>
-                    </tr>
-                    <tr>
-                        <th>가격</th>
-                        <td th:text="${groupBuying.buyingPrice}"></td>
-                    </tr>
-                    <tr>
-                        <th>품질</th>
-                        <td th:text="${groupBuying.buyingQuality}"></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="post-actions">
-                <div>
-                    <!--<img class="like-icon" th:src="@{/img/heart-icon.png}" alt="like icon" onclick="updateLikes(this)" th:data-likes="${buyingUser.buyingPerson}" th:data-kg="${buyingUser.buyingQuantity}" th:data-liked="false">-->
-                    <!--<span class="purchase-text" th:text="${buyingUser.buyingPerson} + ' 명이 구매했습니다.'">1 명이 구매했습니다.</span>-->
+                <div class="product-info mobile-view">
+                    <table>
+                        <tr>
+                            <th>품목</th>
+                            <td th:text="${requireBuy.requireItem}"></td>
+                        </tr>
+                        <tr>
+                            <th>가격</th>
+                            <td th:text="${requireBuy.requirePrice}"></td>
+                        </tr>
+                        <tr>
+                            <th>품질</th>
+                            <td th:text="${requireBuy.requireQuality}"></td>
+                        </tr>
+                    </table>
                 </div>
-                <button class="purchase-button" onclick="togglePurchaseSection(this)">신청</button>
-            </div>
-            <div class="purchase-section" style="display:none;">
-                <p>물품 :</p>
-                <div class="quantity-input">
-                    <button onclick="decreaseQuantity(this)">-</button>
-                    <input type="number" class="quantity" value="1" min="1">
-                    <button onclick="increaseQuantity(this)">+</button>
+                <div class="post-actions">
+                    <form th:action="@{/toggleLike}" method="post" class="like-form">
+                        <input type="hidden" name="userNo" th:value="${session.user.userNo}">
+                        <input type="hidden" name="requireNo" th:value="${requireBuy.requireNo}">
+                        <button type="button" class="like-button"
+                                th:onclick="'toggleLike(this, ' + ${requireBuy.requireNo} + ', ' + ${session.user.userNo} + ')'" th:classappend="${requireBuy.liked} ? 'liked' : 'unliked'">
+                            <img class="like-icon" th:src="@{/img/heart-icon.png}" th:alt="unliked">
+                        </button>
+                    </form>
                 </div>
-                <button onclick="submitPurchase(this)">확인</button>
             </div>
         </div>
     </div>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아모여:아파트머시기이-게시판이든뭐든 자유롭게 바꾸세요</title>
+  <link rel="icon" th:href="@{/img/logo.jpeg}">
+  <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
+  <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
+  <script type="text/javascript" th:src="@{/js/mypage.js}" th:defer></script>
+  <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
+  <link rel="stylesheet" th:href="@{/css/menu.css}">
+  <link rel="stylesheet" th:href="@{/css/mypage.css}">
+</head>
+<body>
+<header>
+  <div class="contentmenu" id="headerMenu">
+    <a th:href="@{/templates/mypage}" class="menu-link active">프로필 수정</a>
+    <a th:href="@{/static}" class="menu-link">구매 내역</a>
+
+  </div>
+</header>
+<aside class="sidebar">
+  <div class="logo">
+    <a th:href="@{/static}"><img th:src="@{/img/logo.jpeg}" alt="로고"></a>
+  </div>
+  <div class="menu-item active" onclick="handleHomeClick(this)">
+    <a th:href="@{/static}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"><div>공구</div></a>
+  </div>
+  <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">
+    <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"><div>검색</div></a>
+  </div>
+  <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
+    <a th:href="@{/price}"><img th:src="@{/img/before-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"><div>물가</div></a>
+  </div>
+  <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
+    <a th:href="@{/templates/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" th:data-active-src="@{/img/after-profile.png}" th:data-inactive-src="@{/img/before-profile.png}"><div>마이페이지</div></a>
+  </div>
+</aside>
+<div class="profile-container">
+  <div class="profile_section">
+    <div class="profile_picture">
+      <div class="picture_frame">
+        <div class="profile_image">
+          <img th:src="@{/img/profile_image.png}" alt="Profile Image">
+        </div>
+      </div>
+      <div class="profile_name">
+        <span class="name_text">김애란</span>
+      </div>
+    </div>
+    <div class="id_section">
+      <span class="id_label">ID</span>
+      <div class="id_value">
+        <span class="id_text">love10</span>
+      </div>
+    </div>
+    <div class="phone_section">
+      <span class="phone_label">Phone</span>
+      <div class="phone_value">
+        <span class="phone_text">010-1234-5678</span>
+        <input type="text" placeholder="변경할 전화번호를 입력해주세요">
+      </div>
+    </div>
+    <div class="password_section">
+      <h3>비밀번호 변경</h3>
+      <div class="current_password">
+        <span class="current_password_label">현재 비밀번호</span>
+        <input type="password" placeholder="현재 비밀번호를 입력해주세요"><br>
+      </div>
+      <div class="new_password">
+        <span class="new_password_label">변경할 비밀번호</span>
+        <input type="password" placeholder="변경할 비밀번호를 입력해주세요"><br>
+      </div>
+      <div class="confirm_password">
+        <span class="confirm_password_label">비밀번호 확인</span>
+        <input type="password" placeholder="변경할 비밀번호를 다시 입력해주세요"><br>
+      </div>
+    </div>
+    <div class="save_button">
+      <span class="save_button_text">Save changes</span>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="menu-item active" onclick="handleHomeClick(this)">
+    <a th:href="@{/static}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"></a>
+  </div>
+  <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">
+    <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"></a>
+  </div>
+  <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
+    <a th:href="@{/price}"><img th:src="@{/img/before-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"></a>
+  </div>
+  <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
+    <a th:href="@{/templates/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"></a>
+  </div>
+</footer>
+</body>
+</html>

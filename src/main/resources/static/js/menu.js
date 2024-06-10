@@ -28,27 +28,26 @@ function toggleProfileBorder(element) {
     resetIcons();
     element.classList.toggle('active');
 }
-// 홈버튼 눌렀을때만 메뉴 나오게
-
-document.addEventListener("DOMContentLoaded", function() {
-    const menuLinks = document.querySelectorAll(".menu-link");
-    const headerMenu = document.getElementById("headerMenu");
-
-    function activateMenu(element) {
-        menuLinks.forEach(link => link.classList.remove("active"));
-        element.classList.add("active");//활성화 시 동작
-    }
-
-    menuLinks.forEach(link => {
-        link.addEventListener("click", function(event) {
-            event.preventDefault();// 기본 활성화 돼있는거
-
-            activateMenu(this);
-        });
-    });
-
-    headerMenu.style.display = 'flex';
-});
+// // 홈버튼 눌렀을때만 메뉴 나오게
+// document.addEventListener("DOMContentLoaded", function() {
+//     const menuLinks = document.querySelectorAll(".menu-link");
+//     const headerMenu = document.getElementById("headerMenu");
+//
+//     function activateMenu(element) {
+//         menuLinks.forEach(link => link.classList.remove("active"));
+//         element.classList.add("active");//활성화 시 동작
+//     }
+//
+//     menuLinks.forEach(link => {
+//         link.addEventListener("click", function(event) {
+//             event.preventDefault();// 기본 활성화 돼있는거
+//
+//             activateMenu(this);
+//         });
+//     });
+//
+//     headerMenu.style.display = 'flex';
+// });
 //홈
 function handleHomeClick(element) {
     var headerMenu = document.getElementById("headerMenu");
