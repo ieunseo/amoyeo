@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아모여:아파트머시기이-게시판이든뭐든 자유롭게 바꾸세요</title>
+    <title>아모여: 아파트머시기머시기</title>
     <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
@@ -47,9 +47,16 @@
     </div>
 </aside>
 <div class="InputContainer">
-    <input placeholder="Search.." id="input" class="input" name="text" type="text">
-
+    <div class="input-wrapper">
+        <input placeholder="검색어를 입력하세요." id="input" class="input" name="text" type="text">
+        <div class="search-icon" onclick="handleSearchClick()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 2C6.03125 2 2 6.03125 2 11C2 15.9688 6.03125 20 11 20C12.8769 20 14.635 19.4844 16.0834 18.5938L20.2812 22.7812L22.2812 20.7812L18.0938 16.5938C18.9844 15.135 19.5 13.3769 19.5 11.5C19.5 6.53125 15.4688 2 11 2ZM11 4C14.8797 4 18 7.12031 18 11C18 14.8797 14.8797 18 11 18C7.12031 18 4 14.8797 4 11C4 7.12031 7.12031 4 11 4Z" fill="#333"/>
+            </svg>
+        </div>
+    </div>
 </div>
+
 <div class="content">
     <div th:each="groupBuying : ${groupBuyingList}" >
         <div class="post">
@@ -125,5 +132,11 @@
 <footer class="fixed-footer">
     <div>© 2024 Muyaho. All rights reserved.</div>
 </footer>
+<!--<script>-->
+<!--    function handleSearchClick() {-->
+<!--        var input = document.getElementById('input').value;-->
+<!--        window.location.href = '/search?query=' + input;-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>
