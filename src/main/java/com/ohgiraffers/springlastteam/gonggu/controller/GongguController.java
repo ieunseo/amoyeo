@@ -43,14 +43,6 @@ public class GongguController {
         return "index";
     }
 
-    @PostMapping("/")
-    public String showMain(Model model) {
-        List<GroupBuyingDTO> groupBuyingList = dtoService.findGroupBuyingList();
-        model.addAttribute("groupBuyingList", groupBuyingList);
-        
-        return "index";
-    }
-
     @GetMapping("/want")
     public String getRequireBuys(HttpSession session, Model model) {
         if (session.getAttribute("user") == null) {

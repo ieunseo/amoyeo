@@ -25,33 +25,33 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @GetMapping("/admin/admin-user")
+    @GetMapping("/admin-user")
     public String adminUserPage(Model model) {
         List<Users> users = adminService.findAllUsers();
         model.addAttribute("users", users);
         return "admin/admin-user";
     }
 
-    @GetMapping("/admin/admin-post")
+    @GetMapping("/admin-post")
     public String adminPostPage(Model model) {
         List<GroupBuying> groupBuyings = adminService.findAllGroupBuyings();
         model.addAttribute("groupBuyings", groupBuyings);
         return "admin/admin-post";
     }
 
-    @GetMapping("/admin/admin-user/delete")
+    @GetMapping("/admin-user/delete")
     public String deleteUser(@RequestParam("id") int userId) {
         adminService.deleteUserById(userId);
         return "redirect:/admin/admin-user";
     }
 
-    @GetMapping("/admin/admin-post/delete")
+    @GetMapping("/admin-post/delete")
     public String deleteGroupBuying(@RequestParam("id") int buyingId) {
         adminService.deleteGroupBuyingById(buyingId);
         return "redirect:/admin/admin-post";
     }
 
-    @GetMapping("/admin/admin-list")
+    @GetMapping("/admin-list")
     public String adminListPage(@RequestParam("buying_no") int buyingNo, Model model) {
         GroupBuying groupBuying = adminService.findGroupBuyingById(buyingNo);
         List<BuyingUser> buyingUsers = adminService.findBuyingUsersByBuyingNo(groupBuying);
@@ -59,25 +59,22 @@ public class AdminController {
         return "admin/admin-list";
     }
 
-    @GetMapping("/add-post")
-    public String getAddPostPage(HttpSession session,Model model){
+    /*화면 띄우기용*/
+    @GetMapping("/addpost")
+    public void getAddPostPage(HttpSession session, Model model){
         Users user = (Users) session.getAttribute("user");
-        if (user == null) {
-            return "redirect:/login";
-        }
-        System.out.println("이름 : " + user.getUserName());
-
         model.addAttribute("user", user);
-        return "admin/addpost";
     }
 
-    @PostMapping("/add-post")
+    /*값 전달*/
+    @PostMapping("/addpost")
     public String postAddPostPage(@RequestParam(value = "image", required = false)List<MultipartFile> image,
                                   @RequestParam("buying_text")String buyingText,
                                   @RequestParam("buying_item")String buyingItem,
                                   @RequestParam("buying_price")int buyingPrice,
                                   @RequestParam("buying_quality")String buyingQuality,
                                   GroupBuyingDTO newGroupBuying,
+                                  Model model,
                                   HttpSession session){
         System.out.println("세션확인");
 
@@ -85,6 +82,7 @@ public class AdminController {
         if (user == null) {
             return "redirect:/login";
         }
+        model.addAttribute("user", user);
 
         newGroupBuying.setBuyingText(buyingText);
         newGroupBuying.setBuyingItem(buyingItem);
