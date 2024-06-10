@@ -7,6 +7,7 @@ import com.ohgiraffers.springlastteam.admin.repository.ImageRepository;
 import com.ohgiraffers.springlastteam.admin.repository.UserRepository;
 import com.ohgiraffers.springlastteam.entity.BuyingUser;
 import com.ohgiraffers.springlastteam.entity.GroupBuying;
+import com.ohgiraffers.springlastteam.entity.Image;
 import com.ohgiraffers.springlastteam.entity.Users;
 import com.ohgiraffers.springlastteam.gonggu.dto.GroupBuyingDTO;
 import org.modelmapper.ModelMapper;
@@ -60,6 +61,11 @@ public class AdminService {
     @Transactional
     public void registGroupBuying(GroupBuyingDTO newGroupBuying) {
         groupBuyingRepository.save(modelMapper.map(newGroupBuying, GroupBuying.class));
+    }
+
+    @Transactional
+    public void registImages(List<Image> imageList) {
+        imageRepository.save(modelMapper.map(imageList, Image.class));
     }
 }
 

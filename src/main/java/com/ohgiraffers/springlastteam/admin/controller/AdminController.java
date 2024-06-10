@@ -3,10 +3,12 @@ package com.ohgiraffers.springlastteam.admin.controller;
 import com.ohgiraffers.springlastteam.admin.service.AdminService;
 import com.ohgiraffers.springlastteam.entity.BuyingUser;
 import com.ohgiraffers.springlastteam.entity.GroupBuying;
+import com.ohgiraffers.springlastteam.entity.Image;
 import com.ohgiraffers.springlastteam.entity.Users;
 import com.ohgiraffers.springlastteam.gonggu.dto.BuyingUserDTO;
 import com.ohgiraffers.springlastteam.gonggu.dto.GroupBuyingDTO;
 import jakarta.servlet.http.HttpSession;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,6 +30,8 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    @Autowired
+    private ModelMapper modelMapper;
     @GetMapping("/admin-user")
     public String adminUserPage(Model model) {
         List<Users> users = adminService.findAllUsers();
@@ -68,7 +75,7 @@ public class AdminController {
 
     /*값 전달*/
     @PostMapping("/addpost")
-    public String postAddPostPage(@RequestParam(value = "image", required = false)List<MultipartFile> image,
+    public String postAddPostPage(@RequestParam(value = "image", required = false)List<MultipartFile> images,
                                   @RequestParam("buying_text")String buyingText,
                                   @RequestParam("buying_item")String buyingItem,
                                   @RequestParam("buying_price")int buyingPrice,
@@ -76,7 +83,6 @@ public class AdminController {
                                   GroupBuyingDTO newGroupBuying,
                                   Model model,
                                   HttpSession session){
-        System.out.println("세션확인");
 
         Users user = (Users) session.getAttribute("user");
         if (user == null) {
@@ -90,9 +96,40 @@ public class AdminController {
         newGroupBuying.setBuyingQuality(buyingQuality);
         newGroupBuying.setUserNo(user.getUserNo());
 
-        System.out.println("포스트 실행");
+        List<Image> imageList = new ArrayList<>();
+
+        if (images != null && !images.isEmpty()) {
+            //갯수만큼 반복
+            for (MultipartFile image : images) {
+                if (!image.isEmpty()) {
+                    try {
+                        //파일 원래명 '*.jpg'
+                        String originalFilename = image.getOriginalFilename();
+                        //파일 교유명 설정
+                        String uniqueFilename = System.currentTimeMillis() + "_" + originalFilename;
+                        //파일 저장 위치
+                        String savePath = "static/img" + uniqueFilename;
+                        image.transferTo(new File(savePath));
+
+                        //img 셋팅
+                        Image img = new Image();
+                        img.setImgOriginFilename(originalFilename);
+                        img.setImgName(uniqueFilename);
+                        img.setImgPath(savePath);
+                        img.setGroupBuying(modelMapper.map(newGroupBuying,GroupBuying.class)); // Set the relationship
+
+                        //list에 이미지 삽입
+                        imageList.add(img);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+        adminService.registImages(imageList);
         adminService.registGroupBuying(newGroupBuying);
-        System.out.println("포스트 서비스 실행 후");
+
         return "redirect:/";
     }
 }
