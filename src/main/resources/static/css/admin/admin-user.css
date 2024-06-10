@@ -1,30 +1,44 @@
-body {
-    font-family: 'Pretendard-Regular', Arial, sans-serif;
-    display: flex;
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
-.content {
-    width: 100%;
-    display: flex;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.section {
+    padding: 20px;
 }
 
 .search-filter {
-    display: flex;
-    justify-content: space-between;
+    margin-left: 200px;
     margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 10px; /* 요소 간격 */
 }
 
-.search-filter input {
-    flex-grow: 1;
+.search-filter input[type="text"] {
     padding: 10px;
-    min-width: 150px; /* 최소 너비 설정 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 400px;
 }
 
 .search-filter button {
-    padding: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
 }
+
+.search-filter button:hover {
+    background-color: #0056b3;
+}
+
 
 table {
     width: 100%;
@@ -39,10 +53,11 @@ table th, table td {
 }
 
 .delete-btn {
-    background-color: #f44336;
-    color: #fff;
+    padding: 8px 16px;
     border: none;
-    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #dc3545;
+    color: #fff;
     cursor: pointer;
 }
 
