@@ -32,9 +32,9 @@ public class PriceController {
     public String getPrice(Model model,@RequestParam(value = "itemName", required = false) String itemName) {
 
         LocalDate today = LocalDate.now();
-        LocalDate twoDaysAgo = today.minusDays(2);
-        String startDate = twoDaysAgo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String endDate = twoDaysAgo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate oneDaysAgo = today.minusDays(3);
+        String startDate = oneDaysAgo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String endDate = oneDaysAgo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         List<PriceDTO> prices = new ArrayList<>();
         Set<String> itemNames = new HashSet<>();
