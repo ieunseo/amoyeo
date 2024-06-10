@@ -13,9 +13,12 @@
     <link rel="stylesheet" th:href="@{/css/admin/admin.css}">
 </head>
 <body>
-    <!-- 헤더 포함 -->
-    <div th:replace="~{admin/header :: header}"></div>
-
+<header th:fragment="header">
+    <div class="contentmenu" id="headerMenu">
+        <a th:href="@{/admin/admin-user}" class="menu-link active">User 관리</a>
+        <a th:href="@{/admin/admin-post}" class="menu-link">Post 관리</a>
+    </div>
+</header>
     <!-- 사이드바 포함 -->
     <div th:replace="~{admin/sidebar :: sidebar}"></div>
 
