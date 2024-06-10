@@ -81,18 +81,26 @@ table {
 
 .transaction-item {
 
-    margin: 0px 10px 0px 0px;
+    margin: 5px 0px 0px 0px;
 }
 .transaction-item a{
-    text-decoration: none !important;
+    text-decoration: none;
+    color:black;
+}
+.transaction-item a:hover{
+    text-decoration: none;
+    color:#cccccc;
 }
 .transaction-price {
-    margin: 0px 10px 0px 0px;
+    margin: 5px 0px 0px 0px;
+
+}.transaction-quality {
+    margin: 5px 0px 0px 0px;
 
 }
 
 .transaction-edit {
-    margin: 0px 10px 0px 0px;
+    margin: 5px 0px 0px 0px;
 
 }
 
