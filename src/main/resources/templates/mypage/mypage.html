@@ -69,6 +69,9 @@
         <h3>비밀번호 변경</h3>
         <div class="current_password">
           <span class="current_password_label">현재 비밀번호</span>
+          <div th:if="${errorMessage}" class="error-message" style="color:red;">
+            <p th:text="${errorMessage}"></p>
+          </div>
           <input type="password" name="currentPassword" placeholder="현재 비밀번호를 입력해주세요"><br>
         </div>
         <div class="new_password">
