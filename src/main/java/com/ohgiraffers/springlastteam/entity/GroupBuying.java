@@ -22,8 +22,6 @@ public class GroupBuying implements Serializable {
     @Column(name = "buying_no")
     private int buyingNo;
 
-
-
     @Column(name = "buying_text")
     private String buyingText;
 

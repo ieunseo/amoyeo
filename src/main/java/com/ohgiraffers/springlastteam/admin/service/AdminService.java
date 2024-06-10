@@ -8,8 +8,11 @@ import com.ohgiraffers.springlastteam.admin.repository.UserRepository;
 import com.ohgiraffers.springlastteam.entity.BuyingUser;
 import com.ohgiraffers.springlastteam.entity.GroupBuying;
 import com.ohgiraffers.springlastteam.entity.Users;
+import com.ohgiraffers.springlastteam.gonggu.dto.GroupBuyingDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,6 +30,9 @@ public class AdminService {
 
     @Autowired
     private BuyingUserRepository buyingUserRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     public List<Users> findAllUsers() {
         return userRepository.findAll();
@@ -51,5 +57,9 @@ public class AdminService {
         return groupBuyingRepository.findById(buyingNo).orElseThrow(() -> new RuntimeException("GroupBuying not found"));
     }
 
+    @Transactional
+    public void registGroupBuying(GroupBuyingDTO newGroupBuying) {
+        groupBuyingRepository.save(modelMapper.map(newGroupBuying, GroupBuying.class));
+    }
 }
 
