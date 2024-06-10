@@ -12,12 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -57,7 +59,7 @@ public class AdminController {
         return "admin/admin-list";
     }
 
-    @GetMapping("/admin/add-post")
+    @GetMapping("/add-post")
     public String getAddPostPage(HttpSession session,Model model){
         Users user = (Users) session.getAttribute("user");
         if (user == null) {
@@ -69,7 +71,7 @@ public class AdminController {
         return "admin/addpost";
     }
 
-    @PostMapping("/admin/add-post")
+    @PostMapping("/add-post")
     public String postAddPostPage(@RequestParam(value = "image", required = false)List<MultipartFile> image,
                                   @RequestParam("buying_text")String buyingText,
                                   @RequestParam("buying_item")String buyingItem,
