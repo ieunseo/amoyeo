@@ -27,9 +27,10 @@
                 <button>Filter</button>
             </div>
 
-            <table>
+            <table class="user-table">
                 <thead>
                 <tr>
+                    <th>번호</th>
                     <th>이름</th>
                     <th>ID</th>
                     <th>PW</th>
@@ -40,8 +41,9 @@
                 <tbody>
                 <tr th:each="user : ${users}">
                     <td th:text="${user.userNo}"></td>
-                    <td th:text="${user.userId}"></td>
                     <td th:text="${user.userName}"></td>
+                    <td th:text="${user.userId}"></td>
+                    <td th:text="${user.userPwd}"></td>
                     <td th:text="${user.userPhone}"></td>
                     <td>
                         <a th:href="@{'/admin/admin-user/delete?id=' + ${user.userNo}}">
