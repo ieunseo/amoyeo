@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아모여:아파트머시기이-게시판이든뭐든 자유롭게 바꾸세요</title>
+  <link rel="icon" th:href="@{/img/logo.jpeg}">
+  <script type="text/javascript" th:src="@{/js/mypage.js}" th:defer></script>
+  <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
+  <link rel="stylesheet" th:href="@{/css/menu.css}">
+  <link rel="stylesheet" th:href="@{/css/mypage/mypage.css}">
+</head>
+<body>
+<!-- 헤더 포함 -->
+<!--<div th:replace="~{mypage/header :: header}"></div>-->
+<header th:fragment="header">
+  <div class="contentmenu" id="headerMenu">
+    <a th:href="@{/mypage}" class="menu-link active">마이페이지</a>
+    <a th:href="@{/purchashistory}" class="menu-link">구매이력</a>
+    <a th:href="@{/mypage/mylikes}" class="menu-link">좋아요</a>
+  </div>
+</header>
+<!-- 사이드바 포함 -->
+<div th:replace="~{mypage/sidebar :: sidebar}"></div>
+
+<!-- 프로필 컨테이너 -->
+<div class="profile-container">
+  <div class="profile_section">
+    <form th:action="@{/mypage/update}" th:object="${user}" method="post">
+      <input type="hidden" th:field="*{userNo}">
+      <div class="profile_picture">
+        <div class="picture_frame">
+          <div class="profile_image">
+            <img th:src="@{/img/after-profile.png}" alt="Profile Image" style="width: 64px; height: 64px;">
+          </div>
+        </div>
+        <div class="profile_name">
+          <span class="name_text" th:text="*{userName}">김애란</span>
+        </div>
+      </div>
+      <div class="id_section">
+        <span class="id_label">ID</span>
+        <div class="id_value">
+          <span class="id_text" th:text="*{userId}">love10</span>
+        </div>
+      </div>
+      <div class="phone_section">
+        <span class="phone_label">Phone</span>
+        <div class="phone_value">
+          <span class="phone_text" th:text="*{userPhone}">010-1234-5678</span>
+          <input type="text" name="userPhone" placeholder="변경할 전화번호를 입력해주세요" th:value="*{userPhone}">
+        </div>
+      </div>
+      <div class="apartment_section">
+        <span class="apartment_label">아파트</span>
+        <div class="apartment_value">
+          <span class="apartment_text" th:text="*{userApartment}">아파트 이름</span>
+          <input type="text" name="userApartment" placeholder="변경할 아파트 이름을 입력해주세요" th:value="*{userApartment}">
+        </div>
+      </div>
+      <div class="apartment_num_section">
+        <span class="apartment_num_label">상세주소</span>
+        <div class="apartment_num_value">
+          <span class="apartment_num_text" th:text="*{userApartNum}">상세 주소</span>
+          <input type="text" name="userApartNum" placeholder="변경할 상세 주소를 입력해주세요" th:value="*{userApartNum}">
+        </div>
+      </div>
+      <div class="password_section">
+        <h3>비밀번호 변경</h3>
+        <div class="current_password">
+          <span class="current_password_label">현재 비밀번호</span>
+          <input type="password" name="currentPassword" placeholder="현재 비밀번호를 입력해주세요"><br>
+        </div>
+        <div class="new_password">
+          <span class="new_password_label">변경할 비밀번호</span>
+          <input type="password" name="newPassword" placeholder="변경할 비밀번호를 입력해주세요"><br>
+        </div>
+        <div class="confirm_password">
+          <span class="confirm_password_label">비밀번호 확인</span>
+          <input type="password" name="confirmPassword" placeholder="변경할 비밀번호를 다시 입력해주세요"><br>
+        </div>
+      </div>
+      <div class="save_button">
+        <button type="submit" class="save_button">Save changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 푸터 포함 -->
+<div class="footer-wrapper">
+  <div th:replace="~{mypage/footer :: footer}" class="desktop-footer"></div>
+</div>
+</body>
+</html>

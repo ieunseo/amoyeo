@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 /* 단체 구매 공고 게시글의 테이블입니다.
  *  외래키로 유저의 고유번호(=관리자의 번호)를 가져와서 작성자가 누군지 확인 가능합니다.*/
+
+
 @Entity
 @Table(name = "group_buying")
 @Getter

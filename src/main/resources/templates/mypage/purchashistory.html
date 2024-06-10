@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+  <link th:href="@{/css/mypage/purchashistory.css}" rel="stylesheet" />
+  <link th:href="@{/css/menu.css}" rel="stylesheet" />
+  <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
+  <script type="text/javascript" th:src="@{/js/mypage.js}" th:defer></script>
+  <title>Document</title>
+</head>
+<body>
+<!--<div th:replace="~{mypage/header :: header}"></div>-->
+<header th:fragment="header">
+  <div class="contentmenu" id="headerMenu">
+    <a th:href="@{/mypage}" class="menu-link">마이페이지</a>
+    <a th:href="@{/purchashistory}" class="menu-link active">구매이력</a>
+    <a th:href="@{/mypage/mylikes}" class="menu-link">좋아요</a>
+  </div>
+</header>
+
+<!-- 사이드바 포함 -->
+<div th:replace="~{mypage/sidebar :: sidebar}"></div>
+
+<div class="con">
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="profile-picture">
+        <img th:src="@{/img/after-profile.png}" alt="Profile Image" style="width: 60px; height: 60px;">
+      </div>
+      <div class="profile-name"><span class="profile-name-text" th:text="${profileName}"></span></div>
+    </div>
+    <div class="transaction-table">
+      <table>
+        <thead>
+        <tr class="transaction-header">
+          <th class="header-date">날짜</th>
+          <th class="header-item">품목</th>
+          <th class="header-quantity">수량</th>
+          <th class="header-price">총 가격</th>
+          <th class="header-seller">판매자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="transaction, iterStat : ${transactions}" class="transaction-row">
+          <td class="transaction-date" th:text="${#dates.format(transaction.buyingDate, 'yyyy-MM-dd')}">날짜</td>
+          <td class="transaction-item"><span class="item-text" th:text="${transaction.id.buyingNo.buyingItem}">품목</span></td>
+          <td class="transaction-quantity"><span class="quantity-amount" th:text="${transaction.buyingQuantity}">수량</span></td>
+          <td class="transaction-price"><span class="price-text" th:text="${totalPrices[iterStat.index]}">가격</span></td>
+          <td class="transaction-seller"><span class="seller-text" th:text="${sellerNames[iterStat.index]}">판매자</span></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 푸터 포함 -->
+<div class="footer-wrapper">
+  <div th:replace="~{mypage/footer :: footer}" class="desktop-footer"></div>
+</div>
+
+</body>
+</html>

@@ -11,41 +11,40 @@
 <body>
 <header>
     <div class="contentmenu" id="headerMenu">
-        <a th:href="@{/}" class="menu-link active">메뉴1</a>
-        <a th:href="@{/}" class="menu-link">메뉴2</a>
-        <a th:href="@{/}" class="menu-link">메뉴3</a>
+        <a th:href="@{/}" class="menu-link">메뉴1</a>
+        <a th:href="@{/common}" class="menu-link active">메뉴2</a>
     </div>
 </header>
 <aside class="sidebar">
     <div class="logo">
-        <a th:href="@{/}"><img th:src="@{/img/logo.jpeg}" alt="로고"></a>
+        <a th:href="@{/static}"><img th:src="@{/img/logo.jpeg}" alt="로고"></a>
     </div>
     <div class="menu-item active" onclick="handleHomeClick(this)">
-        <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="홈"><div>홈</div></a>
+        <a th:href="@{/static}"><img th:src="@{/img/after-home.png}" alt="홈"><div>홈</div></a>
     </div>
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-search.png}', '@{/img/before-search.png}')">
-        <a th:href="@{/}"><img th:src="@{/img/before-search.png}" alt="검색"><div>검색</div></a>
+        <a th:href="@{/static}"><img th:src="@{/img/before-search.png}" alt="검색"><div>검색</div></a>
     </div>
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-dollar.png}', '@{/img/before-dollar.png}')">
-        <a th:href="@{/}"><img th:src="@{/img/before-dollar.png}" alt="글쓰기"><div>물가</div></a>
+        <a th:href="@{/static}"><img th:src="@{/img/before-dollar.png}" alt="글쓰기"><div>물가</div></a>
     </div>
     <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
-        <a th:href="@{/}"><img th:src="@{/img/before-profile.png}" alt="프로필"><div>마이페이지</div></a>
+        <a th:href="@{/static}"><img th:src="@{/img/before-profile.png}" alt="프로필"><div>마이페이지</div></a>
     </div>
 </aside>
 
 <footer class="footer">
     <div class="menu-item active" onclick="handleHomeClick(this)">
-        <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="홈"><div>홈</div></a>
+        <a th:href="@{/static}"><img th:src="@{/img/after-home.png}" alt="홈"><div>홈</div></a>
     </div>
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-search.png}', '@{/img/before-search.png}')">
-        <a th:href="@{/}"><img src="@{/img/before-search.png}" alt="검색"><div>검색</div></a>
+        <a th:href="@{/static}"><img th:src="@{/img/before-search.png}" alt="검색"><div>검색</div></a>
     </div>
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-dollar.png}', '@{/img/before-dollar.png}')">
-        <a th:href="@{/}"><img src="@{/img/before-dollar.png}" alt="물가"><div>물가</div></a>
+        <a th:href="@{/static}"><img th:src="@{/img/before-dollar.png}" alt="물가"><div>물가</div></a>
     </div>
     <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
-        <a th:href="@{/}"><img src="@{/img/before-profile.png}" alt="마이페이지"><div>마이페이지</div></a>
+        <a th:href="@{/static}"><img th:src="@{/img/before-profile.png}" alt="마이페이지"><div>마이페이지</div></a>
     </div>
 </footer>
     <div class="content">
