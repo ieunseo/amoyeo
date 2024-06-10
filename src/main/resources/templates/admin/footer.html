@@ -1,3 +1,21 @@
+<footer class="footer" th:fragment="footer">
+    <div class="menu-item active" onclick="handleHomeClick(this)">
+        <a th:href="@{/}"><img th:src="@{/img/before-home.png}" alt="공구"></a>
+    </div>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-search.png}', '@{/img/before-search.png}')">
+        <a th:href="@{/}"><img th:src="@{/img/before-search.png}" alt="검색"></a>
+    </div>
+    <div class="menu-item" onclick="changeIconAndHideMenu(this, '@{/img/after-dollar.png}', '@{/img/before-dollar.png}')">
+        <a th:href="@{/}"><img th:src="@{/img/before-dollar.png}" alt="물가"></a>
+    </div>
+    <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지"></a>
+    </div>
+    <div th:if="${session.user != null and session.user.userRights == 'Y'}" class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/admin/admin-user}"><img th:src="@{/img/after-profile.png}" alt="어드민페이지"></a>
+    </div>
+</footer>
+
 <footer class="fixed-footer" th:fragment="fixed-footer">
     <div>© 2024 Muyaho. All rights reserved.</div>
-</footer>s
+</footer>
