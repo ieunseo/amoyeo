@@ -33,7 +33,7 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
-
+    
 
     @Autowired
     ResourceLoader resourceLoader;

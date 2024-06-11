@@ -65,7 +65,19 @@ public class DTOService {
                 .orElseThrow(() -> new IllegalArgumentException("유저번호가 존재하지 않습니다."));
         return modelMapper.map(user, UserDTO.class);
     }
+    public List<GroupBuyingDTO> searchGroupBuying(String query) {
+        List<GroupBuying> searchResults = groupBuyingRepository.findByBuyingItemContainingIgnoreCase(query);
+        return searchResults.stream()
+                .map(group -> modelMapper.map(group, GroupBuyingDTO.class))
+                .collect(Collectors.toList());
+    }
 
+    public List<RequireBuyDTO> searchRequireBuys(String query) {
+        List<RequireBuy> searchResults = requireBuyRepository.findByRequireItemContainingIgnoreCase(query);
+        return searchResults.stream()
+                .map(requireBuy -> modelMapper.map(requireBuy, RequireBuyDTO.class))
+                .collect(Collectors.toList());
+    }
     public List<RequireBuyDTO> findRequireBuyList(int userNo) {
         List<RequireBuy> requireBuyList = requireBuyRepository.findAll();
 

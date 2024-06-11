@@ -5,24 +5,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/price.css}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
     <title>농산물 가격 정보</title>
+    <style>
+
+    </style>
 </head>
 <body>
+<div class="mask">
+    <div aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster">
+        <div class="wheel"></div>
+        <div class="hamster">
+            <div class="hamster__body">
+                <div class="hamster__head">
+                    <div class="hamster__ear"></div>
+                    <div class="hamster__eye"></div>
+                    <div class="hamster__nose"></div>
+                </div>
+                <div class="hamster__limb hamster__limb--fr"></div>
+                <div class="hamster__limb hamster__limb--fl"></div>
+                <div class="hamster__limb hamster__limb--br"></div>
+                <div class="hamster__limb hamster__limb--bl"></div>
+                <div class="hamster__tail"></div>
+            </div>
+        </div>
+        <div class="spoke"></div>
+    </div>
+</div>
 <aside class="sidebar">
     <div class="logo">
         <a th:href="@{/}"><img th:src="@{/img/logo.jpeg}" alt="로고"></a>
     </div>
-    <div class="menu-item active" onclick="handleHomeClick(this)">
+    <div class="menu-item" onclick="handleHomeClick(this)">
         <a th:href="@{/}"><img th:src="@{/img/before-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"><div>공구</div></a>
     </div>
-    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">
-        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"><div>검색</div></a>
-    </div>
-    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
+<!--    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">-->
+<!--        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"><div>검색</div></a>-->
+<!--    </div>-->
+    <div class="menu-item active" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
         <a th:href="@{/price}"><img th:src="@{/img/after-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"><div>물가</div></a>
     </div>
     <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
         <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" th:data-active-src="@{/img/after-profile.png}" th:data-inactive-src="@{/img/before-profile.png}"><div>마이페이지</div></a>
+    </div>
+    <div th:if="${session.user != null and session.user.userRights == 'Y'}" class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/admin/admin-user}"><img th:src="@{/img/before-profile.png}" alt="어드민페이지" th:data-active-src="@{/img/after-profile.png}" th:data-inactive-src="@{/img/before-profile.png}"><div>관리자 페이지</div></a>
+    </div>
+    <div class="auth-buttons">
+        <div th:if="${session.user == null}">
+            <a th:href="@{/login}" class="auth-button">로그인</a>
+            <a th:href="@{/register}" class="auth-button">회원가입</a>
+        </div>
+        <div th:if="${session.user != null}">
+            <a th:href="@{/logout}" class="auth-button">로그아웃</a>
+        </div>
     </div>
 </aside>
 <div class="container">
@@ -38,7 +75,7 @@
         <a href="/price" class="view-all-btn">전체 보기</a>
     </form>
 </div>
-<h3>&nbsp;&nbsp;&nbsp;&nbsp;📊일일 도매 가격(단위:1kg)</h3>
+<h3>📊일일 도매 가격(단위:1kg)</h3>
     <div class="table-wrapper">
         <table>
             <tr>
@@ -58,18 +95,45 @@
     <div class="menu-item active" onclick="handleHomeClick(this)">
         <a th:href="@{/}"><img th:src="@{/img/before-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"></a>
     </div>
-    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">
-        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"></a>
-    </div>
+
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
         <a th:href="@{/price}"><img th:src="@{/img/after-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"></a>
     </div>
     <div class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
         <a th:href="@{/mypage}"><img th:src="@{/img/before-profile.png}" alt="마이페이지" data-active-src="@{/img/after-profile.png}" data-inactive-src="@{/img/before-profile.png}"></a>
     </div>
+    <div th:if="${session.user != null and session.user.userRights == 'Y'}" class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
+        <a th:href="@{/admin/admin-user}"><img th:src="@{/img/before-profile.png}" alt="어드민페이지" th:data-active-src="@{/img/after-profile.png}" th:data-inactive-src="@{/img/before-profile.png}"></a>
+    </div>
 </footer>
 <footer class="fixed-footer">
-    <div>© 2024 Muyaho</div>
+    <div>© 2024 Muyaho. All rights reserved.</div>
 </footer>
+<script>
+    const mask = document.querySelector('.mask');
+    const html = document.querySelector('html');
+
+    html.style.overflow = 'hidden'; // 로딩 중 스크롤 방지
+
+    // 페이지가 로드되자마자 마스크를 보여줌
+    window.addEventListener('DOMContentLoaded', function () {
+        mask.style.display = 'flex';
+    });
+
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            mask.style.transition = 'opacity 0.5s ease'; // 서서히 사라지는 효과 추가
+            mask.style.opacity = '0'; // 서서히 사라지는 효과
+            html.style.overflow = 'auto'; // 스크롤 방지 해제
+
+            // 서서히 사라지는 효과가 끝난 후 mask를 완전히 제거
+            setTimeout(function () {
+                mask.style.display = 'none';
+            }, 500);
+        }, 2000);
+    });
+
+
+</script>
 </body>
 </html>

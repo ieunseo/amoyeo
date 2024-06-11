@@ -105,31 +105,31 @@ public class MypageController {
 
         return "redirect:/mypage";
     }
-/* 쓸데없는 일이 되어버린 구매내역 */
+    /* 쓸데없는 일이 되어버린 구매내역 */
 // 쓸데없는 일이 되어버린 구매내역을 다시 활성화
-@GetMapping("/purchashistory")
-public String getPurchaseHistory(HttpSession session, Model model) {
-    Users user = (Users) session.getAttribute("user");
-    if (user == null) {
-        return "redirect:/login";
+    @GetMapping("/purchashistory")
+    public String getPurchaseHistory(HttpSession session, Model model) {
+        Users user = (Users) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        int userNo = user.getUserNo();
+        List<BuyingUser> transactions = buyingUserRepository.findById_UserNo_UserNo(userNo);
+        model.addAttribute("transactions", transactions);
+        model.addAttribute("profileName", user.getUserName());
+
+        // 추가: 판매자 이름 및 총 가격 설정
+        List<String> sellerNames = transactions.stream()
+                .map(transaction -> transaction.getId().getBuyingNo().getUser().getUserName())
+                .collect(Collectors.toList());
+        List<Integer> totalPrices = transactions.stream()
+                .map(transaction -> transaction.getBuyingQuantity() * Integer.parseInt(String.valueOf(transaction.getId().getBuyingNo().getBuyingPrice())))
+                .collect(Collectors.toList());
+        model.addAttribute("sellerNames", sellerNames);
+        model.addAttribute("totalPrices", totalPrices);
+
+        return "mypage/purchashistory";
     }
-    int userNo = user.getUserNo();
-    List<BuyingUser> transactions = buyingUserRepository.findById_UserNo_UserNo(userNo);
-    model.addAttribute("transactions", transactions);
-    model.addAttribute("profileName", user.getUserName());
-
-    // 추가: 판매자 이름 및 총 가격 설정
-    List<String> sellerNames = transactions.stream()
-            .map(transaction -> transaction.getId().getBuyingNo().getUser().getUserName())
-            .collect(Collectors.toList());
-    List<Integer> totalPrices = transactions.stream()
-            .map(transaction -> transaction.getBuyingQuantity() * Integer.parseInt(String.valueOf(transaction.getId().getBuyingNo().getBuyingPrice())))
-            .collect(Collectors.toList());
-    model.addAttribute("sellerNames", sellerNames);
-    model.addAttribute("totalPrices", totalPrices);
-
-    return "mypage/purchashistory";
-}
 
 
     @GetMapping("/mypage/myposts")
@@ -170,4 +170,41 @@ public String getPurchaseHistory(HttpSession session, Model model) {
         model.addAttribute("profileName", user.getUserName());
         return "mypage/likelist";
     }
+
+    @PostMapping("/mypage/mylikes/delete")
+    public String deleteMyLike(HttpSession session, @RequestParam int postId, Model model) {
+        Users user = (Users) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        // 해당 사용자의 좋아요 항목을 찾기
+        Likes like = likesRepository.findByUser_UserNoAndRequireBuy_RequireNo(user.getUserNo(), postId);
+        if (like == null) {
+            model.addAttribute("errorMessage", "해당 항목을 찾을 수 없거나 권한이 없습니다.");
+            return "mypage/likelist";  // 에러 메시지를 표시하기 위해 좋아요 목록 페이지로 리디렉션
+        }
+
+        // 좋아요 항목 삭제
+        likesRepository.delete(like);
+        return "redirect:/mypage/mylikes";
+    }
+    @GetMapping("/mypage/mylikes/details")
+    public String getLikeDetails(@RequestParam int requireNo, HttpSession session, Model model) {
+        Users user = (Users) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        // 좋아요 누른 게시물의 상세 정보 가져오기
+        RequireBuy requireBuy = requireBuyRepository.findById(requireNo).orElse(null);
+        if (requireBuy == null) {
+            return "redirect:/mypage/mylikes";
+        }
+
+        model.addAttribute("requireBuy", requireBuy);
+        return "mypage/requirebuydetails"; // 상세 페이지로 이동
+    }
+
+
 }

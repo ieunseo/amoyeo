@@ -31,9 +31,8 @@
     src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
-}
-body {
-    background-color: #fff;
+}body {
+    background-color: #f8f9fa;
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
@@ -41,17 +40,34 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 form {
-    padding: 20px;
-    border-radius: 15px;
+    position: relative;
+    padding: 20px 40px 20px 40px;
+    border-radius: 10px;
     backdrop-filter: blur(5px);
     width: 300px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    z-index: 10;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.background-box {
+    position: absolute;
+    width: 380px;
+    height: 530px;
+    background-color: #d8d8d8;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(5deg);
+    z-index: 1;
 }
 
 .container {
@@ -82,9 +98,8 @@ p {
     font-family: 'Pretendard-Light','Arial', sans-serif;
 }
 
-p a{
+p a {
     font-family: 'Pretendard-Regular','Arial', sans-serif;
-
 }
 
 input {
@@ -143,7 +158,6 @@ input {
     text-decoration: none;
     color: #000;
 }
-
 
 .continuelogin:hover {
     text-decoration: none;

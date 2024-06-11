@@ -16,7 +16,7 @@
 <header th:fragment="header">
   <div class="contentmenu" id="headerMenu">
     <a th:href="@{/mypage}" class="menu-link active">마이페이지</a>
-    <a th:href="@{/purchashistory}" class="menu-link">구매이력</a>
+<!--    <a th:href="@{/purchashistory}" class="menu-link">구매이력</a>-->
     <a th:href="@{/mypage/mylikes}" class="menu-link">좋아요</a>
   </div>
 </header>
@@ -35,40 +35,43 @@
           </div>
         </div>
         <div class="profile_name">
-          <span class="name_text" th:text="*{userName}">김애란</span>
+          <span class="name_text" th:text="*{userName}"/>
         </div>
       </div>
       <div class="id_section">
         <span class="id_label">ID</span>
         <div class="id_value">
-          <span class="id_text" th:text="*{userId}">love10</span>
+          <span class="id_text" th:text="*{userId}"/>
         </div>
       </div>
       <div class="phone_section">
         <span class="phone_label">Phone</span>
         <div class="phone_value">
-          <span class="phone_text" th:text="*{userPhone}">010-1234-5678</span>
+          <span class="phone_text" th:text="*{userPhone}"/>
           <input type="text" name="userPhone" placeholder="변경할 전화번호를 입력해주세요" th:value="*{userPhone}">
         </div>
       </div>
       <div class="apartment_section">
         <span class="apartment_label">아파트</span>
         <div class="apartment_value">
-          <span class="apartment_text" th:text="*{userApartment}">아파트 이름</span>
+          <span class="apartment_text" th:text="*{userApartment}"/>
           <input type="text" name="userApartment" placeholder="변경할 아파트 이름을 입력해주세요" th:value="*{userApartment}">
         </div>
       </div>
       <div class="apartment_num_section">
-        <span class="apartment_num_label">상세주소</span>
+        <span class="apartment_num_label"/>
         <div class="apartment_num_value">
-          <span class="apartment_num_text" th:text="*{userApartNum}">상세 주소</span>
+          <span class="apartment_num_text" th:text="*{userApartNum}"/>
           <input type="text" name="userApartNum" placeholder="변경할 상세 주소를 입력해주세요" th:value="*{userApartNum}">
         </div>
-      </div>
+      </div> 
       <div class="password_section">
         <h3>비밀번호 변경</h3>
         <div class="current_password">
           <span class="current_password_label">현재 비밀번호</span>
+          <div th:if="${errorMessage}" class="error-message" style="color:red;">
+            <p th:text="${errorMessage}"></p>
+          </div>
           <input type="password" name="currentPassword" placeholder="현재 비밀번호를 입력해주세요"><br>
         </div>
         <div class="new_password">

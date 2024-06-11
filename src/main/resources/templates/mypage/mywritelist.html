@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
+    <!-- 구매 요청~!-->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
@@ -13,9 +16,13 @@
 </head>
 <body>
 
-<!-- 헤더 포함 -->
-<div th:replace="~{mypage/header :: header}"></div>
-
+<header th:fragment="header">
+    <div class="contentmenu" id="headerMenu">
+        <a th:href="@{/mypage}" class="menu-link">마이페이지</a>
+        <!--    <a th:href="@{/purchashistory}" class="menu-link">구매이력</a>-->
+        <a th:href="@{/mypage/mylikes}" class="menu-link active">좋아요</a>
+    </div>
+</header>
 <!-- 사이드바 포함 -->
 <div th:replace="~{mypage/sidebar :: sidebar}"></div>
 

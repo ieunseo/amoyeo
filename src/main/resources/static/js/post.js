@@ -27,7 +27,6 @@ function toggleLike(button, requireNo, userNo) {
     const img = button.querySelector('.like-icon');
     const isLiked = img.getAttribute('alt') === 'liked';
 
-    // AJAX 요청으로 좋아요 상태 변경
     const xhr = new XMLHttpRequest();
     xhr.open("POST", form.getAttribute('action'), true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -70,34 +69,6 @@ function checkLikeStatus(userNo, requireNo, form) {
             }
         });
 }
-
-function toggleLike(button, requireNo, userNo) {
-    const form = button.closest('form');
-    const img = button.querySelector('.like-icon');
-    const isLiked = img.getAttribute('alt') === 'liked';
-
-    // AJAX 요청으로 좋아요 상태 변경
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", form.getAttribute('action'), true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            // 요청이 성공하면 아이콘 이미지를 변경
-            if (isLiked) {
-                img.src = '/img/heart-icon.png';
-                img.alt = 'unliked';
-            } else {
-                img.src = '/img/heart-icon-red.png';
-                img.alt = 'liked';
-            }
-        }
-    };
-
-    const formData = new FormData(form);
-    xhr.send(new URLSearchParams(formData).toString());
-}
-
-
 
 function togglePurchaseSection(button) {
     var purchaseSection = button.parentElement.nextElementSibling;
