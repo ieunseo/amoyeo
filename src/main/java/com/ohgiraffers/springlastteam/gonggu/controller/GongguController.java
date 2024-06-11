@@ -51,15 +51,15 @@ public class GongguController {
         if (searchResults.isEmpty()) {
             model.addAttribute("noResultsMessage", "검색결과가 없습니다.");
         }
-        return "index";  // Reusing the same view to display search results
+        return "index";
     }
     @GetMapping("/want")
     public String getRequireBuys(HttpSession session, Model model) {
         if (session.getAttribute("user") == null) {
-            return "redirect:/login"; // 로그인 페이지로 리디렉션
+            return "redirect:/login";
         }
         Users user = (Users) session.getAttribute("user");
-        UserDTO userDTO = modelMapper.map(user, UserDTO.class);  // Users 객체를 UserDTO로 변환
+        UserDTO userDTO = modelMapper.map(user, UserDTO.class);
         List<RequireBuyDTO> requireBuyList = dtoService.findRequireBuyList(userDTO.getUserNo());
         model.addAttribute("requireBuyList", requireBuyList);
         return "want";

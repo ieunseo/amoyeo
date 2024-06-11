@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아모여: 아파트머시기머시기</title>
     <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
@@ -9,6 +11,7 @@
     <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/info.css}">
 </head>
 <body>
 <header>
@@ -24,9 +27,9 @@
     <div class="menu-item active" onclick="handleHomeClick(this)">
         <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"><div>공구</div></a>
     </div>
-<!--    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">-->
-<!--        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"><div>검색</div></a>-->
-<!--    </div>-->
+    <!--    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">-->
+    <!--        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"><div>검색</div></a>-->
+    <!--    </div>-->
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
         <a th:href="@{/price}"><img th:src="@{/img/before-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"><div>물가</div></a>
     </div>
@@ -107,14 +110,40 @@
         </div>
     </div>
 </div>
-
+<div class="fab-container">
+    <div class="fab shadow">
+        <div class="fab-content">
+            <span class="material-icons">support_agent</span>
+        </div>
+    </div>
+    <div class="sub-button shadow">
+        <a th:href="@{/info}" target="_blank">
+            <span class="material-icons">phone</span>
+        </a>
+    </div>
+    <div class="sub-button shadow">
+        <a href="google.com" target="_blank">
+            <span class="material-icons">mail_outline</span>
+        </a>
+    </div>
+    <div class="sub-button shadow">
+        <a href="google.com" target="_blank">
+            <span class="material-icons">language</span>
+        </a>
+    </div>
+    <div class="sub-button shadow">
+        <a href="google.com" target="_blank">
+            <span class="material-icons">help_outline</span>
+        </a>
+    </div>
+</div>
 <footer class="footer">
     <div class="menu-item active" onclick="handleHomeClick(this)">
         <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"></a>
     </div>
-<!--    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">-->
-<!--        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"></a>-->
-<!--    </div>-->
+    <!--    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">-->
+    <!--        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"></a>-->
+    <!--    </div>-->
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
         <a th:href="@{/price}"><img th:src="@{/img/before-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"></a>
     </div>
@@ -129,11 +158,6 @@
 <footer class="fixed-footer">
     <div>© 2024 Muyaho. All rights reserved.</div>
 </footer>
-<!--<script>-->
-<!--    function handleSearchClick() {-->
-<!--        var input = document.getElementById('input').value;-->
-<!--        window.location.href = '/search?query=' + input;-->
-<!--    }-->
-<!--</script>-->
+
 </body>
 </html>
