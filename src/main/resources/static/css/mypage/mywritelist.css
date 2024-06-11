@@ -90,11 +90,26 @@ table {
 .transaction-item a:hover{
     text-decoration: none;
     color:#cccccc;
+}.transaction-price a{
+     text-decoration: none;
+     color:black;
+ }
+.transaction-price a:hover{
+    text-decoration: none;
+    color:#cccccc;
+}.transaction-quality a{
+     text-decoration: none;
+     color:black;
+ }
+.transaction-quality a:hover{
+    text-decoration: none;
+    color:#cccccc;
 }
 .transaction-price {
     margin: 5px 0px 0px 0px;
 
-}.transaction-quality {
+}
+.transaction-quality {
     margin: 5px 0px 0px 0px;
 
 }

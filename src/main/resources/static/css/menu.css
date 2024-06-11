@@ -25,6 +25,73 @@
     font-weight: 800;
     font-style: normal;
 }
+.logout-Btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: rgb(255, 65, 65);
+}
+
+
+.logout-Btn .sign {
+    position: absolute; /* 절대 위치 설정 */
+    left: 28%; /* 좌측에 고정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: .3s;
+}
+
+.logout-Btn .sign svg {
+    width: 17px;
+}
+
+.logout-Btn .sign svg path {
+    fill: white;
+}
+
+
+.logout-Btn .text {
+    position: absolute;
+    left: 45px; /* 아이콘 오른쪽에 고정 */
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition: opacity .3s, width .3s; /* 텍스트 나타나는 효과 추가 */
+}
+
+/* hover effect on button width */
+.logout-Btn:hover {
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: .3s;
+}
+
+.logout-Btn:hover .sign {
+    width: 14px;
+    left: 19%; /* SVG 아이콘의 위치 고정 */
+}
+
+.logout-Btn:hover .text {
+    opacity: 1;
+    transition-duration: .3s;
+    padding-left: 0px;
+    font-size: 14px;
+}
+
+.logout-Btn:active {
+    transform: translate(2px, 2px);
+}
 
 body {
     display: flex;
@@ -132,37 +199,81 @@ aside.sidebar a {
     color: #cccccc;
 }
 
-.sidebar .auth-buttons {
-    padding: 0px 40px 20px 20px;
+.Btn {
     display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: rgb(163, 142, 255);
 }
 
-.sidebar .auth-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #000;
+.signs {
+    position: absolute; /* 절대 위치 설정 */
+    left: 28%; /* 좌측에 고정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition-duration: .3s;
+}.sign {
+     position: absolute; /* 절대 위치 설정 */
+     left: 28%; /* 좌측에 고정 */
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     transition-duration: .3s;
+ }
+
+.signs svg {
+    width: 17px;    left: 28%; /* 좌측에 고정 */
+}
+
+.signs svg path {
+    fill: white;
+}
+
+/* text */
+.texts {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
     color: white;
+    font-weight: 600;
     font-size: 14px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    flex: 1;
-    white-space: nowrap;
+    transition-duration: .3s;
 }
 
-.sidebar .auth-button:hover {
-    background-color: #333;
+/* hover effect on button width */
+.Btn:hover {
+    width: 125px;
+    border-radius: 40px;
+    transition-duration: .3s;
 }
 
-.sidebar .auth-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: auto;
-    padding-top: 30px;
+.Btn:hover .signs {
+    width: 30%;    left: 28%; /* 좌측에 고정 */
+    transition-duration: .3s;
+    padding-left: 20px;
+}
+
+/* hover effect button's text */
+.Btn:hover .texts {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+}
+
+.Btn:active {
+    transform: translate(2px, 2px);
 }
 
 .logo {
@@ -242,19 +353,19 @@ aside.sidebar a {
     background-color: rgb(255, 255, 255);
     border-radius: 30px;
     padding-left: 15px;
-
 }
+
 .ReInputContainer {
-     margin: 20px 0;
-     width: 400px;
-     height: 50px;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     background: linear-gradient(to bottom, rgb(246, 243, 255), rgb(255, 245, 245));
-     border-radius: 30px;
-     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
- }
+    margin: 20px 0;
+    width: 400px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom, rgb(246, 243, 255), rgb(255, 245, 245));
+    border-radius: 30px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+}
 
 .re-input-wrapper {
     width: 370px;
@@ -294,7 +405,6 @@ aside.sidebar a {
     width: 24px;
     height: 24px;
 }
-
 
 .no-results-message {
     color: red;
@@ -503,7 +613,6 @@ aside.sidebar a {
 /* input칸 안에 위아래 화살표 지움 */
 .quantity-input input::-webkit-outer-spin-button,
 .quantity-input input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
     margin: 0;
 }
 
@@ -534,6 +643,7 @@ aside.sidebar a {
     .sidebar {
         display: flex;
     }
+
 }
 
 @media (max-width: 767px) {
@@ -587,5 +697,14 @@ aside.sidebar a {
         display: block;
         max-width: 100%;
         width: 70%;
+    }
+    .InputContainer{
+        margin-left: 0px;
+        place-content: center;
+        place-items: center;
+        place-self: center;
+    }
+    .input-wrapper{
+        margin-left: 0px;
     }
 }

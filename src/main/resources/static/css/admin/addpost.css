@@ -1,0 +1,132 @@
+/* Centered form styling */
+.centered-form {
+    margin-left: 200px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+}
+
+/* Styling the form */
+.centered-form form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 600px;
+}
+
+/* Label styling */
+.centered-form form label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+/* Text input styling */
+.centered-form form input[type="text"],
+.centered-form form input[type="number"],
+.centered-form form input[type="file"],
+.centered-form form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Textarea for 'buying_text' to make it wider */
+.centered-form form textarea#buying_text {
+    height: 100px;
+}
+
+/* Button styling */
+.centered-form form button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.centered-form form button:hover {
+    background-color: #45a049;
+}
+
+/* Custom file input button styling */
+.plusButton {
+    /* Config start */
+    --plus_sideLength: 2.5rem;
+    --plus_topRightTriangleSideLength: 0.9rem;
+    /* Config end */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    width: var(--plus_sideLength);
+    height: var(--plus_sideLength);
+    background-color: #000000;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.plusButton::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-width: 0 var(--plus_topRightTriangleSideLength) var(--plus_topRightTriangleSideLength) 0;
+    border-style: solid;
+    border-color: transparent white transparent transparent;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+.plusButton:hover {
+    cursor: pointer;
+}
+
+.plusButton:hover::before {
+    --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton:focus-visible::before {
+    --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton>.plusIcon {
+    fill: white;
+    width: calc(var(--plus_sideLength) * 0.7);
+    height: calc(var(--plus_sideLength) * 0.7);
+    z-index: 1;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+.plusButton:hover>.plusIcon {
+    fill: black;
+    transform: rotate(180deg);
+}
+
+.plusButton:focus-visible>.plusIcon {
+    fill: black;
+    transform: rotate(180deg);
+}
+header h2{
+    margin-left: 200px;
+
+}
+@media (max-width: 767px) {
+    .centered-form {
+        margin-left: 0px;
+        padding-bottom: 100px;
+    }
+    header h2{
+        margin-left: 0px;
+    }
+}

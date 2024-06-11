@@ -43,10 +43,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="post, iterStat : ${myPosts}" class="transaction-row">
-                    <td class="transaction-item">
-                        <a th:href="@{'/mypage/mylikes/details'(requireNo=${post.requireNo})}" th:text="${post.requireItem}">물품</a>
-                    </td>
+                <tr th:each="post, iterStat : ${myPosts}" class="transaction-row"
+                    th:onclick="'location.href=\'/mypage/mylikes/details?requireNo=' + ${post.requireNo} + '\';'"
+                    style="cursor: pointer;">
+                    <td class="transaction-item" th:text="${post.requireItem}">물품</td>
                     <td class="transaction-price" th:text="${post.requirePrice}">가격</td>
                     <td class="transaction-quality" th:text="${post.requireQuality}">품질</td>
                     <td class="transaction-delete">
