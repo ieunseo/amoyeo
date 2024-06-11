@@ -31,7 +31,9 @@
     src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
-}body {
+}
+
+body {
     background-color: #f8f9fa;
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -43,41 +45,46 @@
     position: relative;
 }
 
-form {
-    position: relative;
-    padding: 20px 40px 20px 40px;
-    border-radius: 10px;
-    backdrop-filter: blur(5px);
-    width: 300px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    z-index: 10;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.background-box {
-    position: absolute;
-    width: 380px;
-    height: 530px;
-    background-color: #d8d8d8;
-    border-radius: 10px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(5deg);
-    z-index: 1;
-}
-
 .container {
-    display: flex;
+    /*display: flex;*/
+
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
+    max-width: 350px;
+    background: #f8f9fd;
+    background: linear-gradient(
+            0deg,
+            rgb(255, 255, 255) 0%,
+            rgb(244, 247, 251) 100%
+    );
+    border-radius: 40px;
+    padding:40px 50px 40px 50px;
+    border: 5px solid rgb(255, 255, 255);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
 }
+.sign-container {
+    /*display: flex;*/
 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 350px;
+    background: #f8f9fd;
+    background: linear-gradient(
+            0deg,
+            rgb(255, 255, 255) 0%,
+            rgb(244, 247, 251) 100%
+    );
+    border-radius: 40px;
+    padding:40px 50px 40px 50px;
+    margin-top: 150px;
+    margin-bottom: 10px;
+    border: 5px solid rgb(255, 255, 255);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+}
 h2 {
     font-family: 'Pretendard-Bold','Arial', sans-serif;
     font-size: 24px;
@@ -102,28 +109,62 @@ p a {
     font-family: 'Pretendard-Regular','Arial', sans-serif;
 }
 
-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+.form {
+    margin-top: 20px;
 }
 
-.btn-login {
-    background-color: #000;
-    color: white;
-    padding: 10px 20px;
+.input {
+    width: 90%;
+    background: white;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
+    padding: 15px 20px 15px 20px;
+    border-radius: 20px;
+    margin-top: 15px;
+    box-shadow: #cff0ff 0px 10px 10px -5px;
+    border-inline: 2px solid transparent;
 }
 
-.btn-login:hover {
-    background-color: #333;
+.input::-moz-placeholder {
+    color: rgb(170, 170, 170);
+}
+
+.input::placeholder {
+    color: rgb(170, 170, 170);
+}
+
+.input:focus {
+    outline: none;
+    border-inline: 2px solid #12b1d1;
+}
+
+.login-button  {
+    display: block;
+    width: 100%;
+    margin: 20px 5px 20px 5px;
+    font-size: 15px;
+    font-weight: bold;
+    background: linear-gradient(
+            45deg,
+            rgb(16, 137, 211) 0%,
+            rgb(18, 177, 209) 100%
+    );
+    color: white;
+    padding-block: 15px;
+    /*margin: 20px auto;*/
+    border-radius: 20px;
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+    border: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.login-button:hover {
+    transform: scale(1.03);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+}
+
+.login-button:active {
+    transform: scale(0.95);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
 }
 
 .divider {
@@ -146,24 +187,36 @@ input {
 }
 
 .continuelogin {
-    background-color: #e6e6e6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 90%;
     text-align: center;
-    text-decoration: none;
-    color: #000;
+    display: block;
+    width: 80%;
+    margin: 20px 5px 20px;
+    margin-left: 10%;
+    font-size: 15px;
+    font-weight: bold;
+    background: linear-gradient(
+            45deg,
+            rgb(127, 198, 237) 0%,
+            rgb(102, 178, 188) 100%
+    );
+    color: white;
+    padding-block: 15px;
+    /*margin: 20px auto;*/
+    border-radius: 20px;
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+    border: none;
+    transition: all 0.2s ease-in-out;
 }
 
 .continuelogin:hover {
-    text-decoration: none;
-    background-color: #f0f0f0;
+    text-decoration: none !important;
+    transform: scale(1.03);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
 }
-
+.continuelogin:active {
+    transform: scale(0.95);
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+}
 a {
     color: #000;
     text-decoration: none;

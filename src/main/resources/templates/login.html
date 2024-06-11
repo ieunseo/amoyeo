@@ -8,20 +8,19 @@
     <link rel="stylesheet" th:href="@{/css/signup.css}">
 </head>
 <body>
-<div class="background-box"></div>
-<form th:action="@{/login}" method="post">
+
+<form class="form" th:action="@{/login}" method="post">
     <div class="container">
-        <a th:href = "@{/}"><h2>아모여</h2></a>
+        <a th:href="@{/}"><h2>아모여</h2></a>
         <br><br><br>
-        <div class="container">
-            <h2>로그인</h2>
-            <input type="text" name="userId" placeholder="아이디를 입력해주세요." required />
-            <input type="password" name="userPwd" placeholder="비밀번호를 입력해주세요." required />
-            <div th:if="${loginError != null}" style="color: red; font-size: 13px;">
-                <p th:text="${loginError}"></p>
-            </div>
-            <button class="btn-login" type="submit">로그인</button>
+        <h2>Login</h2>
+        <input type="text" name="userId" class="input" placeholder="아이디를 입력해주세요." required />
+        <input type="password" name="userPwd" class="input" placeholder="비밀번호를 입력해주세요." required />
+        <div th:if="${loginError != null}" style="color: red; font-size: 13px;">
+            <p th:text="${loginError}"></p>
         </div>
+        <button class="login-button" type="submit">로그인</button>
+
         <div class="divider">
             <hr class="line" />
             <span>or continue with</span>
@@ -33,5 +32,6 @@
         <p><a href="#">이용약관</a><br><br> <a href="#">개인정보 처리방침</a></p>
     </div>
 </form>
+
 </body>
 </html>
