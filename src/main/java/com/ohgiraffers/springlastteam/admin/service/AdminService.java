@@ -61,9 +61,11 @@ public class AdminService {
     }
 
     @Transactional
-    public void registGroupBuying(GroupBuyingDTO newGroupBuying) {
-        groupBuyingRepository.save(modelMapper.map(newGroupBuying, GroupBuying.class));
+    public GroupBuying registGroupBuying(GroupBuyingDTO newGroupBuying) {
+        GroupBuying groupBuying = modelMapper.map(newGroupBuying, GroupBuying.class);
+        groupBuyingRepository.save(groupBuying);
         System.out.println(modelMapper.map(newGroupBuying, GroupBuying.class));
+        return groupBuying;
     }
 
 

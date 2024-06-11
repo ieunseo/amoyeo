@@ -104,6 +104,8 @@ public class AdminController {
         newGroupBuying.setBuyingQuality(buyingQuality);
         newGroupBuying.setUserNo(user.getUserNo());
 
+        GroupBuying save = adminService.registGroupBuying(newGroupBuying);
+
         /* 파일 경로 설정*/
         Resource resource = resourceLoader.getResource("classpath:static/img/multi");
         String filePath = null;
@@ -129,7 +131,9 @@ public class AdminController {
                 String ext = originFilename.substring(originFilename.lastIndexOf("."));
                 String imgName = UUID.randomUUID().toString().replace("-", "") + ext;
 
-                images.add(new ImageDTO(originFilename,imgName,filePath));
+                ImageDTO imageDTO = new ImageDTO(originFilename,imgName,filePath);
+                imageDTO.setGroupBuyingNo(save.getBuyingNo());
+                images.add(imageDTO);
 
                 file.transferTo(new File(filePath + "/" + imgName));
 
@@ -142,7 +146,7 @@ public class AdminController {
             System.out.println(imageDTO);
         }
         System.out.println(newGroupBuying);
-        adminService.registGroupBuying(newGroupBuying);
+        /*adminService.registGroupBuying(newGroupBuying);*/
         adminService.registImages(images);
 
         return "redirect:/";
