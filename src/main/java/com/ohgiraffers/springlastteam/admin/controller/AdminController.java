@@ -34,8 +34,6 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
-    @Autowired
-    private ModelMapper modelMapper;
 
     @Autowired
     ResourceLoader resourceLoader;
