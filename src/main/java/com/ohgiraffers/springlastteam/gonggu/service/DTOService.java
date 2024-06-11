@@ -134,6 +134,7 @@ public class DTOService {
         buyingUser.setBuyingQuantity(newBuyingUser.getBuyingQuantity());
         buyingUser.setBuyingDate(newBuyingUser.getBuyingDate());
 
+        System.out.println("서비스 : " + buyingUser);
         dtoRepository.save(buyingUser);
     }
 
