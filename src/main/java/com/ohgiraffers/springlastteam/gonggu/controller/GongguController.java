@@ -13,10 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -39,10 +36,23 @@ public class GongguController {
     public String showDataList(Model model) {
         List<GroupBuyingDTO> groupBuyingList = dtoService.findGroupBuyingList();
         model.addAttribute("groupBuyingList", groupBuyingList);
-
         return "index";
     }
-
+    @GetMapping("/search")
+    public String searchGroupBuying(@RequestParam(value = "query", required = false) String query, Model model) {
+        List<GroupBuyingDTO> searchResults;
+        if (query == null || query.isEmpty()) {
+            searchResults = dtoService.findGroupBuyingList();
+        } else {
+            searchResults = dtoService.searchGroupBuying(query);
+        }
+        model.addAttribute("groupBuyingList", searchResults);
+        model.addAttribute("query", query);
+        if (searchResults.isEmpty()) {
+            model.addAttribute("noResultsMessage", "검색결과가 없습니다.");
+        }
+        return "index";  // Reusing the same view to display search results
+    }
     @GetMapping("/want")
     public String getRequireBuys(HttpSession session, Model model) {
         if (session.getAttribute("user") == null) {
@@ -52,6 +62,26 @@ public class GongguController {
         UserDTO userDTO = modelMapper.map(user, UserDTO.class);  // Users 객체를 UserDTO로 변환
         List<RequireBuyDTO> requireBuyList = dtoService.findRequireBuyList(userDTO.getUserNo());
         model.addAttribute("requireBuyList", requireBuyList);
+        return "want";
+    }
+    @GetMapping("/want/search")
+    public String searchRequireBuys(@RequestParam("query") String query, HttpSession session, Model model) {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/login";
+        }
+        List<RequireBuyDTO> searchResults;
+        if (query == null || query.isEmpty()) {
+            Users user = (Users) session.getAttribute("user");
+            UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+            searchResults = dtoService.findRequireBuyList(userDTO.getUserNo());
+        } else {
+            searchResults = dtoService.searchRequireBuys(query);
+        }
+        model.addAttribute("requireBuyList", searchResults);
+        model.addAttribute("query", query);
+        if (searchResults.isEmpty()) {
+            model.addAttribute("noResultsMessage", "검색결과가 없습니다.");
+        }
         return "want";
     }
 
@@ -73,6 +103,11 @@ public class GongguController {
     public ResponseEntity<Map<String, Boolean>> checkLikeStatus(@RequestParam int userNo, @RequestParam int requireNo) {
         boolean liked = likesRepository.findByUserUserNoAndRequireBuyRequireNo(userNo, requireNo).isPresent();
         return ResponseEntity.ok(Collections.singletonMap("liked", liked));
+    }
+    @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<GroupBuyingDTO> searchGroupBuying(@RequestParam("query") String query) {
+        return dtoService.searchGroupBuying(query);
     }
 
     @GetMapping("/save")

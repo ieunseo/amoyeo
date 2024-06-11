@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/signup.css}">
 </head>
 <body>
+<div class="background-box"></div>
 <form th:action="@{/login}" method="post">
     <div class="container">
         <a th:href = "@{/}"><h2>아모여</h2></a>
@@ -20,9 +21,6 @@
                 <p th:text="${loginError}"></p>
             </div>
             <button class="btn-login" type="submit">로그인</button>
-            <p class="signup">
-                비밀번호를 잊어버리셨나요? <a th:href="@{/#}" class="link">비밀번호 찾기</a>
-            </p>
         </div>
         <div class="divider">
             <hr class="line" />
@@ -32,7 +30,8 @@
         <a class="continuelogin" th:href="@{/register}">
             <span>회원가입</span>
         </a>
-        <p><a href="#">이용약관</a><br><br> <a href="#">개인정보 처리방침</a></p>    </div>
+        <p><a href="#">이용약관</a><br><br> <a href="#">개인정보 처리방침</a></p>
+    </div>
 </form>
 </body>
 </html>

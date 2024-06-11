@@ -46,35 +46,36 @@
         </div>
     </div>
 </aside>
-<div class="InputContainer">
-    <div class="input-wrapper">
-        <input placeholder="검색어를 입력하세요." id="input" class="input" name="text" type="text">
-        <div class="search-icon" onclick="handleSearchClick()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M11 2C6.03125 2 2 6.03125 2 11C2 15.9688 6.03125 20 11 20C12.8769 20 14.635 19.4844 16.0834 18.5938L20.2812 22.7812L22.2812 20.7812L18.0938 16.5938C18.9844 15.135 19.5 13.3769 19.5 11.5C19.5 6.53125 15.4688 2 11 2ZM11 4C14.8797 4 18 7.12031 18 11C18 14.8797 14.8797 18 11 18C7.12031 18 4 14.8797 4 11C4 7.12031 7.12031 4 11 4Z" fill="#333"/>
-            </svg>
-        </div>
-    </div>
-</div>
-
 <div class="content">
-    <div th:each="groupBuying : ${groupBuyingList}" >
-        <div class="post">
+    <div class="InputContainer">
+        <form action="/search" method="get">
+            <div class="input-wrapper">
+                <input placeholder="Search.." id="input" class="input" name="query" type="text" th:value="${query}">
+                <button type="submit" class="search-icon">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div th:if="${noResultsMessage != null}" class="no-results-message">
+        <p th:text="${noResultsMessage}"></p>
+    </div>
+
+    <div class="post-container">
+        <div th:each="groupBuying : ${groupBuyingList}" class="post">
             <div class="post-header">
                 <img class="profile-pic" th:src="@{/img/after-profile.png}" alt="profile picture">
                 <div class="post-info">
                     <div class="username" th:text="${groupBuying.userName}"></div>
-                    <!--                    <div class="post-date" th:text="${#dates.format(groupBuying.bu, 'yyyy-MM-dd')}"></div>-->
                 </div>
             </div>
             <div class="post-images">
                 <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
             </div>
             <div class="post-description" th:text="${groupBuying.buyingText}"></div>
-
             <div class="product-info mobile-view">
                 <table>
                     <tr>
@@ -92,10 +93,6 @@
                 </table>
             </div>
             <div class="post-actions">
-                <div>
-                    <!--<img class="like-icon" th:src="@{/img/heart-icon.png}" alt="like icon" onclick="updateLikes(this)" th:data-likes="${buyingUser.buyingPerson}" th:data-kg="${buyingUser.buyingQuantity}" th:data-liked="false">-->
-                    <!--<span class="purchase-text" th:text="${buyingUser.buyingPerson} + ' 명이 구매했습니다.'">1 명이 구매했습니다.</span>-->
-                </div>
                 <button class="purchase-button" onclick="togglePurchaseSection(this)">신청</button>
             </div>
             <div class="purchase-section" style="display:none;">
