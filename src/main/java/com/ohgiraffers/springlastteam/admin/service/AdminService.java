@@ -1,6 +1,7 @@
 package com.ohgiraffers.springlastteam.admin.service;
 
 //import com.ohgiraffers.springlastteam.admin.repository.AdminRepository;
+import com.ohgiraffers.springlastteam.admin.dto.ImageDTO;
 import com.ohgiraffers.springlastteam.admin.repository.BuyingUserRepository;
 import com.ohgiraffers.springlastteam.admin.repository.GroupBuyingRepository;
 import com.ohgiraffers.springlastteam.admin.repository.ImageRepository;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AdminService {
@@ -61,11 +63,19 @@ public class AdminService {
     @Transactional
     public void registGroupBuying(GroupBuyingDTO newGroupBuying) {
         groupBuyingRepository.save(modelMapper.map(newGroupBuying, GroupBuying.class));
+        System.out.println(modelMapper.map(newGroupBuying, GroupBuying.class));
     }
 
+
     @Transactional
-    public void registImages(List<Image> imageList) {
-        imageRepository.save(modelMapper.map(imageList, Image.class));
+    public void registImages(List<ImageDTO> images) {
+        List<Image> imageList = images.stream().
+                map(imageDTO -> modelMapper.map(imageDTO, Image.class)).
+                collect(Collectors.toList());
+        for (Image image : imageList) {
+            System.out.println(image);
+        }
+        imageRepository.saveAll(imageList);
     }
 }
 

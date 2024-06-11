@@ -1,5 +1,6 @@
 package com.ohgiraffers.springlastteam.admin.controller;
 
+import com.ohgiraffers.springlastteam.admin.dto.ImageDTO;
 import com.ohgiraffers.springlastteam.admin.service.AdminService;
 import com.ohgiraffers.springlastteam.entity.BuyingUser;
 import com.ohgiraffers.springlastteam.entity.GroupBuying;
@@ -10,6 +11,8 @@ import com.ohgiraffers.springlastteam.gonggu.dto.GroupBuyingDTO;
 import jakarta.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin")
@@ -32,6 +36,10 @@ public class AdminController {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    ResourceLoader resourceLoader;
+
     @GetMapping("/admin-user")
     public String adminUserPage(Model model) {
         List<Users> users = adminService.findAllUsers();
@@ -75,14 +83,14 @@ public class AdminController {
 
     /*값 전달*/
     @PostMapping("/addpost")
-    public String postAddPostPage(@RequestParam(value = "image", required = false)List<MultipartFile> images,
+    public String postAddPostPage(@RequestParam(value = "image", required = false)List<MultipartFile> multiFiles,
                                   @RequestParam("buying_text")String buyingText,
                                   @RequestParam("buying_item")String buyingItem,
                                   @RequestParam("buying_price")int buyingPrice,
                                   @RequestParam("buying_quality")String buyingQuality,
                                   GroupBuyingDTO newGroupBuying,
                                   Model model,
-                                  HttpSession session){
+                                  HttpSession session) throws IOException {
 
         Users user = (Users) session.getAttribute("user");
         if (user == null) {
@@ -96,39 +104,46 @@ public class AdminController {
         newGroupBuying.setBuyingQuality(buyingQuality);
         newGroupBuying.setUserNo(user.getUserNo());
 
-        List<Image> imageList = new ArrayList<>();
+        /* 파일 경로 설정*/
+        Resource resource = resourceLoader.getResource("classpath:static/img/multi");
+        String filePath = null;
 
-        if (images != null && !images.isEmpty()) {
-            //갯수만큼 반복
-            for (MultipartFile image : images) {
-                if (!image.isEmpty()) {
-                    try {
-                        //파일 원래명 '*.jpg'
-                        String originalFilename = image.getOriginalFilename();
-                        //파일 교유명 설정
-                        String uniqueFilename = System.currentTimeMillis() + "_" + originalFilename;
-                        //파일 저장 위치
-                        String savePath = "static/img" + uniqueFilename;
-                        image.transferTo(new File(savePath));
+        if(!resource.exists()){
+            String root = "src/main/resource/static/img/multi";
+            File file = new File(root);
+            file.mkdir();
 
-                        //img 셋팅
-                        Image img = new Image();
-                        img.setImgOriginFilename(originalFilename);
-                        img.setImgName(uniqueFilename);
-                        img.setImgPath(savePath);
-                        img.setGroupBuying(modelMapper.map(newGroupBuying,GroupBuying.class)); // Set the relationship
-
-                        //list에 이미지 삽입
-                        imageList.add(img);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            filePath = file.getAbsolutePath();
+        } else {
+            filePath = resource.getFile().getAbsolutePath();
         }
 
-        adminService.registImages(imageList);
+        /* 파일 정보 저장*/
+        List<ImageDTO> images = new ArrayList<>();
+
+
+        try{
+            for(MultipartFile file : multiFiles){
+                /* 파일명 변경 처리*/
+                String originFilename = file.getOriginalFilename();
+                String ext = originFilename.substring(originFilename.lastIndexOf("."));
+                String imgName = UUID.randomUUID().toString().replace("-", "") + ext;
+
+                images.add(new ImageDTO(originFilename,imgName,filePath));
+
+                file.transferTo(new File(filePath + "/" + imgName));
+
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        for(ImageDTO imageDTO : images){
+            System.out.println(imageDTO);
+        }
+        System.out.println(newGroupBuying);
         adminService.registGroupBuying(newGroupBuying);
+        adminService.registImages(images);
 
         return "redirect:/";
     }

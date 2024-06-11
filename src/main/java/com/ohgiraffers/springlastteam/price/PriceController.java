@@ -32,7 +32,7 @@ public class PriceController {
     public String getPrice(Model model,@RequestParam(value = "itemName", required = false) String itemName) {
 
         LocalDate today = LocalDate.now();
-        LocalDate oneDaysAgo = today.minusDays(3);
+        LocalDate oneDaysAgo = today.minusDays(1);
         String startDate = oneDaysAgo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         String endDate = oneDaysAgo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
