@@ -23,7 +23,7 @@
 <!-- 사이드바 포함 -->
 <div th:replace="~{mypage/sidebar :: sidebar}"></div>
 
-<!-- 프로필 컨테이너 -->
+<!-- 프로필  -->
 <div class="profile-container">
   <div class="profile_section">
     <form th:action="@{/mypage/update}" th:object="${user}" method="post">
@@ -36,6 +36,13 @@
         </div>
         <div class="profile_name">
           <span class="name_text" th:text="*{userName}"/>
+          <!-- 회원탈퇴 버튼 추가 -->
+          <div class="delete_account_section">
+            <form th:action="@{/mypage/delete}" method="post" id="deleteAccountForm">
+              <input type="hidden" id="deleteUserNo" name="userNo" th:value="${user.userNo}">
+              <button type="button" class="delete_account_button">회원탈퇴</button>
+            </form>
+          </div>
         </div>
       </div>
       <div class="id_section">
@@ -64,7 +71,7 @@
           <span class="apartment_num_text" th:text="*{userApartNum}"/>
           <input type="text" name="userApartNum" placeholder="변경할 상세 주소를 입력해주세요" th:value="*{userApartNum}">
         </div>
-      </div> 
+      </div>
       <div class="password_section">
         <h3>비밀번호 변경</h3>
         <div class="current_password">
