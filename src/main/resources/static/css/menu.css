@@ -216,15 +216,15 @@ aside.sidebar a {
 }
 
 .signs {
-    position: absolute; /* 절대 위치 설정 */
-    left: 28%; /* 좌측에 고정 */
+    position: absolute;
+    left: 28%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition-duration: .3s;
 }.sign {
-     position: absolute; /* 절대 위치 설정 */
-     left: 28%; /* 좌측에 고정 */
+     position: absolute;
+     left: 28%;
      display: flex;
      align-items: center;
      justify-content: center;
@@ -232,8 +232,7 @@ aside.sidebar a {
  }
 
 .signs svg {
-    width: 17px;    left: 28%; /* 좌측에 고정 */
-}
+    width: 17px;}
 
 .signs svg path {
     fill: white;
@@ -259,9 +258,8 @@ aside.sidebar a {
 }
 
 .Btn:hover .signs {
-    width: 30%;    left: 28%; /* 좌측에 고정 */
-    transition-duration: .3s;
-    padding-left: 20px;
+    width: 14px;
+    left: 19%;
 }
 
 /* hover effect button's text */
@@ -273,7 +271,7 @@ aside.sidebar a {
 }
 
 .Btn:active {
-    transform: translate(2px, 2px);
+    /*transform: translate(2px, 2px);*/
 }
 
 .logo {
