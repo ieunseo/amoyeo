@@ -91,7 +91,9 @@
                 </div>
             </div>
             <div class="post-images">
-                <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
+                <div th:each="image : ${groupBuying.imageList}">
+                    <img class="post-image" th:src="@{/img/multi/{image.imgName}(image.imgName)}" th:alt="${image.imgOriginFilename}">
+                </div>
             </div>
             <div class="post-description" th:text="${groupBuying.buyingText}"></div>
             <div class="product-info mobile-view">

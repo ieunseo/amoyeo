@@ -36,6 +36,7 @@ public class GongguController {
     @GetMapping("/")
     public String showDataList(Model model) {
         List<GroupBuyingDTO> groupBuyingList = dtoService.findGroupBuyingList();
+        
         model.addAttribute("groupBuyingList", groupBuyingList);
         return "index";
     }
