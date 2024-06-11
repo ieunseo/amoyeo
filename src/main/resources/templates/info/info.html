@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아모여: 아파트머시기머시기</title>
     <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
-    <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
-    <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
+<!--    <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>-->
+<!--    <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>-->
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/info.css}">
@@ -21,12 +21,10 @@
     <div class="logo">
         <a th:href="@{/}"><img th:src="@{/img/logo.jpeg}" alt="로고"></a>
     </div>
-    <div class="menu-item active" onclick="handleHomeClick(this)">
+    <div class="menu-item" onclick="handleHomeClick(this)">
         <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"><div>공구</div></a>
     </div>
-    <!--    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">-->
-    <!--        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"><div>검색</div></a>-->
-    <!--    </div>-->
+
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
         <a th:href="@{/price}"><img th:src="@{/img/before-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"><div>물가</div></a>
     </div>
