@@ -51,4 +51,9 @@ public class AdminController {
         model.addAttribute("buyingUsers", buyingUsers);
         return "admin/admin-list";
     }
+
+    @GetMapping("/admin/addpost")
+    public String addPostPage() {
+        return "admin/addpost";
+    }
 }
