@@ -42,8 +42,8 @@ body {
 
 
 .post-table {
-    margin-left: 250px;
-    width: 80%;
+    margin-left: 35%;
+    width: 50%;
     border-collapse: collapse;
 }
 
@@ -78,4 +78,10 @@ body {
     background-color: #808080;
     color: #fff;
     cursor: pointer;
+}
+@media (max-width: 767px) {
+    .post-table{
+        margin-top:0px;
+        margin-left: 0px;
+    }
 }

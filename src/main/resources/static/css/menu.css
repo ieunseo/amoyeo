@@ -343,15 +343,17 @@ aside.sidebar a {
 }
 
 .post-images {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;
     width: 100%;
     margin: 10px 0;
 }
 
 .post-image {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     border-radius: 5px;
 }
