@@ -1,96 +1,31 @@
-body {
-    font-family: 'Pretendard-Regular', Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
+body, html {
     margin: 0;
     padding: 0;
-    height: 100vh;
+    height: 100%;
 }
 
-.sidebar {
-    width: 200px;
-    height: 100vh;
-    background: #f7f7f7;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
 }
 
-.menu-item {
-    margin-bottom: 20px;
-}
-
-.menu-item a {
-    text-decoration: none;
-    color: #333;
-    display: flex;
-    align-items: center;
-}
-
-.menu-item img {
-    width: 20px;
-    margin-right: 10px;
-}
-
-.menu-item.active {
-    font-weight: bold;
-}
-
-.content {
-    flex: 1;
-    margin-left: 200px; /* 사이드바 너비와 맞춤 */
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: auto;
-}
 
 .section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    padding: 20px;
 }
 
-.search-filter {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.search-filter input {
-    flex: 1;
-    padding: 10px;
-    margin-right: 10px;
-}
-
-.search-filter button {
-    padding: 10px;
-}
-
-table {
-    width: 100%;
+.list-table {
+    margin-left: 100px;
+    width: 80%;
     border-collapse: collapse;
-    flex: 1;
 }
 
-table th, table td {
+.list-table th, .list-table td {
     border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+    padding: 8px;
+    text-align: center;
 }
 
-.delete-btn {
-    background-color: #f44336;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.delete-btn:hover {
-    background-color: #d32f2f;
+.list-table th {
+    background-color: #f2f2f2;
 }
