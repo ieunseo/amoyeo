@@ -32,4 +32,12 @@ public class Image implements Serializable {
     @ManyToOne
     @JoinColumn(name = "buying_no", nullable = false)
     private GroupBuying groupBuying;
+
+    public Image(int imgNo, String imgOriginFilename, String imgName, String imgPath, GroupBuying groupBuying) {
+        this.imgNo = imgNo;
+        this.imgOriginFilename = imgOriginFilename;
+        this.imgName = imgName;
+        this.imgPath = imgPath;
+        this.groupBuying = groupBuying;
+    }
 }

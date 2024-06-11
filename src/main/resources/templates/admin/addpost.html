@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,19 +8,20 @@
 <body>
 
     <h1>새 글 추가</h1>
-    <form action="#" th:action="@{/addPost}" th:object="${post}" method="post" enctype="multipart/form-data">
-        <label for="user_name">이름: </label>
-        <input type="text" id="user_name" name="user_name" required><br><br>
+    <form action="/admin/addpost" method="post" enctype="multipart/form-data">
+        <label>이름: </label>
+        <p th:text="${user.userName}"></p>
+        <!--<input type="text" id="user_name" name="user_name" required>--><br><br>
         <label for="buying_text">글 내용:</label>
         <input type="text" id="buying_text" name="buying_text" required><br><br>
         <label for="buying_item">품목:</label>
         <input type="text" id="buying_item" name="buying_item" required><br><br>
         <label for="buying_price">가격:</label>
-        <input type="text" id="buying_price" name="buying_price" required><br><br>
+        <input type="number" id="buying_price" name="buying_price" required><br><br>
         <label for="buying_quality">품질:</label>
         <input type="text" id="buying_quality" name="buying_quality" required><br><br>
         <label for="image">이미지:</label>
-        <input type="file" id="image" name="image"><br><br>
+        <input type="file" id="image" name="image" multiple><br><br>
         <button type="submit">제출</button>
     </form>
 

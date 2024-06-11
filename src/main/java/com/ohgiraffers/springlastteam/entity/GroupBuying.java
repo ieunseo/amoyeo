@@ -22,8 +22,6 @@ public class GroupBuying implements Serializable {
     @Column(name = "buying_no")
     private int buyingNo;
 
-
-
     @Column(name = "buying_text")
     private String buyingText;
 
@@ -34,6 +32,7 @@ public class GroupBuying implements Serializable {
 
     @Column(name = "buying_price")
     private int buyingPrice;
+
     @ManyToOne
     @JoinColumn(name = "user_no", nullable = false)
     private Users user;

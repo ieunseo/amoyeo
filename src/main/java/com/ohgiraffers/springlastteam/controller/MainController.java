@@ -10,5 +10,5 @@ public class MainController {
 
     @GetMapping(value={"/prices"})
     public String price() {return "price";}
-  
+
 }
