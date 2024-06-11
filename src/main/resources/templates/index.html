@@ -98,12 +98,15 @@
             </div>
             <div class="purchase-section" style="display:none;">
                 <p>물품 :</p>
-                <div class="quantity-input">
-                    <button onclick="decreaseQuantity(this)">-</button>
-                    <input type="number" class="quantity" value="1" min="1">
-                    <button onclick="increaseQuantity(this)">+</button>
-                </div>
-                <button onclick="submitPurchase(this)">확인</button>
+                <form action="/mypage" method="post">
+                    <input type="hidden" name="groupBuyingNo" th:value="${groupBuying.userNo}">
+                    <div class="quantity-input">
+                        <button type="button" onclick="decreaseQuantity(this)">-</button>
+                        <input type="number" class="quantity" name="quantity" value="1" min="1">
+                        <button type="button" onclick="increaseQuantity(this)">+</button>
+                    </div>
+                    <button type="submit" onclick="submitPurchase(this)">확인</button>
+                </form>
             </div>
         </div>
     </div>

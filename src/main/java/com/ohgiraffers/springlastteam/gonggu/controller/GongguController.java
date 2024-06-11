@@ -1,5 +1,6 @@
 package com.ohgiraffers.springlastteam.gonggu.controller;
 
+import com.ohgiraffers.springlastteam.entity.GroupBuying;
 import com.ohgiraffers.springlastteam.entity.Likes;
 import com.ohgiraffers.springlastteam.entity.Users;
 import com.ohgiraffers.springlastteam.gonggu.dto.BuyingUserDTO;
@@ -127,6 +128,30 @@ public class GongguController {
         userNo = 1;
         dtoService.deleteRequstBuying(buyingNo, userNo);
         return "data/delete";
+    }
+
+    @PostMapping("/mypage")
+    public String requestGroupBuying(@RequestParam() int groupBuyingNo,
+                                     @RequestParam int quantity,
+                                     BuyingUserDTO newBuyingUser,
+                                     HttpSession session){
+
+        Users user = (Users) session.getAttribute("user");
+        if(user==null){
+            return "redirect:/login";
+        }
+
+        newBuyingUser.setBuyingNo(groupBuyingNo);
+        newBuyingUser.setUserNo(user.getUserNo());
+        newBuyingUser.setBuyingQuantity(quantity);
+        newBuyingUser.setBuyingDate(new java.util.Date());
+
+        System.out.println(newBuyingUser);
+
+        dtoService.requestGroupBuying(newBuyingUser);
+
+        System.out.println("서비스 메소드 실행 후 ");
+        return "redirect:/mypage";
     }
 }
 
