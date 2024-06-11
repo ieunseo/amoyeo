@@ -91,16 +91,16 @@ table {
     text-decoration: none;
     color:#cccccc;
 }.transaction-price a{
-     text-decoration: none;
-     color:black;
- }
+    text-decoration: none;
+    color:black;
+}
 .transaction-price a:hover{
     text-decoration: none;
     color:#cccccc;
 }.transaction-quality a{
-     text-decoration: none;
-     color:black;
- }
+    text-decoration: none;
+    color:black;
+}
 .transaction-quality a:hover{
     text-decoration: none;
     color:#cccccc;
