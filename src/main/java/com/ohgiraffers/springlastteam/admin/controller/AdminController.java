@@ -146,7 +146,7 @@ public class AdminController {
             System.out.println(imageDTO);
         }
         System.out.println(newGroupBuying);
-        /*adminService.registGroupBuying(newGroupBuying);*/
+
         adminService.registImages(images);
 
         return "redirect:/";
