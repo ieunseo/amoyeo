@@ -60,6 +60,29 @@
         </div>
     </div>
 </aside>
+<main>
+    <div class="container mt-5">
+        <div th:if="${session.user != null and session.user.userRights == 'Y'}">
+            <a href="#" class="btn btn-primary mb-3" th:href="@{/info/create}">공지사항 작성</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성자</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="notice, iterStat : ${notices}" th:data-href="@{/info/{id}(id=${notice.id})}" onclick="location.href=this.getAttribute('data-href')">
+                <th scope="row" th:text="${iterStat.index + 1}">1</th>
+                <td th:text="${notice.title}">공지사항 제목</td>
+                <td th:text="${notice.authorName}">작성자 이름</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 <div class="fab-container">
     <div class="fab shadow">
         <div class="fab-content">
