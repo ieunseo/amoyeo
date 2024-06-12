@@ -32,7 +32,7 @@ function toggleLike(button, requireNo, userNo) {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            // 요청이 성공하면 아이콘 이미지를 변경
+
             if (isLiked) {
                 img.src = '/img/heart-icon.png';
                 img.alt = 'unliked';
@@ -90,10 +90,29 @@ function increaseQuantity(button) {
     var quantityInput = button.previousElementSibling;
     quantityInput.value = parseInt(quantityInput.value) + 1;
 }
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerText = message;
+    document.body.appendChild(toast);
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+        document.body.removeChild(toast);
+    }, 3000);
+}
 
-function submitPurchase(button) {
-    var quantityInput = button.previousElementSibling.querySelector('.quantity');
-    var quantity = quantityInput.value;
-    alert(quantity + 'kg가 신청되었습니다. 자세한 사항은 마이페이지에서 확인하세요.');
+function submitPurchase(event) {
+    event.preventDefault();
+    const button = event.target;
+    const quantityInput = button.closest('form').querySelector('.quantity');
+    const quantity = quantityInput.value;
+    showToast(quantity + 'kg 신청 완료');
     togglePurchaseSection(button);
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.purchase-section form').forEach(form => {
+        form.addEventListener('submit', submitPurchase);
+    });
+});

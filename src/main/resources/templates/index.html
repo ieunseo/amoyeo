@@ -12,6 +12,9 @@
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/info.css}">
+    <style>
+
+    </style>
 </head>
 <body>
 <header>
@@ -61,8 +64,6 @@
         </div>
     </div>
 </aside>
-
-
 <div class="content">
     <div class="InputContainer">
         <form action="/search" method="get">
@@ -76,12 +77,9 @@
             </div>
         </form>
     </div>
-
-
     <div th:if="${noResultsMessage != null}" class="no-results-message">
         <p th:text="${noResultsMessage}"></p>
     </div>
-
     <div class="post-container">
         <div th:each="groupBuying : ${groupBuyingList}" class="post">
             <div class="post-header">
@@ -122,7 +120,7 @@
                         <input type="number" class="quantity" name="quantity" value="1" min="1">
                         <button type="button" onclick="increaseQuantity(this)">+</button>
                     </div>
-                    <button type="submit" onclick="submitPurchase(this)">확인</button>
+                    <button type="submit">확인</button>
                 </form>
             </div>
         </div>
@@ -159,9 +157,6 @@
     <div class="menu-item active" onclick="handleHomeClick(this)">
         <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"></a>
     </div>
-    <!--    <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-search.png')">-->
-    <!--        <a th:href="@{/search}"><img th:src="@{/img/before-search.png}" alt="검색" data-active-src="@{/img/after-search.png}" data-inactive-src="@{/img/before-search.png}"></a>-->
-    <!--    </div>-->
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
         <a th:href="@{/price}"><img th:src="@{/img/before-dollar.png}" alt="물가" data-active-src="@{/img/after-dollar.png}" data-inactive-src="@{/img/before-dollar.png}"></a>
     </div>
@@ -172,10 +167,37 @@
         <a th:href="@{/admin/admin-user}"><img th:src="@{/img/before-profile.png}" alt="어드민페이지" th:data-active-src="@{/img/after-profile.png}" th:data-inactive-src="@{/img/before-profile.png}"></a>
     </div>
 </footer>
-
 <footer class="fixed-footer">
     <div>© 2024 Muyaho. All rights reserved.</div>
 </footer>
+<div id="notification-container"></div>
+<script>
 
+    function showToast(message) {
+        const notificationContainer = document.getElementById('notification-container');
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `
+                <div class="notification_body">
+                    <img src="img/check-circle.svg" alt="Success" class="notification_icon">
+                    ${message}
+                </div>
+                <div class="notification_progress"></div>
+            `;
+        notificationContainer.appendChild(notification);
+        setTimeout(() => {
+            notificationContainer.removeChild(notification);
+        }, 3000);
+    }
+
+    function submitPurchase(event) {
+        event.preventDefault();
+        const button = event.target.querySelector('button[type="submit"]');
+        const quantityInput = button.closest('form').querySelector('.quantity');
+        const quantity = quantityInput.value;
+        showToast(quantity + 'kg 신청 완료');
+        togglePurchaseSection(button);
+    }
+</script>
 </body>
 </html>
