@@ -4,47 +4,126 @@
     <meta charset="UTF-8">
     <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish&display=swap">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아모여: 아파트머시기머시기</title>
+    <title>아모여: 자주 묻는 질문</title>
     <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/info.css}">
-    <style>
-        .faq-content {
-            display: none;
-        }
-        .container.mt-5 {
-            margin-top: 5rem;
-            max-width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left:10%;
-        }
-        .table{
-            background-color:white;
-        }
-        .td-detail{
-            font-weight: bold;
-        }
 
-    </style>
     <script>
-        function toggleContent(id) {
-            var content = document.getElementById(id);
-            if (content.style.display === "none") {
-                content.style.display = "table-row";
-            } else {
-                content.style.display = "none";
+        class Accordion {
+            constructor(el) {
+                this.el = el;
+                this.summary = el.querySelector("summary");
+                this.content = el.querySelector(".faq-content");
+                this.expandIcon = this.summary.querySelector(".expand-icon");
+                this.animation = null;
+                this.isClosing = false;
+                this.isExpanding = false;
+                this.summary.addEventListener("click", (e) => this.onClick(e));
+            }
+
+            onClick(e) {
+                e.preventDefault();
+                this.el.style.overflow = "hidden";
+
+                if (this.isClosing || !this.el.open) {
+                    this.open();
+                } else if (this.isExpanding || this.el.open) {
+                    this.shrink();
+                }
+            }
+
+            shrink() {
+                this.isClosing = true;
+
+                const startHeight = `${this.el.offsetHeight}px`;
+                const endHeight = `${this.summary.offsetHeight}px`;
+
+                if (this.animation) {
+                    this.animation.cancel();
+                }
+
+                this.animation = this.el.animate(
+                    {
+                        height: [startHeight, endHeight],
+                    },
+                    {
+                        duration: 200,
+                        easing: "ease-out",
+                    }
+                );
+
+                this.animation.onfinish = () => {
+                    this.expandIcon.setAttribute("src", "assets/plus.svg");
+                    return this.onAnimationFinish(false);
+                };
+                this.animation.oncancel = () => {
+                    this.expandIcon.setAttribute("src", "assets/plus.svg");
+                    return (this.isClosing = false);
+                };
+            }
+
+            open() {
+                this.el.style.height = `${this.el.offsetHeight}px`;
+                this.el.open = true;
+                window.requestAnimationFrame(() => this.expand());
+            }
+
+            expand() {
+                this.isExpanding = true;
+
+                const startHeight = `${this.el.offsetHeight}px`;
+                const endHeight = `${
+                    this.summary.offsetHeight + this.content.offsetHeight
+                }px`;
+
+                if (this.animation) {
+                    this.animation.cancel();
+                }
+
+                this.animation = this.el.animate(
+                    {
+                        height: [startHeight, endHeight],
+                    },
+                    {
+                        duration: 200,
+                        easing: "ease-out",
+                    }
+                );
+
+                this.animation.onfinish = () => {
+                    this.expandIcon.setAttribute("src", "assets/minus.svg");
+                    return this.onAnimationFinish(true);
+                };
+                this.animation.oncancel = () => {
+                    this.expandIcon.setAttribute("src", "assets/minus.svg");
+                    return (this.isExpanding = false);
+                };
+            }
+
+            onAnimationFinish(open) {
+                this.el.open = open;
+                this.animation = null;
+                this.isClosing = false;
+                this.isExpanding = false;
+                this.el.style.height = this.el.style.overflow = "";
             }
         }
+
+        document.querySelectorAll("details").forEach((el) => {
+            new Accordion(el);
+        });
     </script>
 </head>
 <body>
 <header>
     <div class="contentmenu" id="headerMenu">
         <a th:href="@{/info}" class="menu-link">공지사항</a>
-        <a th:href="@{/fre-ask}" class="menu-link active">자주묻는 질문</a>
+        <a th:href="@{/fre-ask}" class="menu-link active">자주 묻는 질문</a>
     </div>
 </header>
 <aside class="sidebar">
@@ -64,66 +143,114 @@
     <div th:if="${session.user != null and session.user.userRights == 'Y'}" class="menu-item profile" onclick="toggleProfileBorderAndHideMenu(this)">
         <a th:href="@{/admin/admin-user}"><img th:src="@{/img/before-profile.png}" alt="어드민페이지" th:data-active-src="@{/img/after-profile.png}" th:data-inactive-src="@{/img/before-profile.png}"><div>관리자 페이지</div></a>
     </div>
-    <div class="auth-buttons">
+    <div>
         <div th:if="${session.user == null}">
-            <a th:href="@{/login}" class="auth-button">로그인</a>
-            <a th:href="@{/register}" class="auth-button">회원가입</a>
+            <a th:href="@{/login}" >
+                <button class="Btn">
+                    <div class="signs"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+                    <div class="texts">로그인</div>
+                </button>
+            </a>
+            <a th:href="@{/register}">
+                <button class="Btn">
+                    <div class="signs"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+                    <div class="texts">회원가입</div>
+                </button>
+            </a>
         </div>
         <div th:if="${session.user != null}">
-            <a th:href="@{/logout}" class="auth-button">로그아웃</a>
+            <a th:href="@{/logout}" >
+                <button class="logout-Btn">
+                    <div class="sign"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+                    <div class="text">로그아웃</div>
+                </button>
+            </a>
         </div>
     </div>
 </aside>
 
-<div class="container mt-5">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>구분</th>
-            <th>제목</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <tr onclick="toggleContent('faq1')">
-            <td>배송</td>
-            <td>배송은 어떻게하나요?</td>
-        </tr>
-        <tr id="faq1" class="faq-content">
-            <td>A:</td>
-            <td class="td-detail"> 해당 아파트에서 지정한 장소에서 직접 수령하셔야합니다 (문앞배송x)</td>
-        </tr>
-
-        <tr onclick="toggleContent('faq2')">
-            <td>결제</td>
-            <td>결제는 어떻게 하나요?</td>
-        </tr>
-        <tr id="faq2" class="faq-content">
-            <td>A:</td>
-            <td  class="td-detail"> 결제 기능은 지원하지않습니다. 결제는 관리자에게 따로 문의해주세요.</td>
-        </tr>
-
-        <tr onclick="toggleContent('faq3')">
-            <td>회원가입</td>
-            <td>관리자 회원가입은 어떻게 하나요?</td>
-        </tr>
-        <tr id="faq3" class="faq-content">
-            <td>A:</td>
-            <td class="td-detail"> 따로 연락해주시면 관리자 아이디를 생성해드립니다.</td>
-        </tr>
-
-        <tr onclick="toggleContent('faq4')">
-            <td> 찾기/변경</td>
-            <td>아이디와 비밀번호를 찾고싶어요. 어떻게 해야하나요?</td>
-        </tr>
-        <tr id="faq4" class="faq-content">
-            <td>A: </td>
-            <td  class="td-detail"> 따로 연락해주시면 관리자가 아이디와 비밀번호를  찾은후 연락드립니다.</td>
-        </tr>
-        </tbody>
-    </table>
+<div class="content">
+    <div class="faq-container">
+        <details>
+            <summary>
+            <span class="faq-title">
+              배송은 어떻게하나요?
+            </span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="expand-icon" width="24" height="24" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 6l6 6l-6 6"></path>
+                </svg>
+            </summary>
+            <div class="faq-content">
+                해당 아파트에서 지정한 장소에서 직접 수령하셔야합니다 (문 앞 배송x)
+            </div>
+        </details>
+        <details>
+            <summary>
+            <span class="faq-title">
+                결제는 어떻게 하나요?
+            </span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="expand-icon" width="24" height="24" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 6l6 6l-6 6"></path>
+                </svg>
+            </summary>
+            <div class="faq-content">
+                결제 기능은 지원하지않습니다. 결제는 관리자에게 따로 문의해주세요.</div>
+        </details>
+        <details>
+            <summary>
+                <span class="faq-title">관리자 회원가입은 어떻게 하나요?</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="expand-icon" width="24" height="24" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 6l6 6l-6 6"></path>
+                </svg>
+            </summary>
+            <div class="faq-content">따로 연락해주시면 관리자 아이디를 생성해드립니다.</div>
+        </details>
+        <details>
+            <summary>
+                <span class="faq-title">아이디와 비밀번호를 찾고싶어요. 어떻게 해야하나요?</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="expand-icon" width="24" height="24" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 6l6 6l-6 6"></path>
+                </svg>
+            </summary>
+            <div class="faq-content">따로 연락해주시면 관리자가 아이디와 비밀번호를 찾은후 연락드립니다.</div>
+        </details>
+    </div>
 </div>
-
+<div class="fab-container">
+    <div class="fab shadow">
+        <div class="fab-content">
+            <span class="material-icons">support_agent</span>
+        </div>
+    </div>
+    <div class="sub-button shadow">
+        <a th:href="@{/info}" target="_blank">
+            <span class="material-icons">phone</span>
+        </a>
+    </div>
+    <div class="sub-button shadow">
+        <a href="google.com" target="_blank">
+            <span class="material-icons">mail_outline</span>
+        </a>
+    </div>
+    <div class="sub-button shadow">
+        <a href="google.com" target="_blank">
+            <span class="material-icons">language</span>
+        </a>
+    </div>
+    <div class="sub-button shadow">
+        <a href="google.com" target="_blank">
+            <span class="material-icons">help_outline</span>
+        </a>
+    </div>
+</div>
 <footer class="footer">
     <div class="menu-item active" onclick="handleHomeClick(this)">
         <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"></a>
