@@ -59,6 +59,21 @@ body {
 .profile_name {
   font-size: 24px;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.delete_account_section {
+  margin-left: 90%;
+}
+
+.delete_account_button {
+  background: #ff4d4f;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .id_section, .phone_section, .apartment_section, .apartment_num_section, .password_section {
@@ -110,6 +125,5 @@ input[type="text"], input[type="password"] {
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
-
   }
 }
