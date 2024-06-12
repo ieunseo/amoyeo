@@ -45,6 +45,7 @@ public class DTOService {
             List<ImageDTO> imageDTOList = imageList.stream()
                     .map(image -> modelMapper.map(image,ImageDTO.class))
                     .collect(Collectors.toList());
+
             dto.setImageList(imageDTOList);
             groupBuyingDTOList.add(dto);
         }

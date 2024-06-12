@@ -92,7 +92,7 @@
             </div>
             <div class="post-images">
                 <div th:each="image : ${groupBuying.imageList}">
-                    <img class="post-image" th:src="@{'static/img/multi/' + ${image.imgName}}" th:alt="${image.imgOriginFilename}">
+                    <img class="post-image" th:src="@{'img/' + ${image.imgName}}" th:alt="${image.imgOriginFilename}">
                 </div>
             </div>
             <div class="post-description" th:text="${groupBuying.buyingText}"></div>
