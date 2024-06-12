@@ -129,6 +129,8 @@ public class AdminController {
                 String ext = originFilename.substring(originFilename.lastIndexOf("."));
                 String imgName = UUID.randomUUID().toString().replace("-", "") + ext;
 
+
+
                 ImageDTO imageDTO = new ImageDTO(originFilename,imgName,filePath);
                 imageDTO.setGroupBuyingNo(save.getBuyingNo());
                 images.add(imageDTO);
