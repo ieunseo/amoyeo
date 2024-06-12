@@ -116,3 +116,29 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', submitPurchase);
     });
 });
+
+function showToast(message) {
+    const notificationContainer = document.getElementById('notification-container');
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = `
+                <div class="notification_body">
+                    <img src="img/check-circle.svg" alt="Success" class="notification_icon">
+                    ${message}
+                </div>
+                <div class="notification_progress"></div>
+            `;
+    notificationContainer.appendChild(notification);
+    setTimeout(() => {
+        notificationContainer.removeChild(notification);
+    }, 3000);
+}
+
+function submitPurchase(event) {
+    event.preventDefault();
+    const button = event.target.querySelector('button[type="submit"]');
+    const quantityInput = button.closest('form').querySelector('.quantity');
+    const quantity = quantityInput.value;
+    showToast(quantity + 'kg 신청 완료');
+    togglePurchaseSection(button);
+}
