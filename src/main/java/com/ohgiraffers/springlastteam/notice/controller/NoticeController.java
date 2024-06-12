@@ -52,16 +52,16 @@ public class NoticeController {
         if (user != null && "Y".equals(user.getUserRights())) {
             return "info/notice_form";
         }
-        return "redirect:/notice";
+        return "redirect:/info";
     }
 
     @PostMapping("/create")
     public String createNotice(@RequestParam String title, @RequestParam String content, HttpSession session) {
         Users user = (Users) session.getAttribute("user");
         if (user == null) {
-            return "redirect:/notice";
+            return "redirect:/info";
         }
         noticeService.saveNotice(title, content, user.getUserId());
-        return "redirect:/notice";
+        return "redirect:/info";
     }
 }
