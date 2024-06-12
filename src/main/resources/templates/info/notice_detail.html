@@ -14,7 +14,7 @@
 <body>
 <header>
     <div class="contentmenu" id="headerMenu">
-        <a th:href="@{/info}" class="menu-link active">공지사항</a>
+        <a th:href="@{/notice}" class="menu-link">공지사항</a>
         <a th:href="@{/fre-ask}" class="menu-link">자주 묻는 질문</a>
     </div>
 </header>
@@ -62,25 +62,10 @@
 </aside>
 <main>
     <div class="container mt-5">
-        <div th:if="${session.user != null and session.user.userRights == 'Y'}">
-            <a href="#" class="btn btn-primary mb-3" th:href="@{/info/create}">공지사항 작성</a>
-        </div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">제목</th>
-                <th scope="col">작성자</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="notice, iterStat : ${notices}" th:data-href="@{/info/{id}(id=${notice.id})}" onclick="location.href=this.getAttribute('data-href')">
-                <th scope="row" th:text="${iterStat.index + 1}">1</th>
-                <td th:text="${notice.title}">공지사항 제목</td>
-                <td th:text="${notice.authorName}">작성자 이름</td>
-            </tr>
-            </tbody>
-        </table>
+        <h1 th:text="${notice.title}">공지사항 제목</h1>
+        <p class="text-muted" th:text="'작성자: ' + ${notice.authorName}">작성자 정보</p>
+        <p th:text="${notice.content}">공지사항 내용</p>
+        <a th:href="@{/info}" class="btn btn-secondary">목록으로 돌아가기</a>
     </div>
 </main>
 <div class="fab-container">
@@ -90,7 +75,7 @@
         </div>
     </div>
     <div class="sub-button shadow">
-        <a th:href="@{/contact}" target="_blank">
+        <a th:href="@{/info}" target="_blank">
             <span class="material-icons">mail_outline</span>
         </a>
     </div>
@@ -100,7 +85,7 @@
         </a>
     </div>
     <div class="sub-button shadow">
-        <a th:href="@{/fre-ask}" target="_blank">
+        <a th:href="@{/info}" target="_blank">
             <span class="material-icons">help_outline</span>
         </a>
     </div>
