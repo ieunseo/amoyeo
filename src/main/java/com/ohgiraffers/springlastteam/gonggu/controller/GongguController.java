@@ -85,6 +85,12 @@ public class GongguController {
         }
         return "want";
     }
+    @GetMapping("/requireBuy/{requireNo}")
+    public String getRequireBuy(@PathVariable int requireNo, Model model) {
+        RequireBuyDTO requireBuyDTO = dtoService.findRequireBuyById(requireNo);
+        model.addAttribute("requireBuy", requireBuyDTO);
+        return "want"; // 실제 뷰 이름으로 변경
+    }
 
     @PostMapping("/toggleLike")
     public ResponseEntity<Void> toggleLike(@RequestParam int userNo, @RequestParam int requireNo) {
