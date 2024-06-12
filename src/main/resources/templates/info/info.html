@@ -17,6 +17,7 @@
         <a th:href="@{/info}" class="menu-link active">공지사항</a>
         <a th:href="@{/fre-ask}" class="menu-link">자주 묻는 질문</a>
     </div>
+
 </header>
 <aside class="sidebar">
     <div class="logo">
@@ -59,11 +60,12 @@
             </a>
         </div>
     </div>
-</aside>
+</aside><br><br><h1 th:href="@{/info}">공지사항</h1><hr>
 <main>
-    <div class="container mt-5">
+
+    <div class="info-post">
         <div th:if="${session.user != null and session.user.userRights == 'Y'}">
-            <a href="#" class="btn btn-primary mb-3" th:href="@{/info/create}">공지사항 작성</a>
+            <a href="#" class="info-btn" th:href="@{/info/create}">공지사항 작성</a>
         </div>
         <table class="table table-striped">
             <thead>
@@ -123,6 +125,5 @@
 <footer class="fixed-footer">
     <div>© 2024 Muyaho. All rights reserved.</div>
 </footer>
-
 </body>
 </html>

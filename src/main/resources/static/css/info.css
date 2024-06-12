@@ -1,5 +1,63 @@
+main {
+    background-color: white;
+    padding: 0px 100px 100px 50px;
+    width: 1000px;
+    white-space: pre-wrap;
+    margin-left: 200px;
+    word-wrap: break-word;
+}
 
-header h4{
+.return-btn {
+    position: relative;
+    top: 20px;
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #6a8af3;
+    text-decoration: none !important;
+}
+.return-btn:hover {
+    color: white;
+    background-color: #557af4;
+}
+.write-btn {
+    position: relative;
+    top: 20px;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 15px;
+    margin-bottom: 50px;
+    background-color: #6a8af3;
+    text-decoration: none !important;
+}
+.write-btn:hover {
+    color: white;
+    background-color: #557af4;
+}
+
+.write-container {
+    margin: 50px 0 0 200px;
+    width: calc(100% - 400px);
+    /*margin-left: 200px;*/
+    max-width: 800px;
+}
+.form-control {
+    width: 100%;
+}
+
+h1 {
+    margin-left: 200px;
+    font-family: 'Pretendard-ExtraBold';
+    color: black;
+    text-align: center;
+}
+
+h4 {
+    font-family: 'Pretendard-ExtraBold';
+    font-size: 30px;
+}
+header h4 {
     margin-left: 200px;
     font-weight: bold;
 }
@@ -209,8 +267,51 @@ summary:focus {
     right: 1rem;
     transition: all 150ms ease-out;
 }
+
+.info-post table {
+    margin-top: 50px;
+    margin-left: 0%;
+    width: 100%;
+    white-space: pre-wrap;
+    /*margin-left: 200px;*/
+    word-wrap: break-word;
+}
+.info-post th {
+    margin: 10px 30px 20px 10px;
+    padding: 10px 10px 10px 50px;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+.info-post td {
+    margin: 10px 20px 20px 10px;
+    padding: 10px 10px 10px 50px;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+.table td:hover {
+    background-color: #e3e3e3;
+    cursor: pointer;
+}
+
+.info-btn {
+    position: relative;
+    top: 20px;
+    color: white;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #6a8af3;
+    text-decoration: none !important;
+}
+.info-btn:hover {
+    background-color: #4569dd;
+    color: white;
+}
+hr {
+    width: 200%;
+    border: 1px solid #000000;
+}
 @media (max-width: 767px) {
-    header h4{
+    header h4 {
         margin-left: 0px;
     }
     .fab-container .fab {
@@ -246,4 +347,3 @@ summary:focus {
         transform: translateY(-260px);
     }
 }
-

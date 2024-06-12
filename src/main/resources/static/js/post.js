@@ -1,3 +1,50 @@
+function showToast(e, message, redirectUrl) {
+    e.preventDefault();
+    const notificationContainer = document.getElementById('notification-container');
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = `
+            <div class="notification_body">
+                <img src="img/check-circle.svg" alt="Success" class="notification_icon">
+                ${message}
+            </div>
+            <div class="notification_progress"></div>
+        `;
+    notificationContainer.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+            notificationContainer.removeChild(notification);
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            }
+        }, 1000); // Additional delay to allow fade-out transition
+    }, 3000); // 3000 milliseconds = 3 seconds
+}
+
+function handleSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: form.method,
+        body: formData,
+    })
+        .then(response => {
+            if (response.ok) {
+                showToast(event, '신청이 완료되었습니다.', '/mypage'); // Replace '/new-page-url' with your desired redirect URL
+            } else {
+                alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+        });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const likeForms = document.querySelectorAll('.like-form');
     likeForms.forEach(form => {
@@ -32,7 +79,7 @@ function toggleLike(button, requireNo, userNo) {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 && xhr.status === 200) {
-
+            // 요청이 성공하면 아이콘 이미지를 변경
             if (isLiked) {
                 img.src = '/img/heart-icon.png';
                 img.alt = 'unliked';
@@ -45,29 +92,6 @@ function toggleLike(button, requireNo, userNo) {
 
     const formData = new FormData(form);
     xhr.send(new URLSearchParams(formData).toString());
-}
-document.addEventListener('DOMContentLoaded', function() {
-    const likeForms = document.querySelectorAll('.like-form');
-    likeForms.forEach(form => {
-        const userNo = form.querySelector('input[name="userNo"]').value;
-        const requireNo = form.querySelector('input[name="requireNo"]').value;
-        checkLikeStatus(userNo, requireNo, form);
-    });
-});
-
-function checkLikeStatus(userNo, requireNo, form) {
-    fetch(`/checkLikeStatus?userNo=${userNo}&requireNo=${requireNo}`)
-        .then(response => response.json())
-        .then(data => {
-            const img = form.querySelector('.like-icon');
-            if (data.liked) {
-                img.src = '/img/heart-icon-red.png';
-                img.alt = 'liked';
-            } else {
-                img.src = '/img/heart-icon.png';
-                img.alt = 'unliked';
-            }
-        });
 }
 
 function togglePurchaseSection(button) {
@@ -90,55 +114,10 @@ function increaseQuantity(button) {
     var quantityInput = button.previousElementSibling;
     quantityInput.value = parseInt(quantityInput.value) + 1;
 }
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.innerText = message;
-    document.body.appendChild(toast);
-    toast.classList.add('show');
-    setTimeout(() => {
-        toast.classList.remove('show');
-        document.body.removeChild(toast);
-    }, 3000);
-}
 
-function submitPurchase(event) {
-    event.preventDefault();
-    const button = event.target;
-    const quantityInput = button.closest('form').querySelector('.quantity');
-    const quantity = quantityInput.value;
-    showToast(quantity + 'kg 신청 완료');
-    togglePurchaseSection(button);
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.purchase-section form').forEach(form => {
-        form.addEventListener('submit', submitPurchase);
-    });
-});
-
-function showToast(message) {
-    const notificationContainer = document.getElementById('notification-container');
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.innerHTML = `
-                <div class="notification_body">
-                    <img src="img/check-circle.svg" alt="Success" class="notification_icon">
-                    ${message}
-                </div>
-                <div class="notification_progress"></div>
-            `;
-    notificationContainer.appendChild(notification);
-    setTimeout(() => {
-        notificationContainer.removeChild(notification);
-    }, 3000);
-}
-
-function submitPurchase(event) {
-    event.preventDefault();
-    const button = event.target.querySelector('button[type="submit"]');
-    const quantityInput = button.closest('form').querySelector('.quantity');
-    const quantity = quantityInput.value;
-    showToast(quantity + 'kg 신청 완료');
+function submitPurchase(button) {
+    var quantityInput = button.previousElementSibling.querySelector('.quantity');
+    var quantity = quantityInput.value;
+    showToast(event, quantity + 'kg 신청 완료', '/mypage'); // Replace '/new-page-url' with your desired redirect URL
     togglePurchaseSection(button);
 }

@@ -89,7 +89,7 @@ public class GongguController {
     public String getRequireBuy(@PathVariable int requireNo, Model model) {
         RequireBuyDTO requireBuyDTO = dtoService.findRequireBuyById(requireNo);
         model.addAttribute("requireBuy", requireBuyDTO);
-        return "want"; // 실제 뷰 이름으로 변경
+        return "want";
     }
 
     @PostMapping("/toggleLike")
@@ -135,15 +135,14 @@ public class GongguController {
         dtoService.deleteRequstBuying(buyingNo, userNo);
         return "data/delete";
     }
-
     @PostMapping("/mypage")
     public String requestGroupBuying(@RequestParam() int groupBuyingNo,
                                      @RequestParam int quantity,
                                      BuyingUserDTO newBuyingUser,
-                                     HttpSession session){
+                                     HttpSession session) {
 
         Users user = (Users) session.getAttribute("user");
-        if(user==null){
+        if (user == null) {
             return "redirect:/login";
         }
 
@@ -152,12 +151,10 @@ public class GongguController {
         newBuyingUser.setBuyingQuantity(quantity);
         newBuyingUser.setBuyingDate(new java.util.Date());
 
-        System.out.println(newBuyingUser);
-
         dtoService.requestGroupBuying(newBuyingUser);
 
-        System.out.println("서비스 메소드 실행 후 ");
-        return "redirect:/mypage";
+        return "redirect:/?toast=false";
     }
+
 }
 

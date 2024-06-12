@@ -10,11 +10,14 @@
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/info.css}">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 <header>
     <div class="contentmenu" id="headerMenu">
-        <a th:href="@{/info}" class="menu-link">공지사항</a>
+        <a th:href="@{/info}" class="menu-link active">공지사항</a>
         <a th:href="@{/fre-ask}" class="menu-link">자주 묻는 질문</a>
     </div>
 </header>
@@ -44,28 +47,23 @@
         </div>
     </div>
 </aside>
-<main>
-    <div class="container mt-5">
-        <h1>공지사항 작성</h1>
-        <form th:action="@{/info/create}" method="post">
-            <div class="form-group">
-                <label for="noticeTitle">제목</label>
-                <input type="text" class="form-control" id="noticeTitle" name="title" required>
-            </div>
-            <div class="form-group">
-                <label for="noticeContent">내용</label>
-                <textarea class="form-control" id="noticeContent" name="content" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">작성</button>
-        </form>
-    </div>
-</main>
+<br><h1>공지사항 작성</h1><br>
+<div class="write-container">
+    <form th:action="@{/info/create}" method="post">
+        <div class="form-group">
+            <h5 for="noticeTitle">제목</h5>
+            <input type="text" class="form-control" id="noticeTitle" name="title" required>
+        </div>
+        <div class="form-group">
+            <h5 for="noticeContent">내용</h5>
+            <textarea class="form-control" id="noticeContent" name="content" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="write-btn">작성</button>
+    </form>
+</div>
+
 <footer class="fixed-footer">
     <div>© 2024 Muyaho. All rights reserved.</div>
 </footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>
