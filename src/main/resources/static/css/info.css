@@ -295,10 +295,11 @@ summary:focus {
 
 .info-btn {
     position: relative;
-    top: 20px;
+    top: 0px;
     color: white;
     border-radius: 15px;
     padding: 10px;
+
     background-color: #6a8af3;
     text-decoration: none !important;
 }

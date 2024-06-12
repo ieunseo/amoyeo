@@ -65,7 +65,7 @@
 
     <div class="info-post">
         <div th:if="${session.user != null and session.user.userRights == 'Y'}">
-            <a href="#" class="info-btn" th:href="@{/info/create}">공지사항 작성</a>
+            <a class="info-btn" th:href="@{/info/create}">공지사항 작성</a>
         </div>
         <table class="table table-striped">
             <thead>
