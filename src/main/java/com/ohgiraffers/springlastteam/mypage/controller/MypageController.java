@@ -68,6 +68,7 @@ public class MypageController {
             @RequestParam String userApartNum,
             @ModelAttribute Users updatedUser,
             Model model) {
+        System.out.println("1");
 
         Users user = (Users) session.getAttribute("user");
         if (user == null) {
@@ -104,6 +105,8 @@ public class MypageController {
         user.setUserApartment(userApartment);
         user.setUserApartNum(userApartNum);
         userRepository.save(user);
+
+        session.setAttribute("user", user); // 세션에 업데이트된 사용자 정보 저장
 
         return "redirect:/mypage";
     }
