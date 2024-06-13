@@ -1,12 +1,63 @@
-.info-container{
+.info-container {
     height: 1000px; /* 고정 높이 */
-    border: 1px solid #ccc; /* 테두리 설정 */
+    border: none;
     padding: 0px; /* 패딩 추가 */
-    overflow-y: auto; /* 콘텐츠가 넘칠 경우 스크롤 추가 */
-    margin: 20px auto; /* 위아래 마진 추가 및 중앙 정렬 */
-    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); !* 약간의 그림자 추가 *!*/
     border-radius: 10px; /* 테두리 둥글게 설정 */
+    position: relative; /* 자식 요소의 절대 위치를 기준으로 함 */
+    box-sizing: border-box; /* 패딩과 테두리를 너비에 포함 */
 }
-.info-title{
+
+.info-title {
     text-align: center;
+}
+
+.text-muted {
+    text-align: right;
+    padding: 5px;
+}
+
+.info-detail-hr {
+    width:100%;
+    border: none;
+    border-top: 1px solid #ccc; /* 원하는 색상으로 변경하세요 */
+}
+
+
+@media (max-width: 767px) {
+    .info-container {
+        height: 1000px; /* 고정 높이 */
+        border: none;
+        padding: 0px; /* 패딩 추가 */
+        overflow-y: auto; /* 콘텐츠가 넘칠 경우 스크롤 추가 */
+        margin: auto; /* 위아래 마진 추가 및 중앙 정렬 */
+        max-width: 100%; /* 최대 너비 설정 */
+    }
+
+    .info-title {
+    }
+
+    .info-detail-hr {
+        border: none;
+        border-top: 1px solid #ccc; /* 원하는 색상으로 변경하세요 */
+    }
+
+    .return-btn {
+        left:10%;
+    }
+    .info-title{
+        margin:0px;
+        padding:0px;
+        text-align: center;
+    }
+
+    .return-btn:hover {
+        color: white;
+        background-color: #557af4;
+    }
+    .info-p {
+       margin:10%;
+    }
+    .info-author{
+        margin-right:30%;
+    }
 }
