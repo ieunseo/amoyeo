@@ -7,6 +7,7 @@ import com.ohgiraffers.springlastteam.mypage.repository.MyPageBuyingUserReposito
 import com.ohgiraffers.springlastteam.mypage.repository.MyPageGroupBuyingRepository;
 import com.ohgiraffers.springlastteam.mypage.repository.MyPageLikeRepository;
 import com.ohgiraffers.springlastteam.mypage.repository.MyPageRequireBuyRepository;
+import com.ohgiraffers.springlastteam.mypage.service.MypageService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -41,6 +42,9 @@ public class MypageController {
     @Autowired
     @Qualifier("mypageLikeRepository")
     private MyPageLikeRepository likesRepository;
+
+    @Autowired
+    private MypageService mypageService;
 
     @Autowired
     private MyPageGroupBuyingRepository groupBuyingsRepository;
@@ -139,8 +143,10 @@ public class MypageController {
         user.getUserNo();
         System.out.println("유저번호 : " + user.getUserNo());
 
+        int userNo = user.getUserNo();
+        mypageService.deleteById(userNo, buyingNo);
 
-        return "redirect:/mypage/purchashistory";
+        return "redirect:/purchashistory";
     }
 
     @PostMapping("/mypage/delete")
