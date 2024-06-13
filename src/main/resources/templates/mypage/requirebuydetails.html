@@ -53,10 +53,12 @@
         <div class="post-info">
           <div class="username" th:text="${requireBuy.user.userName}"></div>
         </div>
-      </div>      <div class="post-images">
-      <!-- 이곳에 사진 데이터베이스로 수정해서 넣어야함-->
-      <img class="post-image" th:src="@{/img/sweet-potatoes.png}" alt="고구마">
-    </div>
+      </div>
+      <div class="post-images" th:if="${groupBuying != null and groupBuying.imageList != null}">
+        <div th:each="image : ${groupBuying.imageList}">
+          <img class="post-image" th:src="@{'img/' + ${image.imgName}}" th:alt="${image.imgOriginFilename}">
+        </div>
+      </div>
       <div class="post-description" th:text="${requireBuy.requireText}"></div>
 
       <div class="product-info mobile-view">

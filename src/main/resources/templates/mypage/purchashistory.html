@@ -39,6 +39,7 @@
           <th class="header-quantity">수량</th>
           <th class="header-price">총 가격</th>
           <th class="header-seller">판매자</th>
+          <th class="header-cancel">구매 취소</th>
         </tr>
         </thead>
         <tbody>
@@ -48,6 +49,13 @@
           <td class="transaction-quantity"><span class="quantity-amount" th:text="${transaction.buyingQuantity}">수량</span></td>
           <td class="transaction-price"><span class="price-text" th:text="${totalPrices[iterStat.index]}">가격</span></td>
           <td class="transaction-seller"><span class="seller-text" th:text="${sellerNames[iterStat.index]}">판매자</span></td>
+          <td>
+            <form>
+              <input type="hidden" name="buyingNo" th:value="${transaction.getId().getBuyingNo()}">
+              <input type="hidden" name="userNo" th:value="${transaction.getId().getUserNo()}">
+              <button type="submit">취소</button>
+            </form>
+          </td>
         </tr>
         </tbody>
       </table>

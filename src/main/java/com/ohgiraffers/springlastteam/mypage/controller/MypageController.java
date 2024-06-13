@@ -133,6 +133,13 @@ public class MypageController {
         return "mypage/purchashistory";
     }
 
+    @GetMapping("mypage/purchashistory")
+    public String deletePurchaseHistory(@RequestParam("buyingNo") int buyingNo,
+                                        @RequestParam("userNo") int userNo) {
+
+        return "redirect:/mypage/purchashistory";
+    }
+
     @PostMapping("/mypage/delete")
     public ResponseEntity<String> deleteUser(HttpSession session) {
         Users user = (Users) session.getAttribute("user");
