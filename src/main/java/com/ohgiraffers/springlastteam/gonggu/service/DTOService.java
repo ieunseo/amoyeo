@@ -1,10 +1,10 @@
 package com.ohgiraffers.springlastteam.gonggu.service;
 
-
 import com.ohgiraffers.springlastteam.entity.*;
 import com.ohgiraffers.springlastteam.gonggu.dto.*;
 import com.ohgiraffers.springlastteam.gonggu.repository.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 @Service
 public class DTOService {
 
@@ -23,14 +24,16 @@ public class DTOService {
     private final LikesRepository likesRepository;
     private final ImageRepository imageRepository;
 
+
     public DTOService(DTORepository dtoRepository, ModelMapper modelMapper, GroupBuyingRepository groupBuyingRepository, UserRepository userRepository, RequireBuyRepository requireBuyRepository, LikesRepository likesRepository, ImageRepository imageRepository) {
+
         this.dtoRepository = dtoRepository;
         this.modelMapper = modelMapper;
         this.groupBuyingRepository = groupBuyingRepository;
         this.userRepository = userRepository;
-        this.likesRepository = likesRepository;
         this.requireBuyRepository = requireBuyRepository;
         this.imageRepository = imageRepository;
+        this.likesRepository = likesRepository;
     }
 
     public List<GroupBuyingDTO> findGroupBuyingList() {
@@ -77,6 +80,7 @@ public class DTOService {
                 .orElseThrow(() -> new IllegalArgumentException("유저번호가 존재하지 않습니다."));
         return modelMapper.map(user, UserDTO.class);
     }
+
     public List<GroupBuyingDTO> searchGroupBuying(String query) {
         List<GroupBuying> searchResults = groupBuyingRepository.findByBuyingItemContainingIgnoreCase(query);
         return searchResults.stream()
@@ -90,6 +94,7 @@ public class DTOService {
                 .map(requireBuy -> modelMapper.map(requireBuy, RequireBuyDTO.class))
                 .collect(Collectors.toList());
     }
+
     public List<RequireBuyDTO> findRequireBuyList(int userNo) {
         List<RequireBuy> requireBuyList = requireBuyRepository.findAll();
 
@@ -98,6 +103,9 @@ public class DTOService {
                     RequireBuyDTO dto = modelMapper.map(requireBuy, RequireBuyDTO.class);
                     boolean liked = likesRepository.findByUserUserNoAndRequireBuyRequireNo(userNo, requireBuy.getRequireNo()).isPresent();
                     dto.setLiked(liked);
+                    // 좋아요 수 설정
+                    int likeCount = likesRepository.countByRequireNo(requireBuy.getRequireNo());
+                    dto.setLikeCount(likeCount);
                     return dto;
                 })
                 .collect(Collectors.toList());
@@ -130,7 +138,11 @@ public class DTOService {
     public RequireBuyDTO findRequireBuyById(int requireNo) {
         RequireBuy requireBuy = requireBuyRepository.findById(requireNo)
                 .orElseThrow(() -> new IllegalArgumentException("요청 구매 번호가 존재하지 않습니다."));
-        return modelMapper.map(requireBuy, RequireBuyDTO.class);
+        RequireBuyDTO dto = modelMapper.map(requireBuy, RequireBuyDTO.class);
+        // 좋아요 수 설정
+        int likeCount = likesRepository.countByRequireNo(requireNo);
+        dto.setLikeCount(likeCount);
+        return dto;
     }
 
     @Transactional

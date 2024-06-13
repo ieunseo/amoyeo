@@ -1,3 +1,50 @@
+function showToast(e, message, redirectUrl) {
+    e.preventDefault();
+    const notificationContainer = document.getElementById('notification-container');
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = `
+            <div class="notification_body">
+                <img src="img/check-circle.svg" alt="Success" class="notification_icon">
+                ${message}
+            </div>
+            <div class="notification_progress"></div>
+        `;
+    notificationContainer.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => {
+            notificationContainer.removeChild(notification);
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            }
+        }, 1000); // Additional delay to allow fade-out transition
+    }, 3000); // 3000 milliseconds = 3 seconds
+}
+
+function handleSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: form.method,
+        body: formData,
+    })
+        .then(response => {
+            if (response.ok) {
+                showToast(event, '신청이 완료되었습니다.', '/mypage'); // Replace '/new-page-url' with your desired redirect URL
+            } else {
+                alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+        });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const likeForms = document.querySelectorAll('.like-form');
     likeForms.forEach(form => {
@@ -46,29 +93,6 @@ function toggleLike(button, requireNo, userNo) {
     const formData = new FormData(form);
     xhr.send(new URLSearchParams(formData).toString());
 }
-document.addEventListener('DOMContentLoaded', function() {
-    const likeForms = document.querySelectorAll('.like-form');
-    likeForms.forEach(form => {
-        const userNo = form.querySelector('input[name="userNo"]').value;
-        const requireNo = form.querySelector('input[name="requireNo"]').value;
-        checkLikeStatus(userNo, requireNo, form);
-    });
-});
-
-function checkLikeStatus(userNo, requireNo, form) {
-    fetch(`/checkLikeStatus?userNo=${userNo}&requireNo=${requireNo}`)
-        .then(response => response.json())
-        .then(data => {
-            const img = form.querySelector('.like-icon');
-            if (data.liked) {
-                img.src = '/img/heart-icon-red.png';
-                img.alt = 'liked';
-            } else {
-                img.src = '/img/heart-icon.png';
-                img.alt = 'unliked';
-            }
-        });
-}
 
 function togglePurchaseSection(button) {
     var purchaseSection = button.parentElement.nextElementSibling;
@@ -94,6 +118,6 @@ function increaseQuantity(button) {
 function submitPurchase(button) {
     var quantityInput = button.previousElementSibling.querySelector('.quantity');
     var quantity = quantityInput.value;
-    alert(quantity + 'kg가 신청되었습니다. 자세한 사항은 마이페이지에서 확인하세요.');
+    showToast(event, quantity + 'kg 신청 완료', '/mypage'); // Replace '/new-page-url' with your desired redirect URL
     togglePurchaseSection(button);
 }

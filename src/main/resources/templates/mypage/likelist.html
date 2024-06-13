@@ -9,15 +9,14 @@
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/mypage.js}" th:defer></script>
-    <title>Document</title>
+    <title>아모여: 마이페이지 좋아요 내역 보기</title>
 </head>
 <body>
 
-<!--<div th:replace="~{mypage/header :: header}"></div>-->
 <header th:fragment="header">
     <div class="contentmenu" id="headerMenu">
         <a th:href="@{/mypage}" class="menu-link">마이페이지</a>
-        <!--        <a th:href="@{/purchashistory}" class="menu-link">구매이력</a>-->
+        <a th:href="@{/purchashistory}" class="menu-link">공구 내역</a>
         <a th:href="@{/mypage/mylikes}" class="menu-link active">좋아요</a>
     </div>
 </header>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>글쓰기</title>
+    <title>아모여: 글쓰기</title>
     <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/admin.js}" th:defer></script>
@@ -16,7 +16,7 @@
 <header>
     <h2>새 글 추가</h2>
 </header>
-<aside class="sidebar">
+<aside class="sidebar" th:fragment="sidebar">
     <div class="logo">
         <a th:href="@{/}"><img th:src="@{/img/logo.jpeg}" alt="로고"></a>
     </div>
@@ -32,23 +32,40 @@
     <div th:if="${session.user != null and session.user.userRights == 'Y'}" class="menu-item profile active" onclick="toggleProfileBorderAndHideMenu(this)">
         <a th:href="@{/admin/admin-user}"><img th:src="@{/img/after-profile.png}" alt="어드민페이지"><div>관리자 페이지</div></a>
     </div>
-    <div class="auth-buttons">
+    <div>
         <div th:if="${session.user == null}">
-            <a th:href="@{/login}" class="auth-button">로그인</a>
-            <a th:href="@{/register}" class="auth-button">회원가입</a>
+            <a th:href="@{/login}" >
+                <button class="Btn">
+                    <div class="signs"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+                    <div class="texts">로그인</div>
+                </button>
+            </a>
+            <a th:href="@{/register}">
+                <button class="Btn">
+                    <div class="signs"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+                    <div class="texts">회원가입</div>
+                </button>
+            </a>
         </div>
         <div th:if="${session.user != null}">
-            <a th:href="@{/logout}" class="auth-button">로그아웃</a>
+            <a th:href="@{/logout}" >
+                <button class="logout-Btn">
+                    <div class="sign"><svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L32 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"></path></svg></div>
+                    <div class="text">로그아웃</div>
+                </button>
+            </a>
         </div>
     </div>
 </aside>
+
 
 <div class="centered-form">
     <form action="/admin/addpost" method="post" enctype="multipart/form-data">
         <label>이름</label>
         <p th:text="${user.userName}"></p>
         <br><br>
-        <label for="buying_text">글 내용</label><br>
+        <label for="buying_text">글 내용</label>
+        <p style="color:gray">필수 요소: 상품 설명, 갯수당 판매 단위, 판매 날짜, 픽업 시간</p>
         <textarea id="buying_text" name="buying_text" required></textarea><br><br>
         <label for="buying_item">품목</label><br>
         <input type="text" id="buying_item" name="buying_item" required><br><br>

@@ -25,6 +25,13 @@
     font-weight: 800;
     font-style: normal;
 }
+html, body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
 .logout-Btn {
     display: flex;
     align-items: center;
@@ -135,7 +142,7 @@ header .contentmenu a {
 }
 
 .content {
-    flex: 1;
+
     margin-left: 200px;
     padding: 20px 20px 0px 20px;
     display: flex;
@@ -144,7 +151,67 @@ header .contentmenu a {
     justify-content: center;
     align-items: center;
 }
+.notification{
 
+    position: fixed;
+    width: max-content;
+    left: 50%;
+    right: 0;
+    bottom: 24px;
+    /*margin-left: auto;*/
+    margin-right: auto;
+    border-radius: 6px;
+    background-color: #313e2c;
+    color: #aaec8a;
+    box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+    transform: translateY(30px);
+    opacity: 0;
+    visibility: hidden;
+    animation: fade-in 3s linear;
+
+}
+.notification_icon{
+    height: 26px;
+    width: 26px;
+    margin-right: 4px;
+}
+.notification_body{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 8px;
+
+}
+
+.notification_progress {
+    position: absolute;
+    left: 4px;
+    bottom: 4px;
+    width: calc(100% - 8px);
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background-color: #aaec8a;
+    border-radius: inherit;
+    animation: progress 2.5s 0.3s linear;
+}
+@keyframes fade-in{
+    5%{
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    95%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes progress {
+    to{
+        transform: scaleX(1);
+    }
+}
 footer.footer, aside.sidebar {
     background-color: #fff;
 }
@@ -216,15 +283,15 @@ aside.sidebar a {
 }
 
 .signs {
-    position: absolute; /* 절대 위치 설정 */
-    left: 28%; /* 좌측에 고정 */
+    position: absolute;
+    left: 28%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition-duration: .3s;
 }.sign {
-     position: absolute; /* 절대 위치 설정 */
-     left: 28%; /* 좌측에 고정 */
+     position: absolute;
+     left: 28%;
      display: flex;
      align-items: center;
      justify-content: center;
@@ -232,8 +299,7 @@ aside.sidebar a {
  }
 
 .signs svg {
-    width: 17px;    left: 28%; /* 좌측에 고정 */
-}
+    width: 17px;}
 
 .signs svg path {
     fill: white;
@@ -259,9 +325,8 @@ aside.sidebar a {
 }
 
 .Btn:hover .signs {
-    width: 30%;    left: 28%; /* 좌측에 고정 */
-    transition-duration: .3s;
-    padding-left: 20px;
+    width: 14px;
+    left: 19%;
 }
 
 /* hover effect button's text */
@@ -273,7 +338,7 @@ aside.sidebar a {
 }
 
 .Btn:active {
-    transform: translate(2px, 2px);
+    /*transform: translate(2px, 2px);*/
 }
 
 .logo {
@@ -420,6 +485,7 @@ aside.sidebar a {
 }
 
 .post {
+    margin-bottom: 20px;
     background-color: #fff;
     padding: 25px;
     border-radius: 10px;
@@ -429,7 +495,7 @@ aside.sidebar a {
     flex: 1;
     max-width: 500px;
     width: 100%;
-    margin-bottom: 0;
+
     box-sizing: border-box;
 }
 
@@ -495,12 +561,32 @@ aside.sidebar a {
 }
 
 .post-actions {
+    margin-top:20px;
+
+    width: 140px;
+    height: 35px;
     display: flex;
-    justify-content: space-between;
-    font-size: 0.9em;
-    color: #cccccc;
-    width: 100%;
+    left: 0;
+    /*align-items: center;*/
+    /*justify-content: flex-start;*/
+    border: none;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.089);
+    cursor: pointer;
+    background-color: transparent;
 }
+
+.like-form {
+    width: 60%;
+    height: 100%;
+    background-color: rgb(255, 152, 152);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
 
 .like-text {
     display: inline-block;
@@ -514,17 +600,82 @@ aside.sidebar a {
     background: none;
     border: none;
     padding: 0;
+    color: white;
     cursor: pointer;
 }
 
 .like-icon {
+    color: white;
     vertical-align: middle;
     width: 20px;
     height: 20px;
     margin-right: 5px;
     cursor: pointer;
 }
+.post-action {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #cccccc;
+    width: 100%;
+}
+.like-form .like {
+    color: white;
+    font-weight: 600;
+}
 
+.likeCount {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(238, 0, 0);
+    font-weight: 600;
+    position: relative;
+    background-color: white;
+}
+
+.likeCount::before {
+    height: 8px;
+    width: 8px;
+    position: absolute;
+    content: "";
+    background-color: rgb(255, 255, 255);
+    transform: rotate(45deg);
+    left: -4px;
+}
+
+.post-actions:hover .like-form {
+    background-color: rgb(219, 0, 0);
+}
+
+.post-actions:active .like-form {
+    background-color: rgb(201, 0, 0);
+}
+
+.post-actions:active .like-form svg {
+    transform: scale(1.15);
+    transform-origin: top;
+}
+
+.like-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.like-button.liked img {
+    filter: grayscale(0%);
+}
+.like-button.unliked img {
+    filter: grayscale(100%);
+}
+.like-button.liked svg {
+    fill: red;
+}
+.like-button.unliked svg {
+    fill: white;
+}
 /* 구매 버튼 */
 .purchase-button {
     padding: 8px 13px;
@@ -706,5 +857,22 @@ aside.sidebar a {
     }
     .input-wrapper{
         margin-left: 0px;
+    }
+    .notification{
+        position: fixed;
+        width: max-content;
+        left: 0%;
+        right: 0;
+        bottom: 70px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 6px;
+        background-color: #313e2c;
+        color: #aaec8a;
+        box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+        transform: translateY(30px);
+        opacity: 0;
+        visibility: hidden;
+        animation: fade-in 3s linear;
     }
 }

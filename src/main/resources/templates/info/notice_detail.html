@@ -10,6 +10,7 @@
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/info.css}">
+    <link rel="stylesheet" th:href="@{/css/mypage/notice.css}">
 </head>
 <body>
 <header>
@@ -17,7 +18,6 @@
         <a th:href="@{/info}" class="menu-link active">공지사항</a>
         <a th:href="@{/fre-ask}" class="menu-link">자주 묻는 질문</a>
     </div>
-
 </header>
 <aside class="sidebar">
     <div class="logo">
@@ -60,29 +60,14 @@
             </a>
         </div>
     </div>
-</aside><br><br><h1 th:href="@{/info}">공지사항</h1><hr>
+</aside> <br><br><h1>공지사항</h1><hr>
 <main>
+    <div class="info-container">
+        <h4 th:text="${notice.title}" class="info-title">공지사항 제목</h4>
 
-    <div class="info-post">
-        <div th:if="${session.user != null and session.user.userRights == 'Y'}">
-            <a class="info-btn" th:href="@{/info/create}">공지사항 작성</a>
-        </div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">제목</th>
-                <th scope="col">작성자</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="notice, iterStat : ${notices}" th:data-href="@{/info/{id}(id=${notice.id})}" onclick="location.href=this.getAttribute('data-href')">
-                <th scope="row" th:text="${iterStat.index + 1}">1</th>
-                <td th:text="${notice.title}">공지사항 제목</td>
-                <td th:text="${notice.authorName}">작성자 이름</td>
-            </tr>
-            </tbody>
-        </table>
+        <p class="text-muted" th:text="'작성자: ' + ${notice.authorName}">작성자 정보</p><br>
+        <p th:text="${notice.content}">공지사항 내용</p>
+        <a th:href="@{/info}" class="return-btn">목록으로 돌아가기</a>
     </div>
 </main>
 <div class="fab-container">
@@ -124,5 +109,6 @@
 <footer class="fixed-footer">
     <div>© 2024 Muyaho. All rights reserved.</div>
 </footer>
+
 </body>
 </html>

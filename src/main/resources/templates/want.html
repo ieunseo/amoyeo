@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아모여: 아파트머시기머시기</title>
+    <title>아모여: 공동 구매 수요조사</title>
     <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
+
 </head>
 <body>
 <header>
@@ -110,16 +111,17 @@
                     <form th:action="@{/toggleLike}" method="post" class="like-form">
                         <input type="hidden" name="userNo" th:value="${session.user.userNo}">
                         <input type="hidden" name="requireNo" th:value="${requireBuy.requireNo}">
-                        <button type="button" class="like-button"
-                                th:onclick="'toggleLike(this, ' + ${requireBuy.requireNo} + ', ' + ${session.user.userNo} + ')'" th:classappend="${requireBuy.liked} ? 'liked' : 'unliked'">
-                            <img class="like-icon" th:src="@{/img/heart-icon.png}" th:alt="unliked">
+                        <button type="button" class="like-button" th:onclick="'toggleLike(this, ' + ${requireBuy.requireNo} + ', ' + ${session.user.userNo} + ')'" th:classappend="${requireBuy.liked} ? 'liked' : 'unliked'">
+                            <img class="like-icon" th:src="@{/img/heart-icon.png}" th:alt="unliked">좋아요
                         </button>
                     </form>
+                    <span class="likeCount" th:text="${requireBuy.likeCount}"></span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <footer class="footer">
     <div class="menu-item active" onclick="handleHomeClick(this)">
         <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"></a>

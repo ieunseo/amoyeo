@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish&display=swap">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아모여: 아파트머시기머시기</title>
+    <title>아모여: 자주 묻는 질문</title>
     <script type="text/javascript" th:src="@{/js/menu.js}" th:defer></script>
+    <script type="text/javascript" th:src="@{/js/info.js}" th:defer></script>
     <link rel="icon" th:href="@{/img/logo.jpeg}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/info.css}">
+
 </head>
 <body>
 <header>
     <div class="contentmenu" id="headerMenu">
-        <a th:href="@{/info}" class="menu-link active">공지사항</a>
-        <a th:href="@{/fre-ask}" class="menu-link">자주 묻는 질문</a>
+        <a th:href="@{/info}" class="menu-link">공지사항</a>
+        <a th:href="@{/fre-ask}" class="menu-link active">자주 묻는 질문</a>
     </div>
-
 </header>
 <aside class="sidebar">
     <div class="logo">
         <a th:href="@{/}"><img th:src="@{/img/logo.jpeg}" alt="로고"></a>
     </div>
     <div class="menu-item" onclick="handleHomeClick(this)">
-        <a th:href="@{/}"><img th:src="@{/img/before-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"><div>공구</div></a>
+        <a th:href="@{/}"><img th:src="@{/img/after-home.png}" alt="공구" data-active-src="@{/img/after-home.png}" data-inactive-src="@{/img/before-home.png}"><div>공구</div></a>
     </div>
 
     <div class="menu-item" onclick="changeIconAndHideMenu(this, '/img/after-dollar.png')">
@@ -60,31 +63,63 @@
             </a>
         </div>
     </div>
-</aside><br><br><h1 th:href="@{/info}">공지사항</h1><hr>
-<main>
+</aside>
 
-    <div class="info-post">
-        <div th:if="${session.user != null and session.user.userRights == 'Y'}">
-            <a class="info-btn" th:href="@{/info/create}">공지사항 작성</a>
-        </div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">제목</th>
-                <th scope="col">작성자</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="notice, iterStat : ${notices}" th:data-href="@{/info/{id}(id=${notice.id})}" onclick="location.href=this.getAttribute('data-href')">
-                <th scope="row" th:text="${iterStat.index + 1}">1</th>
-                <td th:text="${notice.title}">공지사항 제목</td>
-                <td th:text="${notice.authorName}">작성자 이름</td>
-            </tr>
-            </tbody>
-        </table>
+<div class="content">
+    <div class="faq-container">
+        <details>
+            <summary>
+            <span class="faq-title">
+              배송은 어떻게하나요?
+            </span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="expand-icon" width="24" height="24" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 6l6 6l-6 6"></path>
+                </svg>
+            </summary>
+            <div class="faq-content">
+                해당 아파트에서 지정한 장소에서 직접 수령하셔야합니다 (문 앞 배송x)
+            </div>
+        </details>
+        <details>
+            <summary>
+            <span class="faq-title">
+                결제는 어떻게 하나요?
+            </span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="expand-icon" width="24" height="24" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 6l6 6l-6 6"></path>
+                </svg>
+            </summary>
+            <div class="faq-content">
+                결제 기능은 지원하지않습니다. 결제는 관리자에게 따로 문의해주세요.</div>
+        </details>
+        <details>
+            <summary>
+                <span class="faq-title">관리자 회원가입은 어떻게 하나요?</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="expand-icon" width="24" height="24" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 6l6 6l-6 6"></path>
+                </svg>
+            </summary>
+            <div class="faq-content">따로 연락해주시면 관리자 아이디를 생성해드립니다.</div>
+        </details>
+        <details>
+            <summary>
+                <span class="faq-title">아이디와 비밀번호를 찾고싶어요. 어떻게 해야하나요?</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="expand-icon" width="24" height="24" viewBox="0 0 24 24"
+                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 6l6 6l-6 6"></path>
+                </svg>
+            </summary>
+            <div class="faq-content">따로 연락해주시면 관리자가 아이디와 비밀번호를 찾은후 연락드립니다.</div>
+        </details>
     </div>
-</main>
+</div>
 <div class="fab-container">
     <div class="fab shadow">
         <div class="fab-content">
@@ -124,5 +159,6 @@
 <footer class="fixed-footer">
     <div>© 2024 Muyaho. All rights reserved.</div>
 </footer>
+
 </body>
 </html>
