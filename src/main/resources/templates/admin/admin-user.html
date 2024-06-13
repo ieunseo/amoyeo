@@ -9,27 +9,22 @@
     <script type="text/javascript" th:src="@{/js/post.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/admin.js}" th:defer></script>
     <script type="text/javascript" th:src="@{/js/content.js}" th:defer></script>
-    <link rel="stylesheet" th:href="@{/css/menu.css}">
+<!--    <link rel="stylesheet" th:href="@{/css/menu.css}">-->
     <link rel="stylesheet" th:href="@{/css/admin/admin-user.css}">
 </head>
 <body>
+
 <header th:fragment="header">
     <div class="contentmenu" id="headerMenu">
         <a th:href="@{/admin/admin-user}" class="menu-link active">User 관리</a>
         <a th:href="@{/admin/admin-post}" class="menu-link">Post 관리</a>
     </div>
 </header>
-    <!-- 사이드바 포함 -->
-    <div th:replace="~{admin/sidebar :: sidebar}"></div>
+<!-- 사이드바 포함 -->
+<div th:replace="~{admin/sidebar :: sidebar}"></div>
 
-    <div class="content">
-        <div class="section" id="user-management">
-            <div class="search-filter">
-                <input type="text" placeholder="Search...">
-                <button>Search</button>
-                <button>Filter</button>
-            </div>
-
+<div class="admin-content">
+        <div class="user-table-container">
             <table class="user-table">
                 <thead>
                 <tr>
@@ -49,8 +44,17 @@
                     <td th:text="${user.userPwd}"></td>
                     <td th:text="${user.userPhone}"></td>
                     <td>
-                        <a th:href="@{'/admin/admin-user/delete?id=' + ${user.userNo}}">
-                            <button class="delete-btn">삭제</button>
+                        <a th:href="@{'/admin/admin-user/delete?id=' + ${user.userNo}}" class="delete-btn-link">
+                            <!--<button class="delete-btn">삭제</button>-->
+                            <button class="delete-btn" type="button">
+                                <span class="delete-btn__text">삭제</span>
+                                <span class="delete-btn__icon">
+                                        <svg class="svg" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><title></title>
+                                            <path d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path>
+                                            <line style="stroke:#fff;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px" x1="80" x2="432" y1="112" y2="112"></line>
+                                            <path d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40" style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"></path><line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" x1="256" x2="256" y1="176" y2="400"></line>
+                                            <line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" x1="184" x2="192" y1="176" y2="400"></line><line style="fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px" x1="328" x2="320" y1="176" y2="400"></line></svg></span>
+                            </button>
                         </a>
                     </td>
                 </tr>
@@ -59,9 +63,10 @@
         </div>
     </div>
 
-    <!-- 푸터 포함 -->
-    <div class="footer-wrapper">
-        <div th:replace="~{admin/footer :: footer}" class="desktop-footer"></div>
-    </div>
+
+<!-- 푸터 포함 -->
+<div class="footer-wrapper">
+    <div th:replace="~{admin/footer :: footer}" class="desktop-footer"></div>
+</div>
 </body>
 </html>

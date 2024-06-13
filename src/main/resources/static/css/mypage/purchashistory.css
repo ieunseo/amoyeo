@@ -12,13 +12,14 @@
   width: 600px;
   background: #f9f9f9;
   padding: 20px;
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   position: absolute;
   top: 100px;
-  margin-left: 200px;
+
+  left:35%;
 }
 
 .profile-header {
@@ -100,38 +101,10 @@ table {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: absolute;
-    margin-left: 0px;
-    overflow-x: hidden;
-  }
-
-  .content {
-    margin-left: 0;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: auto;
-    width: 100%;
-    padding: 0 10px 100px;
-    box-sizing: border-box;
-  }
-
-  .sidebar {
-    display: none !important;
-  }
-
-  footer.fixed-footer {
-    display: none;
-  }
-
-  header .contentmenu {
-    padding-left: 0;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  header .contentmenu a {
-    margin-right: 10px;
+    left: 0;
     margin-left: 10px;
+    margin-right: 10px;
+    overflow-x: hidden;
   }
 
   .product-info {
@@ -143,11 +116,40 @@ table {
   .post-container {
     flex-direction: column;
     align-items: center;
+
   }
 
   .product-info.mobile-view {
     display: block;
     max-width: 100%;
     width: 70%;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .profile-card {
+    width: 600px;
+    background: #f9f9f9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100px;
+    left: 40%;
+  }
+
+}
+@media only screen and (min-width: 992px)and(max-width: 1199px) {
+  .profile-card {
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    left: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow-x: hidden;
+    /*margin-left: 0;*/
   }
 }

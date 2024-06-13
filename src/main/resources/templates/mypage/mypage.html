@@ -19,13 +19,14 @@
   </div>
 </header>
 <div th:replace="~{mypage/sidebar :: sidebar}"></div>
+
 <div class="profile-container">
   <div class="profile_section">
     <!-- 회원탈퇴 폼을 여기에 옮김 -->
     <div class="delete_account_section">
       <form th:action="@{/mypage/delete}" method="post" id="deleteAccountForm">
         <input type="hidden" id="deleteUserNo" name="userNo" th:value="${user.userNo}">
-        <button type="submit" class="delete_account_button">회원탈퇴</button>
+        <button type="submit" class="delete_account_button">탈퇴</button>
       </form>
     </div>
     <form th:action="@{/mypage/update}" th:object="${user}" method="post" onsubmit="return validateForm();">

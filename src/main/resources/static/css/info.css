@@ -311,6 +311,42 @@ hr {
     width: 200%;
     border: 1px solid #000000;
 }
+
+.pagination{
+    display: flex;
+    justify-content: center;
+}
+
+.pagination .btn-current {
+    background-color: #4ba2ff;
+    color: white;
+}
+.pagination .btn-current:hover {
+    background-color: #557af4;
+    color: white;
+}
+
+.btn-primary{
+    border-color:white;
+    background-color:#6a8af3;
+
+
+}
+.btn-primary:hover{
+    background-color:#4569dd;
+    border-color:#4569dd;
+}
+
+.btn-secondary{
+    color:black;
+    background-color:white;
+    border-color:white;
+}
+.btn-secondary:hover{
+    background-color:white;
+    color:blue;
+    border-color:white;
+}
 @media (max-width: 767px) {
     header h4 {
         margin-left: 0px;
@@ -346,5 +382,76 @@ hr {
     }
     .fab-container:hover .sub-button:nth-child(6) {
         transform: translateY(-260px);
+    }
+    .pagination{
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination .btn-current {
+        background-color: #4ba2ff;
+        color: white;
+    }
+    .pagination .btn-current:hover {
+        background-color: #557af4;
+        color: white;
+    }
+
+    .btn-primary{
+
+    }
+
+    .btn-secondary{
+        color:black;
+        background-color:white;
+        border-color:white;
+    }
+    .btn-secondary:hover{
+        background-color:white;
+        color:blue;
+        border-color:white;
+    }
+    .info-post table {
+        margin-top: 50px;
+        margin-left: 0%;
+        width: 100%;
+        white-space: pre-wrap;
+        /*margin-left: 200px;*/
+        word-wrap: break-word;
+    }
+    .info-post th {
+        margin: 10px 30px 20px 10px;
+        padding: 10px 10px 10px 50px;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+    .info-post td {
+        margin: 10px 20px 20px 10px;
+        padding: 10px 10px 10px 50px;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+    .info-btn a {
+        position: relative;
+        top: 0px;
+        color: white;
+        border-radius: 15px;
+        padding: 10px;
+        right:50%;
+
+        background-color: #6a8af3;
+        text-decoration: none !important;
+    }
+    .info-btn:hover {
+        background-color: #4569dd;
+        color: white;
+    }
+    .info-post{
+        margin-bottom: 40px;
+    }
+    main {
+        padding: 0px 0px 100px 10px;
+        width: 100%;
+        margin: 0 auto;
     }
 }
