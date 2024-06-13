@@ -50,9 +50,9 @@
           <td class="transaction-price"><span class="price-text" th:text="${totalPrices[iterStat.index]}">가격</span></td>
           <td class="transaction-seller"><span class="seller-text" th:text="${sellerNames[iterStat.index]}">판매자</span></td>
           <td>
-            <form>
-              <input type="hidden" name="buyingNo" th:value="${transaction.getId().getBuyingNo()}">
-              <input type="hidden" name="userNo" th:value="${transaction.getId().getUserNo()}">
+            <form action="/mypage/purchashistory" method="post">
+              <input type="hidden" name="buyingNo" th:value="${transaction.id.buyingNo.buyingNo}">
+              <input type="hidden" name="userNo" th:value="${transaction.id.userNo.userNo}">
               <button type="submit">취소</button>
             </form>
           </td>

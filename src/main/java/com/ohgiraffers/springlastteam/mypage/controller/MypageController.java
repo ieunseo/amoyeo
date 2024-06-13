@@ -1,9 +1,6 @@
 package com.ohgiraffers.springlastteam.mypage.controller;
 
-import com.ohgiraffers.springlastteam.entity.BuyingUser;
-import com.ohgiraffers.springlastteam.entity.Likes;
-import com.ohgiraffers.springlastteam.entity.RequireBuy;
-import com.ohgiraffers.springlastteam.entity.Users;
+import com.ohgiraffers.springlastteam.entity.*;
 
 import com.ohgiraffers.springlastteam.gonggu.repository.UserRepository;
 import com.ohgiraffers.springlastteam.mypage.repository.MyPageBuyingUserRepository;
@@ -17,12 +14,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -46,6 +41,9 @@ public class MypageController {
     @Autowired
     @Qualifier("mypageLikeRepository")
     private MyPageLikeRepository likesRepository;
+
+    @Autowired
+    private MyPageGroupBuyingRepository groupBuyingsRepository;
 
     @GetMapping("/mypage")
     public String mypage(HttpSession session, Model model) {
@@ -133,9 +131,14 @@ public class MypageController {
         return "mypage/purchashistory";
     }
 
-    @GetMapping("mypage/purchashistory")
+    @PostMapping("/mypage/purchashistory")
     public String deletePurchaseHistory(@RequestParam("buyingNo") int buyingNo,
-                                        @RequestParam("userNo") int userNo) {
+                                        HttpSession session) {
+        System.out.println("buyingNO : " + buyingNo);
+        Users user = (Users) session.getAttribute("user");
+        user.getUserNo();
+        System.out.println("유저번호 : " + user.getUserNo());
+
 
         return "redirect:/mypage/purchashistory";
     }
