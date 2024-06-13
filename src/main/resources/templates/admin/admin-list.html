@@ -13,14 +13,13 @@
     <link rel="stylesheet" th:href="@{/css/admin/admin-list.css}">
 </head>
 <body>
-<!-- 헤더 포함 -->
-<div th:replace="~{admin/header :: header}"></div>
 
 <!-- 사이드바 포함 -->
 <div th:replace="~{admin/sidebar :: sidebar}"></div>
 
 <div class="content">
     <div class="section" id="user-management">
+        <h2>🎫구매한 사람 목록🎫</h2>
         <table class="list-table">
             <thead>
             <tr>
@@ -32,7 +31,7 @@
             <tbody>
             <tr th:each="buyingUser : ${buyingUsers}">
                 <td th:text="${buyingUser.buyingDate}"></td>
-                <td th:text="${buyingUser.id.userNo.userName}"></td>
+                <td th:text="${buyingUser.getId().getUserNo().userName}"></td>
                 <td th:text="${buyingUser.buyingQuantity}"></td>
             </tr>
             </tbody>

@@ -1,11 +1,15 @@
 
 .section {
-    padding: 20px;
+    padding: 10px;
+}
+
+.h2 {
+    text-align: center;
 }
 
 .list-table {
-    margin-left: 100px;
-    width: 80%;
+    margin-left: 10px;
+    width: 100%;
     border-collapse: collapse;
 }
 

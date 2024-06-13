@@ -74,8 +74,13 @@ public class AdminController {
 
     @GetMapping("/admin-list")
     public String adminListPage(@RequestParam("buying_no") int buyingNo, Model model) {
+        System.out.println("buyingNO : " + buyingNo);
         GroupBuying groupBuying = adminService.findGroupBuyingById(buyingNo);
+        System.out.println("text : " + groupBuying.getBuyingText());
         List<BuyingUser> buyingUsers = adminService.findBuyingUsersByBuyingNo(groupBuying);
+        for(BuyingUser buyingUser : buyingUsers) {
+            System.out.println("buyingUser : " + buyingUser);
+        }
         model.addAttribute("buyingUsers", buyingUsers);
         return "admin/admin-list";
     }
