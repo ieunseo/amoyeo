@@ -141,7 +141,7 @@ public class GongguController {
         return "data/delete";
     }
     @PostMapping("/mypage")
-    public String requestGroupBuying(@RequestParam() int groupBuyingNo,
+    public String requestGroupBuying(@RequestParam int buyingNo,
                                      @RequestParam int quantity,
                                      BuyingUserDTO newBuyingUser,
                                      HttpSession session) {
@@ -150,8 +150,9 @@ public class GongguController {
         if (user == null) {
             return "redirect:/login";
         }
+        System.out.println("buyingNo : " + buyingNo);
 
-        newBuyingUser.setBuyingNo(groupBuyingNo);
+        newBuyingUser.setBuyingNo(buyingNo);
         newBuyingUser.setUserNo(user.getUserNo());
         newBuyingUser.setBuyingQuantity(quantity);
         newBuyingUser.setBuyingDate(new java.util.Date());
