@@ -3,7 +3,7 @@ main {
     padding: 0px 100px 100px 50px;
     width: 1000px;
     white-space: pre-wrap;
-    margin-left: 200px;
+    /*margin-left: 200px;*/
     word-wrap: break-word;
 }
 
@@ -37,7 +37,7 @@ main {
 }
 
 .write-container {
-    margin: 50px 0 0 200px;
+    margin: 50px 0 0;
     width: calc(100% - 400px);
     /*margin-left: 200px;*/
     max-width: 800px;
@@ -47,7 +47,7 @@ main {
 }
 
 h1 {
-    margin-left: 200px;
+    /*margin-left: 200px;*/
     font-family: 'Pretendard-ExtraBold';
     color: black;
     text-align: center;
@@ -58,7 +58,7 @@ h4 {
     font-size: 30px;
 }
 header h4 {
-    margin-left: 200px;
+    /*margin-left: 200px;*/
     font-weight: bold;
 }
 /*사이드 아이콘*/
@@ -410,6 +410,12 @@ hr {
         background-color:white;
         color:blue;
         border-color:white;
+    }
+    .faq-container {
+        width: 90%;
+        margin-left: 40%;
+        padding-left: 10px;
+        padding-right: 10px;
     }
     .info-post table {
         margin-top: 50px;
