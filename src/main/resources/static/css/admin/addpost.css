@@ -1,6 +1,6 @@
-/* Centered form styling */
+
 .centered-form {
-    margin-left: 200px;
+    margin-left: 0px;
 
     display: flex;
     flex-direction: column;
@@ -8,7 +8,6 @@
     margin-top: 70px;
 }
 
-/* Styling the form */
 .centered-form form {
     display: flex;
     flex-direction: column;
@@ -16,13 +15,11 @@
     max-width: 600px;
 }
 
-/* Label styling */
 .centered-form form label {
     margin: 10px 0 5px;
     font-weight: bold;
 }
 
-/* Text input styling */
 .centered-form form input[type="text"],
 .centered-form form input[type="number"],
 .centered-form form input[type="file"],
@@ -35,12 +32,10 @@
     box-sizing: border-box;
 }
 
-/* Textarea for 'buying_text' to make it wider */
 .centered-form form textarea#buying_text {
     height: 100px;
 }
 
-/* Button styling */
 .centered-form form button {
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -55,12 +50,9 @@
     background-color: #45a049;
 }
 
-/* Custom file input button styling */
 .plusButton {
-    /* Config start */
     --plus_sideLength: 2.5rem;
     --plus_topRightTriangleSideLength: 0.9rem;
-    /* Config end */
     position: relative;
     display: flex;
     justify-content: center;
@@ -118,7 +110,7 @@
     transform: rotate(180deg);
 }
 header h2{
-    margin-left: 200px;
+    /*margin-left: 200px;*/
 
 }
 @media (max-width: 767px) {

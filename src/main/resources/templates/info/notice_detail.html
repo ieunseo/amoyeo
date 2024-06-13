@@ -64,11 +64,11 @@
 <main>
     <div class="info-container">
         <h4 th:text="${notice.title}" class="info-title">공지사항 제목</h4>
-
-        <p class="text-muted" th:text="'작성자: ' + ${notice.authorName}">작성자 정보</p><br>
-        <p th:text="${notice.content}">공지사항 내용</p>
-        <a th:href="@{/info}" class="return-btn">목록으로 돌아가기</a>
+        <p class="text-muted info-author" th:text="'작성자: ' + ${notice.authorName}">작성자 정보</p><br>
+        <hr class="info-detail-hr">
+        <p th:text="${notice.content}" class="info-p">공지사항 내용</p>
     </div>
+    <a th:href="@{/info}" class="return-btn">목록으로 돌아가기</a>
 </main>
 <div class="fab-container">
     <div class="fab shadow">
