@@ -24,11 +24,6 @@
 
 
 @media (max-width: 767px) {
-    main {
-        padding: 0px 0px 100px 10px;
-        width: 100%;
-        margin: 0 auto;
-    }
     .info-container {
         height: 1000px; /* 고정 높이 */
         border: none;
@@ -60,14 +55,9 @@
         background-color: #557af4;
     }
     .info-p {
-        margin:10%;
+       margin:10%;
     }
     .info-author{
-        margin-right:10%;
-    }
-    .info-header{
-        margin:0px;
-        padding:0px;
+        margin-right:30%;
     }
 }
-
