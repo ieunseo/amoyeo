@@ -53,7 +53,7 @@
             <form action="/mypage/purchashistory" method="post">
               <input type="hidden" name="buyingNo" th:value="${transaction.id.buyingNo.buyingNo}">
               <input type="hidden" name="userNo" th:value="${transaction.id.userNo.userNo}">
-              <button type="submit">취소</button>
+              <button type="submit" class="delete-btn">취소</button>
             </form>
           </td>
         </tr>
