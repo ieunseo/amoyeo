@@ -1,16 +1,14 @@
 package com.ohgiraffers.springlastteam.gonggu.service;
 
 import com.ohgiraffers.springlastteam.entity.*;
-import com.ohgiraffers.springlastteam.gonggu.dto.BuyingUserDTO;
-import com.ohgiraffers.springlastteam.gonggu.dto.GroupBuyingDTO;
-import com.ohgiraffers.springlastteam.gonggu.dto.RequireBuyDTO;
-import com.ohgiraffers.springlastteam.gonggu.dto.UserDTO;
+import com.ohgiraffers.springlastteam.gonggu.dto.*;
 import com.ohgiraffers.springlastteam.gonggu.repository.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,23 +22,38 @@ public class DTOService {
     private final RequireBuyRepository requireBuyRepository;
     private final UserRepository userRepository;
     private final LikesRepository likesRepository;
+    private final ImageRepository imageRepository;
 
-    @Autowired
-    public DTOService(DTORepository dtoRepository, ModelMapper modelMapper, GroupBuyingRepository groupBuyingRepository, UserRepository userRepository, RequireBuyRepository requireBuyRepository, LikesRepository likesRepository) {
+
+    public DTOService(DTORepository dtoRepository, ModelMapper modelMapper, GroupBuyingRepository groupBuyingRepository, UserRepository userRepository, RequireBuyRepository requireBuyRepository, LikesRepository likesRepository, ImageRepository imageRepository) {
+
         this.dtoRepository = dtoRepository;
         this.modelMapper = modelMapper;
         this.groupBuyingRepository = groupBuyingRepository;
         this.userRepository = userRepository;
         this.requireBuyRepository = requireBuyRepository;
+        this.imageRepository = imageRepository;
         this.likesRepository = likesRepository;
     }
 
     public List<GroupBuyingDTO> findGroupBuyingList() {
         List<GroupBuying> groupList = groupBuyingRepository.findAll();
 
-        return groupList.stream()
-                .map(groups -> modelMapper.map(groups, GroupBuyingDTO.class))
-                .collect(Collectors.toList());
+        List<GroupBuyingDTO> groupBuyingDTOList = new ArrayList<>();
+
+        for (GroupBuying groupBuying : groupList) {
+            GroupBuyingDTO dto = modelMapper.map(groupBuying, GroupBuyingDTO.class);
+
+            List<Image> imageList = imageRepository.findByGroupBuying(groupBuying);
+            List<ImageDTO> imageDTOList = imageList.stream()
+                    .map(image -> modelMapper.map(image,ImageDTO.class))
+                    .collect(Collectors.toList());
+
+            dto.setImageList(imageDTOList);
+            groupBuyingDTOList.add(dto);
+        }
+
+        return groupBuyingDTOList;
     }
 
     public List<BuyingUserDTO> findBuyingUserList() {

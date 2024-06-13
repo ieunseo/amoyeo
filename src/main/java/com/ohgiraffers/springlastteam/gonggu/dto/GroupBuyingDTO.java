@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,7 +26,9 @@ public class GroupBuyingDTO {
 
     private String userName;
 
-    public GroupBuyingDTO(int buyingNo, String buyingText, String buyingItem, int userNo, String buyingQuality, int buyingPrice, String userName) {
+    private List<ImageDTO> imageList;
+
+    public GroupBuyingDTO(int buyingNo, String buyingText, String buyingItem, int userNo, String buyingQuality, int buyingPrice, String userName, List<ImageDTO> imageList) {
         this.buyingNo = buyingNo;
         this.buyingText = buyingText;
         this.buyingItem = buyingItem;
@@ -32,5 +36,6 @@ public class GroupBuyingDTO {
         this.buyingQuality = buyingQuality;
         this.buyingPrice = buyingPrice;
         this.userName = userName;
+        this.imageList = imageList;
     }
 }

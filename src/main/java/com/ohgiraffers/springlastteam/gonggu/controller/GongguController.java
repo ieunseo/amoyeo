@@ -36,6 +36,11 @@ public class GongguController {
     @GetMapping("/")
     public String showDataList(Model model) {
         List<GroupBuyingDTO> groupBuyingList = dtoService.findGroupBuyingList();
+        for(GroupBuyingDTO groupBuyingDTO : groupBuyingList) {
+            if(groupBuyingDTO.getBuyingNo() == 10){
+                System.out.println("groupBuyinDTO : "+groupBuyingDTO);
+            }
+        }
         model.addAttribute("groupBuyingList", groupBuyingList);
         return "index";
     }

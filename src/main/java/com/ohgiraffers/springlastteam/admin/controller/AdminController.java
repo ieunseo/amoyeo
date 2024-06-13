@@ -11,6 +11,7 @@ import com.ohgiraffers.springlastteam.gonggu.dto.GroupBuyingDTO;
 import jakarta.servlet.http.HttpSession;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,13 @@ public class AdminController {
 
     @Autowired
     ResourceLoader resourceLoader;
+
+
+    /*private String imgPath;
+
+    public AdminController(@Value("${app.upload-path}") String imgPath){
+        this.imgPath = imgPath;
+    }*/
 
     @GetMapping("/admin-user")
     public String adminUserPage(Model model) {
@@ -105,11 +113,11 @@ public class AdminController {
         GroupBuying save = adminService.registGroupBuying(newGroupBuying);
 
         /* 파일 경로 설정*/
-        Resource resource = resourceLoader.getResource("classpath:static/img/multi");
+        Resource resource = resourceLoader.getResource("classpath:static/img");
         String filePath = null;
 
         if(!resource.exists()){
-            String root = "src/main/resource/static/img/multi";
+            String root = "src/main/resources/static/img";
             File file = new File(root);
             file.mkdir();
 
@@ -128,6 +136,7 @@ public class AdminController {
                 String originFilename = file.getOriginalFilename();
                 String ext = originFilename.substring(originFilename.lastIndexOf("."));
                 String imgName = UUID.randomUUID().toString().replace("-", "") + ext;
+
 
                 ImageDTO imageDTO = new ImageDTO(originFilename,imgName,filePath);
                 imageDTO.setGroupBuyingNo(save.getBuyingNo());
