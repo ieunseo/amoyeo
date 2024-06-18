@@ -120,7 +120,7 @@
                 <button class="purchase-button" type="button" onclick="togglePurchaseSection(this)">신청</button>
             </div>
             <div class="purchase-section" style="display:none;">
-                <p>물품 :</p>
+       
                 <form action="/mypage" method="post" class="purchase-form" onsubmit="handleSubmit(event)">
                     <input type="hidden" name="buyingNo" th:value="${groupBuying.buyingNo}">
                     <div class="quantity-input">
