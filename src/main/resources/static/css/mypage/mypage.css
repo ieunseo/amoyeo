@@ -42,6 +42,7 @@ body {
   font-weight: bold;
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
 
 .delete_account_section {
@@ -53,7 +54,7 @@ body {
 .delete_account_button {
   background: #ff4d4f;
   color: #fff; display: flex;
-  writing-mode: horizontal-tb; /* Ensure horizontal text direction */
+  writing-mode: horizontal-tb;
   white-space: nowrap;
   align-items: center;
   align-self: center;
@@ -119,8 +120,8 @@ input[type="text"], input[type="password"] {
     margin-left: 0;
   }
   .delete_account_button {
-    width: 100%; /* Adjust the button width as needed for mobile devices */
-    text-align: center; /* Center the text if necessary */
+    width: 100%;
+    text-align: center;
   }
 }
 @media only screen and (min-width: 1200px) {
