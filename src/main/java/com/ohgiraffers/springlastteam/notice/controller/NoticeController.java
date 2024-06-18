@@ -56,7 +56,7 @@ public class NoticeController {
     }
 
     @PostMapping("/create")
-    public String createNotice(@RequestParam String title, @RequestParam String content, HttpSession session) {
+    public String createNotice(@RequestParam("title") String title, @RequestParam("content") String content, HttpSession session) {
         Users user = (Users) session.getAttribute("user");
         if (user == null) {
             return "redirect:/info";
@@ -64,4 +64,5 @@ public class NoticeController {
         noticeService.saveNotice(title, content, user.getUserId());
         return "redirect:/info";
     }
+
 }
