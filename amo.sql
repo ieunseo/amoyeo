@@ -3,6 +3,8 @@ DROP TABLE IF EXISTS image;
 DROP TABLE IF EXISTS group_buying;
 DROP TABLE IF EXISTS likes;
 DROP TABLE IF EXISTS require_buying;
+
+DROP TABLE IF EXISTS notices;
 DROP TABLE IF EXISTS users;
 use spring;
 CREATE TABLE users (
@@ -15,8 +17,6 @@ CREATE TABLE users (
    user_name VARCHAR(255),
    user_rights VARCHAR(255) DEFAULT 'N'
 ) ENGINE=INNODB;
-
-
 INSERT INTO users (
    user_id,
    user_pwd,
@@ -28,7 +28,6 @@ INSERT INTO users (
 ('user123', 'password123', '010-1234-5678', '삼육대학교 에스라관', '101', '이재혁', 'N'),
 ('user456', 'password456', '010-2345-6789', '삼육대학교 제1실습관', '402', '오송은','Y'),
 ('user789', 'password789', '010-3456-7890', '삼육대학교 제1실습관', '103', '심선우','N');
-
 
 CREATE TABLE group_buying(
    buying_no INT PRIMARY KEY AUTO_INCREMENT,
@@ -91,7 +90,32 @@ CREATE TABLE buying_user(
      ON DELETE CASCADE
      ON UPDATE CASCADE
 ) ENGINE=INNODB;
+-- Insert users data
 
+select * from users;
+-- Insert group buying data
+
+select * from group_buying;
+-- Insert require buying data
+INSERT INTO require_buying (
+   require_text,
+   require_item,
+   require_price,
+   require_quality,
+   user_no
+) VALUES
+('맛 좋은 고구마 사가세요~!', '고구마', 5000, 'A', 1),
+('맛 좋은 고구마 사가세요~!', '고구마', 6000, 'B', 2),
+('맛 좋은 고구마 사가세요~!', '고구마', 7000, 'C', 3);
+select * from require_buying;
+-- Insert likes data
+INSERT INTO likes (
+   user_no,
+   require_no
+) VALUES
+(1, 1),
+(2, 2),
+(3, 3);
 CREATE TABLE notices (
     notice_id INT AUTO_INCREMENT PRIMARY KEY,
     notice_title VARCHAR(255) NOT NULL,
@@ -100,3 +124,8 @@ CREATE TABLE notices (
     author_name VARCHAR(50) NOT NULL,
     FOREIGN KEY (user_no) REFERENCES users(user_no)
 );
+select * from users;
+select * from group_buying;
+select * from image;
+select * from buying_user;
+select * from notices;
