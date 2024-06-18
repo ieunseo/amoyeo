@@ -19,12 +19,12 @@ function showToast(e, message, redirectUrl) {
             if (redirectUrl) {
                 window.location.href = redirectUrl;
             }
-        }, 1000); // Additional delay to allow fade-out transition
-    }, 3000); // 3000 milliseconds = 3 seconds
+        }, 1000);
+    }, 3000);
 }
 
 function handleSubmit(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
     const form = event.target;
     const formData = new FormData(form);
 
@@ -34,7 +34,7 @@ function handleSubmit(event) {
     })
         .then(response => {
             if (response.ok) {
-                showToast(event, '신청이 완료되었습니다.', '/mypage'); // Replace '/new-page-url' with your desired redirect URL
+                showToast(event, '신청이 완료되었습니다.', '/mypage');
             } else {
                 alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
             }
@@ -118,6 +118,6 @@ function increaseQuantity(button) {
 function submitPurchase(button) {
     var quantityInput = button.previousElementSibling.querySelector('.quantity');
     var quantity = quantityInput.value;
-    showToast(event, quantity + 'kg 신청 완료', '/mypage'); // Replace '/new-page-url' with your desired redirect URL
+    showToast(event, quantity + 'kg 신청 완료', '/mypage');
     togglePurchaseSection(button);
 }

@@ -44,6 +44,7 @@ public class GongguController {
         model.addAttribute("groupBuyingList", groupBuyingList);
         return "index";
     }
+
     @GetMapping("/search")
     public String searchGroupBuying(@RequestParam(value = "query", required = false) String query, Model model) {
         List<GroupBuyingDTO> searchResults;
@@ -59,6 +60,7 @@ public class GongguController {
         }
         return "index";
     }
+
     @GetMapping("/want")
     public String getRequireBuys(HttpSession session, Model model) {
         if (session.getAttribute("user") == null) {
@@ -70,6 +72,7 @@ public class GongguController {
         model.addAttribute("requireBuyList", requireBuyList);
         return "want";
     }
+
     @GetMapping("/want/search")
     public String searchRequireBuys(@RequestParam("query") String query, HttpSession session, Model model) {
         if (session.getAttribute("user") == null) {
@@ -90,6 +93,7 @@ public class GongguController {
         }
         return "want";
     }
+
     @GetMapping("/requireBuy/{requireNo}")
     public String getRequireBuy(@PathVariable int requireNo, Model model) {
         RequireBuyDTO requireBuyDTO = dtoService.findRequireBuyById(requireNo);
@@ -98,7 +102,7 @@ public class GongguController {
     }
 
     @PostMapping("/toggleLike")
-    public ResponseEntity<Void> toggleLike(@RequestParam int userNo, @RequestParam int requireNo) {
+    public ResponseEntity<Void> toggleLike(@RequestParam("userNo") int userNo, @RequestParam("requireNo") int requireNo) {
         Optional<Likes> existingLike = likesRepository.findByUserUserNoAndRequireBuyRequireNo(userNo, requireNo);
 
         if (existingLike.isPresent()) {
@@ -112,10 +116,11 @@ public class GongguController {
 
     @GetMapping("/checkLikeStatus")
     @ResponseBody
-    public ResponseEntity<Map<String, Boolean>> checkLikeStatus(@RequestParam int userNo, @RequestParam int requireNo) {
+    public ResponseEntity<Map<String, Boolean>> checkLikeStatus(@RequestParam("userNo") int userNo, @RequestParam("requireNo") int requireNo) {
         boolean liked = likesRepository.findByUserUserNoAndRequireBuyRequireNo(userNo, requireNo).isPresent();
         return ResponseEntity.ok(Collections.singletonMap("liked", liked));
     }
+
     @RequestMapping(value = "/search", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<GroupBuyingDTO> searchGroupBuying(@RequestParam("query") String query) {
@@ -134,15 +139,16 @@ public class GongguController {
     }
 
     @GetMapping("/delete")
-    public String deleteBuyingUser(Integer buyingNo, Integer userNo) {
+    public String deleteBuyingUser(@RequestParam("buyingNo") Integer buyingNo, @RequestParam("userNo") Integer userNo) {
         buyingNo = 3;
         userNo = 1;
         dtoService.deleteRequstBuying(buyingNo, userNo);
         return "data/delete";
     }
+
     @PostMapping("/mypage")
-    public String requestGroupBuying(@RequestParam int buyingNo,
-                                     @RequestParam int quantity,
+    public String requestGroupBuying(@RequestParam("buyingNo") int buyingNo,
+                                     @RequestParam("quantity") int quantity,
                                      BuyingUserDTO newBuyingUser,
                                      HttpSession session) {
 
@@ -163,4 +169,3 @@ public class GongguController {
     }
 
 }
-
